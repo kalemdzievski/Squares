@@ -5,6 +5,7 @@ public class MouseClick : MonoBehaviour {
 
 	private Vector3 vec = new Vector3(0,5,0);
 	private bool clicked = false;
+
 	void OnMouseDown() 
 	{
 		Debug.Log ("clicked");
