@@ -11,7 +11,6 @@ public class Grid : MonoBehaviour {
 
 	void Awake ()
 	{
-
 		for (int x=0; x<width; x++) {
 			for (int y=0; y<height; y++) {
 				GameObject gridQuad = (GameObject)Instantiate(block);
