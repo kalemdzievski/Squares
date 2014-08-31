@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Grid : MonoBehaviour {
 
-	public GameObject block;
+	public GameObject quad;
 	public int width = 6;
 	public int height = 6;
 
@@ -13,9 +13,9 @@ public class Grid : MonoBehaviour {
 	{
 		for (int x=0; x<width; x++) {
 			for (int y=0; y<height; y++) {
-				GameObject gridQuad = (GameObject)Instantiate(block);
-				//gridQuad.transform.position = new Vector2(gridQuad.transform.position.x-10, gridQuad.transform.position.y);
-				gridQuad.transform.position = new Vector3(gridQuad.transform.position.x+4*x, gridQuad.transform.position.y+4*y, gridQuad.transform.position.z);
+				GameObject gridQuad = (GameObject)Instantiate(quad);
+				gridQuad.transform.position = new Vector2(gridQuad.transform.position.x-10+4*x, gridQuad.transform.position.y+4*y);
+				//gridQuad.transform.position = new Vector3(gridQuad.transform.position.x+4*x, gridQuad.transform.position.y+4*y, gridQuad.transform.position.z);
 				grid[x,y] = gridQuad;
 			}
 		}
