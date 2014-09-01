@@ -4,18 +4,20 @@ using System.Collections;
 public class SquareMatrix : MonoBehaviour
 {
 	public GameObject square;
-	public int rows, columns, offset;
+	public int rows, columns, offset, randomSquaresPainted;
 	public GameObject [,] matrix;
 
 	void Awake()
 	{
+		rows = 6;
+		columns = 6;
 		initMatrix (rows, columns);
+		paintRandomSquares (5);
 	}
 
 	// Use this for initialization
 	void Start ()
 	{
-	
 	}
 	
 	// Update is called once per frame
@@ -23,14 +25,14 @@ public class SquareMatrix : MonoBehaviour
 	{
 	
 	}
-
+	
 	void initMatrix(int rows, int columns)
 	{
-		GameObject [,] matrix = new GameObject[rows, columns];
+		matrix = new GameObject[rows, columns];
 
-		for (int i=0; i<rows; i++) 
+		for (int i = 0; i < rows; i++) 
 		{
-			for (int j=0; j<columns; j++) 
+			for (int j = 0; j < columns; j++) 
 			{
 				GameObject squareObject = (GameObject) Instantiate(square);
 				//Color squareColor = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f),Random.Range(0.0f, 1.0f), 1.0f);
@@ -41,5 +43,35 @@ public class SquareMatrix : MonoBehaviour
 			}
 		}
 	}
+
+	void paintRandomSquares(int numberOfSquares)
+	{
+		int paintedSquares = 0;
+		int i, j;
+		GameObject squareObject;
+		Square squareScript;
+
+		while(paintedSquares < numberOfSquares)
+		{
+			Debug.Log("paintedSquares: " + paintedSquares);
+			Debug.Log("rows: " + rows);
+			Debug.Log("columns: " + columns);
+			i = Random.Range(0, rows);
+			j = Random.Range(0, columns);
+			Debug.Log("i: " + i + " ,j: " + j);
+			squareObject = matrix[i,j];
+			squareScript = squareObject.GetComponent<Square>();
+			
+			if(!squareScript.isPainted)
+			{
+				Color squareColor = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), 1.0f);
+				squareObject.renderer.material.color = squareColor;
+				squareScript.isPainted = true;
+				paintedSquares++;
+			}
+		}
+
+	}
+
 }
 
