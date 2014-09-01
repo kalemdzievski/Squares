@@ -18,7 +18,9 @@ public class Grid : MonoBehaviour {
 				gridQuad.transform.position = new Vector3(gridQuad.transform.position.x+4*x, gridQuad.transform.position.y+4*y, gridQuad.transform.position.z);
 				grid[x,y] = gridQuad;
 			}
+
 		}
+		
 	}
 
 	// Use this for initialization
