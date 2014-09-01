@@ -14,6 +14,7 @@ public class Grid : MonoBehaviour {
 		for (int x=0; x<width; x++) {
 			for (int y=0; y<height; y++) {
 				GameObject gridQuad = (GameObject)Instantiate(quad);
+				gridQuad.renderer.material.color = new Color(Random.Range(0.0f,1.0f), Random.Range(0.0f,1.0f),Random.Range(0.0f,1.0f),1.0f);
 				//gridQuad.transform.position = new Vector2(gridQuad.transform.position.x+4*x, gridQuad.transform.position.y+4*y);
 				gridQuad.transform.position = new Vector3(gridQuad.transform.position.x+4*x, gridQuad.transform.position.y+4*y, gridQuad.transform.position.z);
 				grid[x,y] = gridQuad;
