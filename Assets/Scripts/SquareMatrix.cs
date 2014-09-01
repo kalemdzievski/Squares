@@ -33,8 +33,8 @@ public class SquareMatrix : MonoBehaviour
 			for (int j=0; j<columns; j++) 
 			{
 				GameObject squareObject = (GameObject) Instantiate(square);
-				Color squareColor = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f),Random.Range(0.0f, 1.0f), 1.0f);
-				squareObject.renderer.material.color = squareColor;
+				//Color squareColor = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f),Random.Range(0.0f, 1.0f), 1.0f);
+				//squareObject.renderer.material.color = squareColor;
 				Vector3 squarePosition = new Vector3(squareObject.transform.position.x + offset * j, squareObject.transform.position.y - offset * i, squareObject.transform.position.z);
 				squareObject.transform.position = squarePosition;
 				matrix[i,j] = squareObject;
