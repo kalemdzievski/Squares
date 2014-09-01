@@ -4,7 +4,6 @@ using System.Collections;
 public class MenuButtons : MonoBehaviour {
 	
 	public int gore = 200;
-	public int shirina_ramka = 200;
 	public int visina_ramka = 240;
 	public int visina_kopce = 20;
 		
