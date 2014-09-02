@@ -11,3 +11,7 @@
 /*.userprefs
 /*.pidb
 /*.booproj
+
+# Project files
+Library/assetDatabase3
+Library/guidmapper
