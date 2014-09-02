@@ -2,9 +2,6 @@
 using System.Collections;
 
 public class MenuButtons : MonoBehaviour {
-		
-	public int gore = 200;
-	public int visina_kopce = 10;
 
 	public Texture2D btnImage = null;
 	public GUISkin skin = null;
@@ -14,16 +11,16 @@ public class MenuButtons : MonoBehaviour {
 		GUI.skin = skin;
 
 		//Tuka se kreirani kopcinjata
-		if(GUI.Button (new Rect (0, Screen.height/4 + 30, Screen.width , visina_kopce), "Start Game")) 
+		if(GUI.Button (new Rect (0, Screen.height/3, Screen.width , Screen.height/10), "Start Game")) 
 		{
 			Application.LoadLevel(1);
 		}
 
-		GUI.Button (new Rect (0, Screen.height/4 + visina_kopce + 40, Screen.width, visina_kopce), "Options");
+		GUI.Button (new Rect (0, Screen.height/3 + Screen.height/10 + Screen.height/20, Screen.width, Screen.height/10), "Options");
 
-		GUI.Button (new Rect (0,Screen.height/4 + 2*visina_kopce+50, Screen.width, visina_kopce), "High Scores");
+		GUI.Button (new Rect (0,Screen.height/3 + 2*Screen.height/10 + 2*Screen.height/20, Screen.width, Screen.height/10), "High Scores");
 
-		if(GUI.Button (new Rect (0, Screen.height/4 + 3*visina_kopce+60, Screen.width, visina_kopce), "Quit"))
+		if(GUI.Button (new Rect (0, Screen.height/3 + 3*Screen.height/10 + 3*Screen.height/20, Screen.width, Screen.height/10), "Quit"))
 		{
 			Application.Quit();
 		}

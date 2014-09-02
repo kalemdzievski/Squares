@@ -101,8 +101,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eca0f59f9cf37f740a5f48dd6ae3ad52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gore: 200
-  visina_kopce: 30
   btnImage: {fileID: 0}
   skin: {fileID: 11400000, guid: 788b531f1a263b444ad283c6281d26ef, type: 2}
 --- !u!4 &202583157
@@ -292,7 +290,7 @@ Camera:
     height: 1
   near clip plane: .0500000007
   far clip plane: 60
-  field of view: 46.6963005
+  field of view: 43
   orthographic: 0
   orthographic size: 24
   m_Depth: 1
