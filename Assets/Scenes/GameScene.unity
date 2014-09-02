@@ -194,7 +194,7 @@ Camera:
     height: 1
   near clip plane: .0500000007
   far clip plane: 60
-  field of view: 46.6963005
+  field of view: 44.5275726
   orthographic: 0
   orthographic size: 24
   m_Depth: 1
@@ -344,7 +344,7 @@ GameObject:
   - 4: {fileID: 1553277922}
   - 114: {fileID: 1553277921}
   m_Layer: 0
-  m_Name: GameButtons
+  m_Name: PauseButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -361,6 +361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbc9c134bcde0654b9e8845af49ab24b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skin: {fileID: 11400000, guid: 289227d05bb1c8c469f4f707025fdea0, type: 2}
 --- !u!4 &1553277922
 Transform:
   m_ObjectHideFlags: 0
@@ -372,6 +373,54 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+<<<<<<< HEAD
+=======
+--- !u!1 &1866763226
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1866763228}
+  - 114: {fileID: 1866763227}
+  m_Layer: 10
+  m_Name: Grid
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1866763227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1866763226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 811d4eafb37beb840aaef91936423124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  square: {fileID: 100000, guid: 0b4052ecc3fdd8448b1febf8777d8185, type: 2}
+  selectedSquare: {fileID: 0}
+  selectedSquareDest: {fileID: 0}
+  rows: 0
+  columns: 0
+  offset: 0
+  randomSquaresPainted: 0
+--- !u!4 &1866763228
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1866763226}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+>>>>>>> ac6b4e4a205d412f800501aaf595a5d7e87947d2
 --- !u!1 &2128516759
 GameObject:
   m_ObjectHideFlags: 0
@@ -400,8 +449,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   square: {fileID: 100000, guid: 0b4052ecc3fdd8448b1febf8777d8185, type: 2}
+<<<<<<< HEAD
   selectedSquare: {fileID: 100000, guid: 0b4052ecc3fdd8448b1febf8777d8185, type: 2}
   selectedSquareDest: {fileID: 100000, guid: 0b4052ecc3fdd8448b1febf8777d8185, type: 2}
+=======
+  selectedSquare: {fileID: 0}
+  selectedSquareDest: {fileID: 0}
+>>>>>>> ac6b4e4a205d412f800501aaf595a5d7e87947d2
   rows: 6
   columns: 6
   offset: 4

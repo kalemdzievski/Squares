@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12001, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: MenuBtnSkin
+  m_Name: PauseButton
   m_EditorClassIdentifier: 
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   m_box:
@@ -74,13 +74,13 @@ MonoBehaviour:
   m_button:
     m_Name: button
     m_Normal:
-      m_Background: {fileID: 2800000, guid: 5901e52446c216b43b6687187aa8d0a0, type: 3}
-      m_TextColor: {r: .12186417, g: .472840339, b: .720588207, a: 1}
+      m_Background: {fileID: 2800000, guid: 6da02c44a5fde5241acb78bda7e5b455, type: 3}
+      m_TextColor: {r: .899999976, g: .899999976, b: .899999976, a: 1}
     m_Hover:
-      m_Background: {fileID: 2800000, guid: f36af98d669ecf444a4c979a2f68b804, type: 3}
+      m_Background: {fileID: 2800000, guid: 15b067561240e434595518c0103aa3e5, type: 3}
       m_TextColor: {r: 1, g: 1, b: 1, a: 1}
     m_Active:
-      m_Background: {fileID: 2800000, guid: 9b4acd603689ea04a9e72a244f522f5b, type: 3}
+      m_Background: {fileID: 11002, guid: 0000000000000000e000000000000000, type: 0}
       m_TextColor: {r: .899999976, g: .899999976, b: .899999976, a: 1}
     m_Focused:
       m_Background: {fileID: 0}
@@ -89,7 +89,7 @@ MonoBehaviour:
       m_Background: {fileID: 11005, guid: 0000000000000000e000000000000000, type: 0}
       m_TextColor: {r: .90196079, g: .90196079, b: .90196079, a: 1}
     m_OnHover:
-      m_Background: {fileID: 0}
+      m_Background: {fileID: 11004, guid: 0000000000000000e000000000000000, type: 0}
       m_TextColor: {r: 1, g: 1, b: 1, a: 1}
     m_OnActive:
       m_Background: {fileID: 11002, guid: 0000000000000000e000000000000000, type: 0}
@@ -117,10 +117,10 @@ MonoBehaviour:
       m_Right: 0
       m_Top: 0
       m_Bottom: 0
-    m_Font: {fileID: 12800000, guid: 3d3cbb918dacbdd498525167cd720949, type: 3}
-    m_FontSize: 0
-    m_FontStyle: 0
-    m_Alignment: 3
+    m_Font: {fileID: 12800000, guid: 001698ce9aeed2c4bbdf201edbe492cb, type: 3}
+    m_FontSize: 20
+    m_FontStyle: 1
+    m_Alignment: 8
     m_WordWrap: 0
     m_RichText: 1
     m_TextClipping: 1

@@ -103,6 +103,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   btnImage: {fileID: 0}
   skin: {fileID: 11400000, guid: 788b531f1a263b444ad283c6281d26ef, type: 2}
+  btnStart: Start
+  btnOptions: Option
+  btnScores: High Scores
+  btnExit: Exit
 --- !u!4 &202583157
 Transform:
   m_ObjectHideFlags: 0
