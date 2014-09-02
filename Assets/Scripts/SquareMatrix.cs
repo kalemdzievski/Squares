@@ -1,9 +1,10 @@
 using UnityEngine;
 using System.Collections;
+using AssemblyCSharp;
 
 public class SquareMatrix : MonoBehaviour
 {
-	public GameObject square;
+	public GameObject square, selectedSquare, selectedSquareDest;
 	public int rows, columns, offset, randomSquaresPainted;
 	public GameObject [,] matrix;
 
@@ -73,5 +74,51 @@ public class SquareMatrix : MonoBehaviour
 
 	}
 
+	//Path algorithm
+	public bool path()
+	{
+		string [] input = new string[rows + 2];
+		Path path = new Path();
+		char [,] mazematrix = new char[rows + 2, columns + 2];
+
+		for (int i = 0; i < rows + 2; i++)
+		{
+			mazematrix[0, i] = '#';
+			mazematrix[rows + 1, i] = '#';
+			mazematrix[i, 0] = '#';
+			mazematrix[i, columns + 1] = '#';
+		}
+		
+		for (int i = 0; i < rows; i++)
+		{
+			for (int j = 0; j < columns; j++)
+			{
+				if (matrix[i,j].GetComponent<Square>().isPainted)
+				{
+					mazematrix[i + 1, j + 1] = '#';
+				}
+				else mazematrix[i + 1, j + 1] = ' ';
+				
+				if (matrix[i,j].Equals(selectedSquare))
+				{
+					mazematrix[i + 1, j + 1] = 'S';
+				}
+				if (matrix[i,j].Equals(selectedSquareDest))
+				{
+					mazematrix[i + 1, j + 1] = 'E';
+				}
+			}
+		}
+		for (int i = 0; i < rows + 2; i++)
+		{
+			for (int j = 0; j < columns + 2; j++)
+			{
+				input[i] += mazematrix[i, j];
+			}
+		}
+		path.generateGraph(rows + 2, columns + 2, input);
+		return path.findPath();
+	}
+	
 }
 
