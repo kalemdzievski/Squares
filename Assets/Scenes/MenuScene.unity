@@ -102,8 +102,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gore: 200
-  visina_ramka: 240
-  visina_kopce: 40
+  visina_kopce: 30
+  btnImage: {fileID: 0}
+  skin: {fileID: 11400000, guid: 788b531f1a263b444ad283c6281d26ef, type: 2}
 --- !u!4 &202583157
 Transform:
   m_ObjectHideFlags: 0
