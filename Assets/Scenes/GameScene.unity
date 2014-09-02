@@ -401,8 +401,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   square: {fileID: 100000, guid: 0b4052ecc3fdd8448b1febf8777d8185, type: 2}
-  selectedSquare: {fileID: 0}
-  selectedSquareDest: {fileID: 0}
+  selectedSquare: {fileID: 100000, guid: 0b4052ecc3fdd8448b1febf8777d8185, type: 2}
+  selectedSquareDest: {fileID: 100000, guid: 0b4052ecc3fdd8448b1febf8777d8185, type: 2}
   rows: 6
   columns: 6
   offset: 4
