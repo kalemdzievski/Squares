@@ -2,11 +2,11 @@
 using System.Collections;
 
 public class MenuButtons : MonoBehaviour {
-	
+		
 	public int gore = 200;
 	public int visina_ramka = 240;
 	public int visina_kopce = 20;
-		
+
 	void OnGUI () {
 			// Ova e ramkata okolu kopcinjata
 		GUI.Box(new Rect(10,Screen.height/4,Screen.width-20,visina_ramka), "Main Menu");
@@ -24,6 +24,7 @@ public class MenuButtons : MonoBehaviour {
 		{
 			Application.Quit();
 		}
+
 	}
 
 	// Use this for initialization
