@@ -25,7 +25,14 @@ public class SquareMatrix : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-	
+		if(Input.GetMouseButtonDown(0))
+			Debug.Log ("MOUSE: " + Input.mousePosition.x + ", " + Input.mousePosition.y);
+		/*
+		for (int i = 0; i < rows; i++) 
+			for (int j = 0; j < columns; j++) 
+				if(matrix[i,j].Equals(selectedSquare))
+					Debug.Log("SELECTED i: " + i + " ,j: " + j);
+		*/
 	}
 	
 	void initMatrix(int rows, int columns)
