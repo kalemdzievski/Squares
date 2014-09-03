@@ -5,6 +5,7 @@ public class Square : MonoBehaviour {
 
 	public bool isPainted, isClicked, isSelected, isSelectedDest;
 	public SquareMatrix squareMatrixScript;
+	public int i, j;
 
 	void Awake()
 	{
