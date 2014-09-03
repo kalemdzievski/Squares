@@ -10,7 +10,7 @@ public class PauseButton : MonoBehaviour {
 		GUI.skin = skin;
 
 		//Pause button
-		if (GUI.Button (new Rect (Screen.width - 40, Screen.height - 40, 40, 40), "II")) {
+		if (GUI.Button (new Rect (Screen.width - Screen.height/8, Screen.height - Screen.height/8, Screen.height/8, Screen.height/8), "II")) {
 			Application.LoadLevel(1);
 				}
 
