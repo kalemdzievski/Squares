@@ -3,26 +3,8 @@ using System.Collections;
 
 public class Square : MonoBehaviour {
 
-	public bool isPainted, isClicked, isSelected;
+	public bool isPainted, isClicked, isSelected, isSelectedDest;
 	public SquareMatrix squareMatrixScript;
-
-	void OnMouseDown() 
-	{
-		Debug.Log("clicked");
-		isClicked = isClicked ? false : true;
-
-		squareMatrixScript = GameObject.FindGameObjectWithTag ("Block").GetComponent<SquareMatrix> ();
-		if (squareMatrixScript.selectedSquare == null) 
-		{
-			isSelected = true;
-			squareMatrixScript.selectedSquare = this.gameObject;
-		}
-		else
-		{
-			renderer.material.color = squareMatrixScript.selectedSquare.renderer.material.color;
-			squareMatrixScript.selectedSquare = null;
-		}
-	}
 
 	void Awake()
 	{
@@ -38,11 +20,7 @@ public class Square : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		if (isSelected) {
-			renderer.material.color -= Color.white / 1.1f * Time.deltaTime;
-			if(renderer.transform.rotation.y < 1)
-				renderer.transform.Rotate(0,3,0);
-		}
+
 	}
 
 	private void initSquare()
@@ -50,5 +28,24 @@ public class Square : MonoBehaviour {
 		isPainted = false;
 		isClicked = false;
 		isSelected = false;
+		isSelectedDest = false;
 	}
+
+	void OnMouseDown() 
+	{
+		Debug.Log("clicked");
+		squareMatrixScript = GameObject.FindGameObjectWithTag ("Block").GetComponent<SquareMatrix> ();
+
+		if(isPainted && squareMatrixScript.selectedSquare == null)
+		{
+			isSelected = true;
+			squareMatrixScript.selectedSquare = this.gameObject;
+		}
+		else if(!isPainted && squareMatrixScript.selectedSquare != null)
+		{
+			isSelectedDest = true;
+			squareMatrixScript.selectedSquareDest = this.gameObject;
+		}
+	}
+
 }

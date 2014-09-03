@@ -6,6 +6,7 @@ public class SquareMatrix : MonoBehaviour
 {
 	public GameObject square, selectedSquare, selectedSquareDest;
 	public int rows, columns, offset, randomSquaresPainted;
+	public float squareWidth;
 	public GameObject [,] matrix;
 
 	void Awake()
@@ -18,6 +19,8 @@ public class SquareMatrix : MonoBehaviour
 	{
 		rows = 6;
 		columns = 6;
+		offset = 4;
+		squareWidth = 3.5f;
 		initMatrix (rows, columns);
 		paintRandomSquares (5);
 	}
@@ -25,16 +28,20 @@ public class SquareMatrix : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		if(Input.GetMouseButtonDown(0))
-			Debug.Log ("MOUSE: " + Input.mousePosition.x + ", " + Input.mousePosition.y);
-		/*
-		for (int i = 0; i < rows; i++) 
-			for (int j = 0; j < columns; j++) 
-				if(matrix[i,j].Equals(selectedSquare))
-					Debug.Log("SELECTED i: " + i + " ,j: " + j);
-		*/
+		if (selectedSquare != null && selectedSquareDest != null) 
+		{
+			Color selectedSquareColor = selectedSquare.renderer.material.color;
+			Color selectedSquareDestColor = selectedSquareDest.renderer.material.color;
+			selectedSquare.renderer.material.color = selectedSquareDestColor;
+			selectedSquareDest.renderer.material.color = selectedSquareColor;
+			selectedSquare.GetComponent<Square>().isPainted = false;
+			selectedSquareDest.GetComponent<Square>().isPainted = true;
+			selectedSquare = null;
+			selectedSquareDest = null;
+			paintRandomSquares(5);
+		}
 	}
-	
+
 	void initMatrix(int rows, int columns)
 	{
 		matrix = new GameObject[rows, columns];
@@ -60,12 +67,8 @@ public class SquareMatrix : MonoBehaviour
 
 		while(paintedSquares < numberOfSquares)
 		{
-			Debug.Log("paintedSquares: " + paintedSquares);
-			Debug.Log("rows: " + rows);
-			Debug.Log("columns: " + columns);
 			i = Random.Range(0, rows);
 			j = Random.Range(0, columns);
-			Debug.Log("i: " + i + " ,j: " + j);
 			squareObject = matrix[i,j];
 			squareScript = squareObject.GetComponent<Square>();
 			
@@ -73,6 +76,7 @@ public class SquareMatrix : MonoBehaviour
 			{
 				Color squareColor = new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), 1.0f);
 				squareObject.renderer.material.color = squareColor;
+				Debug.Log("************** " + squareObject.renderer.transform.lossyScale.y);
 				squareScript.isPainted = true;
 				paintedSquares++;
 			}
