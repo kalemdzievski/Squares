@@ -32,16 +32,24 @@ public class SquareMatrix : MonoBehaviour
 	{
 		if (selectedSquare != null && selectedSquareDest != null) 
 		{
-			Color selectedSquareColor = selectedSquare.renderer.material.color;
-			Color selectedSquareDestColor = selectedSquareDest.renderer.material.color;
-			selectedSquare.renderer.material.color = selectedSquareDestColor;
-			selectedSquareDest.renderer.material.color = selectedSquareColor;
-			selectedSquare.GetComponent<Square>().isPainted = false;
-			selectedSquareDest.GetComponent<Square>().isPainted = true;
-			if(!hasLine(selectedSquareDest.GetComponent<Square>().i, selectedSquareDest.GetComponent<Square>().j))
-				paintRandomSquares(5);
-			selectedSquare = null;
-			selectedSquareDest = null;
+			if(path())
+			{
+				Color selectedSquareColor = selectedSquare.renderer.material.color;
+				Color selectedSquareDestColor = selectedSquareDest.renderer.material.color;
+				selectedSquare.renderer.material.color = selectedSquareDestColor;
+				selectedSquareDest.renderer.material.color = selectedSquareColor;
+				selectedSquare.GetComponent<Square>().isPainted = false;
+				selectedSquareDest.GetComponent<Square>().isPainted = true;
+				if(!hasLine(selectedSquareDest.GetComponent<Square>().i, selectedSquareDest.GetComponent<Square>().j))
+					paintRandomSquares(5);
+				selectedSquare = null;
+				selectedSquareDest = null;
+			}
+			else 
+			{
+				selectedSquare = null;
+				selectedSquareDest = null;
+			}
 		}
 	}
 
@@ -82,9 +90,9 @@ public class SquareMatrix : MonoBehaviour
 			{
 				Color squareColor = getRandomColor();
 				squareObject.renderer.material.color = squareColor;
-				Debug.Log("************** " + squareObject.renderer.transform.lossyScale.y);
 				squareScript.isPainted = true;
-				paintedSquares++;
+				if(!hasLine(i, j))
+					paintedSquares++;
 			}
 		}
 
@@ -117,10 +125,12 @@ public class SquareMatrix : MonoBehaviour
 				
 				if (matrix[i,j].Equals(selectedSquare))
 				{
+					Debug.Log("SELECTED");
 					mazematrix[i + 1, j + 1] = 'S';
 				}
 				if (matrix[i,j].Equals(selectedSquareDest))
 				{
+					Debug.Log("DESTINATION");
 					mazematrix[i + 1, j + 1] = 'E';
 				}
 			}
@@ -502,9 +512,9 @@ public class SquareMatrix : MonoBehaviour
 					matrix[i, j].renderer.material.color = Color.black;
 					matrix[i - 1, j].renderer.material.color = Color.black;
 					matrix[i - 2, j].renderer.material.color = Color.black;
-					matrix[i, j].renderer.material.color = Color.black;
-					matrix[i - 1, j].renderer.material.color = Color.black;
-					matrix[i - 2, j].renderer.material.color = Color.black;
+					matrix[i, j].GetComponent<Square>().isPainted = false;
+					matrix[i - 1, j].GetComponent<Square>().isPainted = false;
+					matrix[i - 2, j].GetComponent<Square>().isPainted = false;
 					return true;
 				}
 				else if ((i + 2) <= (rows - 1) && color == matrix[i + 1,j].renderer.material.color && color == matrix[i + 2,j].renderer.material.color)
