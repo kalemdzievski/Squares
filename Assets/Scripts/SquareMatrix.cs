@@ -51,6 +51,7 @@ public class SquareMatrix : MonoBehaviour
 			for (int j = 0; j < columns; j++) 
 			{
 				GameObject squareObject = (GameObject) Instantiate(square);
+				squareObject.renderer.material.color = Color.black;
 				Vector3 squarePosition = new Vector3(squareObject.transform.position.x + offset * j, squareObject.transform.position.y - offset * i, squareObject.transform.position.z);
 				squareObject.transform.position = squarePosition;
 				matrix[i,j] = squareObject;
