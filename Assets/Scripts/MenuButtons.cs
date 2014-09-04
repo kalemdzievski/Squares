@@ -23,7 +23,7 @@ public class MenuButtons : MonoBehaviour {
 			Application.LoadLevel(1);
 		}
 
-		if (GUI.Button (new Rect (0, Screen.height / 3 + Screen.height / 10 + Screen.height / 20, Screen.width, Screen.height / 10), btnOptions));
+		GUI.Button (new Rect (0, Screen.height / 3 + Screen.height / 10 + Screen.height / 20, Screen.width, Screen.height / 10), btnOptions);
 
 		GUI.Button (new Rect (0,Screen.height/3 + 2*Screen.height/10 + 2*Screen.height/20, Screen.width, Screen.height/10), btnScores);
 
