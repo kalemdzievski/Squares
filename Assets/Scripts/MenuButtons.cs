@@ -10,6 +10,7 @@ public class MenuButtons : MonoBehaviour {
 	public string btnScores = string.Empty;
 	public string btnExit = string.Empty;
 
+
 	void OnGUI () {
 
 		GUI.skin = skin;
@@ -18,10 +19,11 @@ public class MenuButtons : MonoBehaviour {
 		//Tuka se kreirani kopcinjata
 		if(GUI.Button (new Rect (0, Screen.height/3, Screen.width , Screen.height/10),btnStart)) 
 		{
+
 			Application.LoadLevel(1);
 		}
 
-		GUI.Button (new Rect (0, Screen.height/3 + Screen.height/10 + Screen.height/20, Screen.width, Screen.height/10), btnOptions);
+		if (GUI.Button (new Rect (0, Screen.height / 3 + Screen.height / 10 + Screen.height / 20, Screen.width, Screen.height / 10), btnOptions));
 
 		GUI.Button (new Rect (0,Screen.height/3 + 2*Screen.height/10 + 2*Screen.height/20, Screen.width, Screen.height/10), btnScores);
 
@@ -32,6 +34,8 @@ public class MenuButtons : MonoBehaviour {
 
 	}
 
+
+
 	// Use this for initialization
 	void Start () {
 	
@@ -39,6 +43,8 @@ public class MenuButtons : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		
 	
 	}
 }
