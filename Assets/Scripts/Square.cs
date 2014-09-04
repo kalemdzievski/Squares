@@ -34,7 +34,6 @@ public class Square : MonoBehaviour {
 
 	void OnMouseDown() 
 	{
-		Debug.Log("clicked");
 		squareMatrixScript = GameObject.FindGameObjectWithTag ("Block").GetComponent<SquareMatrix> ();
 
 		if(isPainted && squareMatrixScript.selectedSquare == null)

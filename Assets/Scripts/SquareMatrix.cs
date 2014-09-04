@@ -1,13 +1,15 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using AssemblyCSharp;
 
 public class SquareMatrix : MonoBehaviour
 {
 	public GameObject square, selectedSquare, selectedSquareDest;
 	public int rows, columns, offset, randomSquaresPainted;
-	public float squareWidth;
 	public GameObject [,] matrix;
+
+	private List<string> listLeft, listRight, listDown, listUp, listLine;
 
 	void Awake()
 	{
@@ -17,10 +19,14 @@ public class SquareMatrix : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		rows = 6;
-		columns = 6;
-		offset = 4;
-		squareWidth = 3.5f;
+		rows = 8;
+		columns = 8;
+		offset = 3;
+		listLeft = new List<string>();
+		listRight = new List<string>();
+		listDown = new List<string>();
+		listUp = new List<string>();
+		listLine = new List<string>();
 		selectedSquare = null;
 		selectedSquareDest = null;
 		initMatrix (rows, columns);
@@ -40,7 +46,7 @@ public class SquareMatrix : MonoBehaviour
 				selectedSquareDest.renderer.material.color = selectedSquareColor;
 				selectedSquare.GetComponent<Square>().isPainted = false;
 				selectedSquareDest.GetComponent<Square>().isPainted = true;
-				if(!hasLine(selectedSquareDest.GetComponent<Square>().i, selectedSquareDest.GetComponent<Square>().j))
+				if(!hasLine2(selectedSquareDest.GetComponent<Square>().i, selectedSquareDest.GetComponent<Square>().j))
 					paintRandomSquares(5);
 				selectedSquare = null;
 				selectedSquareDest = null;
@@ -91,7 +97,7 @@ public class SquareMatrix : MonoBehaviour
 				Color squareColor = getRandomColor();
 				squareObject.renderer.material.color = squareColor;
 				squareScript.isPainted = true;
-				if(!hasLine(i, j))
+				if(!hasLine2(i, j))
 					paintedSquares++;
 			}
 		}
@@ -125,12 +131,10 @@ public class SquareMatrix : MonoBehaviour
 				
 				if (matrix[i,j].Equals(selectedSquare))
 				{
-					Debug.Log("SELECTED");
 					mazematrix[i + 1, j + 1] = 'S';
 				}
 				if (matrix[i,j].Equals(selectedSquareDest))
 				{
-					Debug.Log("DESTINATION");
 					mazematrix[i + 1, j + 1] = 'E';
 				}
 			}
@@ -146,392 +150,67 @@ public class SquareMatrix : MonoBehaviour
 		return path.findPath();
 	}
 
-	public bool hasLine(int i, int j)
+	public bool hasLine2(int i, int j)
 	{
 		Color color = matrix[i,j].renderer.material.color;
-		if (i == 0 && j == 0) // GOREN - LEV KOSH
+
+		// Clear Lists
+		listLeft.Clear ();
+		listRight.Clear ();
+		listUp.Clear ();
+		listDown.Clear ();
+		listLine.Clear ();
+
+		//Fill Lists
+
+		// List Left
+		for (int k = j - 1; (k >= 0) && (color == matrix[i,k].renderer.material.color); k--) 
+			listLeft.Add(i + ";" + k);
+
+		// List Right
+		for (int k = j + 1; (k < columns) && (color == matrix[i,k].renderer.material.color); k++) 
+			listRight.Add(i + ";" + k);
+
+		// List Up
+		for (int k = i - 1; (k >= 0) && (color == matrix[k,j].renderer.material.color); k--) 
+			listUp.Add(k + ";" + j);
+
+		// List Down
+		for (int k = i + 1; (k < rows) && (color == matrix[k,j].renderer.material.color); k++) 
+			listDown.Add(k + ";" + j);
+
+		// Checks for line
+		bool horizontal = false, vertical = false;
+
+		if(listLeft.Count + listRight.Count >= 2)
 		{
-			if (color != matrix[i,j + 1].renderer.material.color && color != matrix[i + 1,j].renderer.material.color)
-				return false;
-			else
-			{
-				if (color == matrix[i,j + 1].renderer.material.color && color == matrix[i,j + 2].renderer.material.color)
-				{
-					matrix[i, j].renderer.material.color = Color.black;
-					matrix[i, j + 1].renderer.material.color = Color.black;
-					matrix[i, j + 2].renderer.material.color = Color.black;
-					matrix[i, j].GetComponent<Square>().isPainted = false;
-					matrix[i, j + 1].GetComponent<Square>().isPainted = false;
-					matrix[i, j + 2].GetComponent<Square>().isPainted = false;
-					return true;
-				}
-				else if (color == matrix[i + 1,j].renderer.material.color && color == matrix[i + 2,j].renderer.material.color)
-				{
-					matrix[i, j].renderer.material.color = Color.black;
-					matrix[i + 1, j].renderer.material.color = Color.black;
-					matrix[i + 2, j].renderer.material.color = Color.black;
-					matrix[i, j].GetComponent<Square>().isPainted = false;
-					matrix[i + 1, j].GetComponent<Square>().isPainted = false;
-					matrix[i + 2, j].GetComponent<Square>().isPainted = false;
-					return true;
-				}
-				else return false;
-			}
+			listLeft.AddRange(listRight);
+			setDefaultColorToLine(i, j, listLeft);
+			horizontal = true;
 		}
-		else if (i == 0 && j == (columns - 1)) // GOREN - DESEN KOSH
+		if(listUp.Count + listDown.Count >= 2)
 		{
-			if (color != matrix[i,j - 1].renderer.material.color && color != matrix[i + 1,j].renderer.material.color)
-				return false;
-			else
-			{
-				if (color == matrix[i,j - 1].renderer.material.color && color == matrix[i,j - 2].renderer.material.color)
-				{
-					matrix[i, j].renderer.material.color = Color.black;
-					matrix[i, j - 1].renderer.material.color = Color.black;
-					matrix[i, j - 2].renderer.material.color = Color.black;
-					matrix[i, j].GetComponent<Square>().isPainted = false;
-					matrix[i, j - 1].GetComponent<Square>().isPainted = false;
-					matrix[i, j - 2].GetComponent<Square>().isPainted = false;
-					return true;
-				}
-				else if (color == matrix[i + 1,j].renderer.material.color && color == matrix[i + 2,j].renderer.material.color)
-				{
-					matrix[i, j].renderer.material.color = Color.black;
-					matrix[i + 1, j].renderer.material.color = Color.black;
-					matrix[i + 2, j].renderer.material.color = Color.black;
-					matrix[i, j].GetComponent<Square>().isPainted = false;
-					matrix[i + 1, j].GetComponent<Square>().isPainted = false;
-					matrix[i + 2, j].GetComponent<Square>().isPainted = false;
-					return true;
-				}
-				else return false;
-			}
+			listUp.AddRange(listDown);
+			setDefaultColorToLine(i, j, listUp);
+			vertical = true;
 		}
-		else if (i == (rows - 1) && j == 0) // DOLEN - LEV KOSH
-		{
-			if (color != matrix[i,j + 1].renderer.material.color && color != matrix[i - 1,j].renderer.material.color)
-				return false;
-			else
-			{
-				if (color == matrix[i,j + 1].renderer.material.color && color == matrix[i,j + 2].renderer.material.color)
-				{
-					matrix[i, j].renderer.material.color = Color.black;
-					matrix[i, j + 1].renderer.material.color = Color.black;
-					matrix[i, j + 2].renderer.material.color = Color.black;
-					matrix[i, j].GetComponent<Square>().isPainted = false;
-					matrix[i, j + 1].GetComponent<Square>().isPainted = false;
-					matrix[i, j + 2].GetComponent<Square>().isPainted = false;
-					return true;
-				}
-				else if (color == matrix[i - 1,j].renderer.material.color && color == matrix[i - 2,j].renderer.material.color)
-				{
-					matrix[i, j].renderer.material.color = Color.black;
-					matrix[i - 1, j].renderer.material.color = Color.black;
-					matrix[i - 2, j].renderer.material.color = Color.black;
-					matrix[i, j].GetComponent<Square>().isPainted = false;
-					matrix[i - 1, j].GetComponent<Square>().isPainted = false;
-					matrix[i - 2, j].GetComponent<Square>().isPainted = false;
-					return true;
-				}
-				else return false;
-			}
-		}
-		else if (i == (rows - 1) && j == (columns - 1)) // DOLEN - DESEN KOSH
-		{
-			if (color != matrix[i,j - 1].renderer.material.color && color != matrix[i - 1,j].renderer.material.color)
-				return false;
-			else
-			{
-				if (color == matrix[i,j - 1].renderer.material.color && color == matrix[i,j - 2].renderer.material.color)
-				{
-					matrix[i, j].renderer.material.color = Color.black;
-					matrix[i, j - 1].renderer.material.color = Color.black;
-					matrix[i, j - 2].renderer.material.color = Color.black;
-					matrix[i, j].GetComponent<Square>().isPainted = false;
-					matrix[i, j - 1].GetComponent<Square>().isPainted = false;
-					matrix[i, j - 2].GetComponent<Square>().isPainted = false;
-					return true;
-				}
-				else if (color == matrix[i - 1,j].renderer.material.color && color == matrix[i - 2,j].renderer.material.color)
-				{
-					matrix[i, j].renderer.material.color = Color.black;
-					matrix[i - 1, j].renderer.material.color = Color.black;
-					matrix[i - 2, j].renderer.material.color = Color.black;
-					matrix[i, j].GetComponent<Square>().isPainted = false;
-					matrix[i - 1, j].GetComponent<Square>().isPainted = false;
-					matrix[i - 2, j].GetComponent<Square>().isPainted = false;
-					return true;
-				}
-				else return false;
-			}
-		}
-		else if (i == 0) // PRVA REDICA
-		{
-			if (color != matrix[i,j - 1].renderer.material.color && color != matrix[i,j + 1].renderer.material.color && color != matrix[i + 1,j].renderer.material.color)
-				return false;
-			else if (color == matrix[i,j - 1].renderer.material.color && color == matrix[i,j + 1].renderer.material.color)
-			{
-				matrix[i, j].renderer.material.color = Color.black;
-				matrix[i, j - 1].renderer.material.color = Color.black;
-				matrix[i, j + 1].renderer.material.color = Color.black;
-				matrix[i, j].GetComponent<Square>().isPainted = false;
-				matrix[i, j - 1].GetComponent<Square>().isPainted = false;
-				matrix[i, j + 1].GetComponent<Square>().isPainted = false;
-				return true;
-			}
-			else
-			{
-				if ((j - 2) >= 0 && color == matrix[i,j - 1].renderer.material.color && color == matrix[i,j - 2].renderer.material.color)
-				{
-					matrix[i, j].renderer.material.color = Color.black;
-					matrix[i, j - 1].renderer.material.color = Color.black;
-					matrix[i, j - 2].renderer.material.color = Color.black;
-					matrix[i, j].GetComponent<Square>().isPainted = false;
-					matrix[i, j - 1].GetComponent<Square>().isPainted = false;
-					matrix[i, j - 2].GetComponent<Square>().isPainted = false;
-					return true;
-				}
-				else if ((j + 2) <= (columns - 1) && color == matrix[i,j + 1].renderer.material.color && color == matrix[i,j + 2].renderer.material.color)
-				{
-					matrix[i, j].renderer.material.color = Color.black;
-					matrix[i, j + 1].renderer.material.color = Color.black;
-					matrix[i, j + 2].renderer.material.color = Color.black;
-					matrix[i, j].GetComponent<Square>().isPainted = false;
-					matrix[i, j + 1].GetComponent<Square>().isPainted = false;
-					matrix[i, j + 2].GetComponent<Square>().isPainted = false;
-					return true;
-				}
-				else if (color == matrix[i + 1,j].renderer.material.color && color == matrix[i + 2,j].renderer.material.color)
-				{
-					matrix[i, j].renderer.material.color = Color.black;
-					matrix[i + 1, j].renderer.material.color = Color.black;
-					matrix[i + 2, j].renderer.material.color = Color.black;
-					matrix[i, j].GetComponent<Square>().isPainted = false;
-					matrix[i + 1, j].GetComponent<Square>().isPainted = false;
-					matrix[i + 2, j].GetComponent<Square>().isPainted = false;
-					return true;
-				}
-				else return false;
-			}
-		}
-		else if (i == (rows - 1)) // POSLEDNA REDICA
-		{
-			if (color != matrix[i,j - 1].renderer.material.color && color != matrix[i,j + 1].renderer.material.color && color != matrix[i - 1,j].renderer.material.color)
-				return false;
-			else if (color == matrix[i,j - 1].renderer.material.color && color == matrix[i,j + 1].renderer.material.color)
-			{
-				matrix[i, j].renderer.material.color = Color.black;
-				matrix[i, j - 1].renderer.material.color = Color.black;
-				matrix[i, j + 1].renderer.material.color = Color.black;
-				matrix[i, j].GetComponent<Square>().isPainted = false;
-				matrix[i, j - 1].GetComponent<Square>().isPainted = false;
-				matrix[i, j + 1].GetComponent<Square>().isPainted = false;
-				return true;
-			}
-			else
-			{
-				if ((j - 2) >= 0 && color == matrix[i,j - 1].renderer.material.color && color == matrix[i,j - 2].renderer.material.color)
-				{
-					matrix[i, j].renderer.material.color = Color.black;
-					matrix[i, j - 1].renderer.material.color = Color.black;
-					matrix[i, j - 2].renderer.material.color = Color.black;
-					matrix[i, j].GetComponent<Square>().isPainted = false;
-					matrix[i, j - 1].GetComponent<Square>().isPainted = false;
-					matrix[i, j - 2].GetComponent<Square>().isPainted = false;
-					return true;
-				}
-				else if ((j + 2) <= (columns - 1) && color == matrix[i,j + 1].renderer.material.color && color == matrix[i,j + 2].renderer.material.color)
-				{
-					matrix[i, j].renderer.material.color = Color.black;
-					matrix[i, j + 1].renderer.material.color = Color.black;
-					matrix[i, j + 2].renderer.material.color = Color.black;
-					matrix[i, j].GetComponent<Square>().isPainted = false;
-					matrix[i, j + 1].GetComponent<Square>().isPainted = false;
-					matrix[i, j + 2].GetComponent<Square>().isPainted = false;
-					return true;
-				}
-				else if (color == matrix[i - 1,j].renderer.material.color && color == matrix[i - 2,j].renderer.material.color)
-				{
-					matrix[i, j].renderer.material.color = Color.black;
-					matrix[i - 1, j].renderer.material.color = Color.black;
-					matrix[i - 2, j].renderer.material.color = Color.black;
-					matrix[i, j].GetComponent<Square>().isPainted = false;
-					matrix[i - 1, j].GetComponent<Square>().isPainted = false;
-					matrix[i - 2, j].GetComponent<Square>().isPainted = false;
-					return true;
-				}
-				else return false;
-			}
-		}
-		else if (j == 0) // PRVA KOLONA
-		{
-			if (color != matrix[i - 1,j].renderer.material.color && color != matrix[i + 1,j].renderer.material.color && color != matrix[i,j + 1].renderer.material.color)
-				return false;
-			else if (color == matrix[i - 1,j].renderer.material.color && color == matrix[i + 1,j].renderer.material.color)
-			{
-				matrix[i, j].renderer.material.color = Color.black;
-				matrix[i - 1, j].renderer.material.color = Color.black;
-				matrix[i + 1, j].renderer.material.color = Color.black;
-				matrix[i, j].GetComponent<Square>().isPainted = false;
-				matrix[i - 1, j].GetComponent<Square>().isPainted = false;
-				matrix[i + 1, j].GetComponent<Square>().isPainted = false;
-				return true;
-			}
-			else
-			{
-				if (color == matrix[i,j + 1].renderer.material.color && color == matrix[i,j + 2].renderer.material.color)
-				{
-					matrix[i, j].renderer.material.color = Color.black;
-					matrix[i, j + 1].renderer.material.color = Color.black;
-					matrix[i, j + 2].renderer.material.color = Color.black;
-					matrix[i, j].GetComponent<Square>().isPainted = false;
-					matrix[i, j + 1].GetComponent<Square>().isPainted = false;
-					matrix[i, j + 2].GetComponent<Square>().isPainted = false;
-					return true;
-				}
-				else if ((i - 2) >= 0 && color == matrix[i - 1,j].renderer.material.color && color == matrix[i - 2,j].renderer.material.color)
-				{
-					matrix[i, j].renderer.material.color = Color.black;
-					matrix[i - 1, j].renderer.material.color = Color.black;
-					matrix[i - 2, j].renderer.material.color = Color.black;
-					matrix[i, j].GetComponent<Square>().isPainted = false;
-					matrix[i - 1, j].GetComponent<Square>().isPainted = false;
-					matrix[i - 2, j].GetComponent<Square>().isPainted = false;
-					return true;
-				}
-				else if ((i + 2) <= (rows - 1) && color == matrix[i + 1,j].renderer.material.color && color == matrix[i + 2,j].renderer.material.color)
-				{
-					matrix[i, j].renderer.material.color = Color.black;
-					matrix[i + 1, j].renderer.material.color = Color.black;
-					matrix[i + 2, j].renderer.material.color = Color.black;
-					matrix[i, j].GetComponent<Square>().isPainted = false;
-					matrix[i + 1, j].GetComponent<Square>().isPainted = false;
-					matrix[i + 2, j].GetComponent<Square>().isPainted = false;
-					return true;
-				}
-				else return false;
-			}
-		}
-		else if (j == (columns - 1)) // POSLEDNA KOLONA
-		{
-			if (color != matrix[i - 1,j].renderer.material.color && color != matrix[i + 1,j].renderer.material.color && color != matrix[i,j - 1].renderer.material.color)
-				return false;
-			else if (color == matrix[i - 1,j].renderer.material.color && color == matrix[i + 1,j].renderer.material.color)
-			{
-				matrix[i, j].renderer.material.color = Color.black;
-				matrix[i - 1, j].renderer.material.color = Color.black;
-				matrix[i + 1, j].renderer.material.color = Color.black;
-				matrix[i, j].GetComponent<Square>().isPainted = false;
-				matrix[i - 1, j].GetComponent<Square>().isPainted = false;
-				matrix[i + 1, j].GetComponent<Square>().isPainted = false;
-				return true;
-			}
-			else
-			{
-				if (color == matrix[i,j - 1].renderer.material.color && color == matrix[i,j - 2].renderer.material.color)
-				{
-					matrix[i, j].renderer.material.color = Color.black;
-					matrix[i, j - 1].renderer.material.color = Color.black;
-					matrix[i, j - 2].renderer.material.color = Color.black;
-					matrix[i, j].GetComponent<Square>().isPainted = false;
-					matrix[i, j - 1].GetComponent<Square>().isPainted = false;
-					matrix[i, j - 2].GetComponent<Square>().isPainted = false;
-					return true;
-				}
-				else if ((i - 2) >= 0 && color == matrix[i - 1,j].renderer.material.color && color == matrix[i - 2,j].renderer.material.color)
-				{
-					matrix[i, j].renderer.material.color = Color.black;
-					matrix[i - 1, j].renderer.material.color = Color.black;
-					matrix[i - 2, j].renderer.material.color = Color.black;
-					matrix[i, j].GetComponent<Square>().isPainted = false;
-					matrix[i - 1, j].GetComponent<Square>().isPainted = false;
-					matrix[i - 2, j].GetComponent<Square>().isPainted = false;
-					return true;
-				}
-				else if ((i + 2) <= (rows - 1) && color == matrix[i + 1,j].renderer.material.color && color == matrix[i + 2,j].renderer.material.color)
-				{
-					matrix[i, j].renderer.material.color = Color.black;
-					matrix[i + 1, j].renderer.material.color = Color.black;
-					matrix[i + 2, j].renderer.material.color = Color.black;
-					matrix[i, j].GetComponent<Square>().isPainted = false;
-					matrix[i + 1, j].GetComponent<Square>().isPainted = false;
-					matrix[i + 2, j].GetComponent<Square>().isPainted = false;
-					return true;
-				}
-				else return false;
-			}
-		}
-		else // SITE IZMEGJU
-		{
-			if (color != matrix[i - 1,j].renderer.material.color && color != matrix[i + 1,j].renderer.material.color && color != matrix[i,j + 1].renderer.material.color && color != matrix[i,j - 1].renderer.material.color)
-				return false;
-			else if (color == matrix[i - 1,j].renderer.material.color && color == matrix[i + 1,j].renderer.material.color)
-			{
-				matrix[i, j].renderer.material.color = Color.black;
-				matrix[i - 1, j].renderer.material.color = Color.black;
-				matrix[i + 1, j].renderer.material.color = Color.black;
-				matrix[i, j].GetComponent<Square>().isPainted = false;
-				matrix[i - 1, j].GetComponent<Square>().isPainted = false;
-				matrix[i + 1, j].GetComponent<Square>().isPainted = false;
-				return true;
-			}
-			else if (color == matrix[i,j - 1].renderer.material.color && color == matrix[i,j + 1].renderer.material.color)
-			{
-				matrix[i, j].renderer.material.color = Color.black;
-				matrix[i, j - 1].renderer.material.color = Color.black;
-				matrix[i, j + 1].renderer.material.color = Color.black;
-				matrix[i, j].GetComponent<Square>().isPainted = false;
-				matrix[i, j - 1].GetComponent<Square>().isPainted = false;
-				matrix[i, j + 1].GetComponent<Square>().isPainted = false;
-				return true;
-			}
-			else
-			{
-				if ((j - 2) >= 0 && color == matrix[i,j - 1].renderer.material.color && color == matrix[i,j - 2].renderer.material.color)
-				{
-					matrix[i, j].renderer.material.color = Color.black;
-					matrix[i, j - 1].renderer.material.color = Color.black;
-					matrix[i, j - 2].renderer.material.color = Color.black;
-					matrix[i, j].GetComponent<Square>().isPainted = false;
-					matrix[i, j - 1].GetComponent<Square>().isPainted = false;
-					matrix[i, j - 2].GetComponent<Square>().isPainted = false;
-					return true;
-				}
-				else if ((j + 2) <= (columns - 1) && color == matrix[i,j + 1].renderer.material.color && color == matrix[i,j + 2].renderer.material.color)
-				{
-					matrix[i, j].renderer.material.color = Color.black;
-					matrix[i, j + 1].renderer.material.color = Color.black;
-					matrix[i, j + 2].renderer.material.color = Color.black;
-					matrix[i, j].GetComponent<Square>().isPainted = false;
-					matrix[i, j + 1].GetComponent<Square>().isPainted = false;
-					matrix[i, j + 2].GetComponent<Square>().isPainted = false;
-					return true;
-				}
-				else if ((i - 2) >= 0 && color == matrix[i - 1,j].renderer.material.color && color == matrix[i - 2,j].renderer.material.color)
-				{
-					matrix[i, j].renderer.material.color = Color.black;
-					matrix[i - 1, j].renderer.material.color = Color.black;
-					matrix[i - 2, j].renderer.material.color = Color.black;
-					matrix[i, j].GetComponent<Square>().isPainted = false;
-					matrix[i - 1, j].GetComponent<Square>().isPainted = false;
-					matrix[i - 2, j].GetComponent<Square>().isPainted = false;
-					return true;
-				}
-				else if ((i + 2) <= (rows - 1) && color == matrix[i + 1,j].renderer.material.color && color == matrix[i + 2,j].renderer.material.color)
-				{
-					matrix[i, j].renderer.material.color = Color.black;
-					matrix[i + 1, j].renderer.material.color = Color.black;
-					matrix[i + 2, j].renderer.material.color = Color.black;
-					matrix[i, j].GetComponent<Square>().isPainted = false;
-					matrix[i + 1, j].GetComponent<Square>().isPainted = false;
-					matrix[i + 2, j].GetComponent<Square>().isPainted = false;
-					return true;
-				}
-				else return false;
-			}
-		}
+
+		return horizontal || vertical;
 	}
 
+	public void setDefaultColorToLine(int i, int j, List<string> list)
+	{
+		matrix[i, j].renderer.material.color = Color.black;
+		matrix[i, j].GetComponent<Square>().isPainted = false;
+		foreach(string index in list)
+		{
+			int i2 = System.Convert.ToInt32(index.Split(';')[0]);
+			int j2 = System.Convert.ToInt32(index.Split(';')[1]);
+			matrix[i2, j2].renderer.material.color = Color.black;
+			matrix[i2, j2].GetComponent<Square>().isPainted = false;
+		}
+	}
+	
 	public Color getRandomColor()
 	{
 		int color = Random.Range (0, 5);
