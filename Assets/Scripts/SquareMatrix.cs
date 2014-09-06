@@ -67,10 +67,8 @@ public class SquareMatrix : MonoBehaviour
 		{
 			for (int j = 0; j < columns; j++) 
 			{
-				GameObject squareObject = (GameObject) Instantiate(square);
-				squareObject.renderer.material.color = Color.black;
-				Vector3 squarePosition = new Vector3(squareObject.transform.position.x + offset * j, squareObject.transform.position.y - offset * i, squareObject.transform.position.z);
-				squareObject.transform.position = squarePosition;
+				Vector3 squarePosition = new Vector3(square.transform.position.x + offset * j, square.transform.position.y - offset * i, square.transform.position.z);
+				GameObject squareObject = (GameObject)Instantiate(square, squarePosition, Quaternion.identity);
 				squareObject.GetComponent<Square>().i = i;
 				squareObject.GetComponent<Square>().j = j;
 				matrix[i,j] = squareObject;
