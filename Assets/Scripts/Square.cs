@@ -6,6 +6,7 @@ public class Square : MonoBehaviour {
 	public bool isPainted, isClicked, isSelected, isSelectedDest;
 	public SquareMatrix squareMatrixScript;
 	public int i, j;
+	public Animation anim;
 
 	void Awake()
 	{
@@ -30,6 +31,7 @@ public class Square : MonoBehaviour {
 		isClicked = false;
 		isSelected = false;
 		isSelectedDest = false;
+		anim = this.gameObject.transform.GetChild (0).animation;
 	}
 
 	void OnMouseDown() 
@@ -46,6 +48,14 @@ public class Square : MonoBehaviour {
 			isSelectedDest = true;
 			squareMatrixScript.selectedSquareDest = this.gameObject;
 		}
+		else if(isPainted && squareMatrixScript.selectedSquare != null)
+		{
+			isSelected = true;
+			squareMatrixScript.selectedSquare = this.gameObject;
+			squareMatrixScript.selectedSquareDest = null;
+		}
+
+		//anim.Play("Test anim");
 	}
 
 }
