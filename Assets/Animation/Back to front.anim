@@ -7,7 +7,7 @@ AnimationClip:
   m_PrefabInternal: {fileID: 0}
   m_Name: Back to front
   serializedVersion: 4
-  m_AnimationType: 2
+  m_AnimationType: 1
   m_Compressed: 0
   m_UseHighQualityCurve: 1
   m_RotationCurves: []
@@ -21,6 +21,11 @@ AnimationClip:
         inSlope: {x: 0, y: 0, z: -6}
         outSlope: {x: 0, y: 0, z: -6}
         tangentMode: 1079733687
+      - time: .483333319
+        value: {x: 0, y: 0, z: .100000083}
+        inSlope: {x: 0, y: 0, z: -6}
+        outSlope: {x: 0, y: 0, z: -6}
+        tangentMode: 0
       - time: .5
         value: {x: 0, y: 0, z: 0}
         inSlope: {x: 0, y: 0, z: -6}
@@ -82,7 +87,7 @@ AnimationClip:
         inSlope: 0
         outSlope: 0
         tangentMode: 10
-      - time: .5
+      - time: .483333319
         value: 0
         inSlope: 0
         outSlope: 0
