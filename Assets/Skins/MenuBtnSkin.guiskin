@@ -75,13 +75,13 @@ MonoBehaviour:
     m_Name: button
     m_Normal:
       m_Background: {fileID: 2800000, guid: 5901e52446c216b43b6687187aa8d0a0, type: 3}
-      m_TextColor: {r: 1, g: 1, b: 1, a: 1}
+      m_TextColor: {r: .0862745121, g: .0862745121, b: .0862745121, a: 1}
     m_Hover:
       m_Background: {fileID: 2800000, guid: 9b4acd603689ea04a9e72a244f522f5b, type: 3}
-      m_TextColor: {r: .113725491, g: .411764711, b: .498039216, a: 1}
+      m_TextColor: {r: .79411763, g: .186851189, b: .469300538, a: 1}
     m_Active:
       m_Background: {fileID: 2800000, guid: 9b4acd603689ea04a9e72a244f522f5b, type: 3}
-      m_TextColor: {r: .0549019612, g: .250980407, b: .309803933, a: 1}
+      m_TextColor: {r: .792156875, g: .188235298, b: .470588237, a: 1}
     m_Focused:
       m_Background: {fileID: 0}
       m_TextColor: {r: 1, g: 1, b: 1, a: 1}

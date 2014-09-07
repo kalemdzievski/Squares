@@ -20,7 +20,7 @@ TagManager:
   User Layer 11: GUI
   User Layer 12: Bar
   User Layer 13: Text
-  User Layer 14: 
+  User Layer 14: Game Background
   User Layer 15: 
   User Layer 16: 
   User Layer 17: 
@@ -46,4 +46,8 @@ TagManager:
   - name: Prv
     userID: 1
     uniqueID: 2943268501
+    locked: 0
+  - name: GameBackground
+    userID: 2
+    uniqueID: 303147175
     locked: 0
