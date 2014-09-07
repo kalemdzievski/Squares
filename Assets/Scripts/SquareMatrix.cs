@@ -40,10 +40,10 @@ public class SquareMatrix : MonoBehaviour
 		{
 			if(path())
 			{
-				Color selectedSquareColor = selectedSquare.renderer.material.color;
-				Color selectedSquareDestColor = selectedSquareDest.renderer.material.color;
-				selectedSquare.renderer.material.color = selectedSquareDestColor;
-				selectedSquareDest.renderer.material.color = selectedSquareColor;
+				Color selectedSquareColor = selectedSquare.transform.GetChild(0).renderer.material.color;
+				Color selectedSquareDestColor = selectedSquareDest.transform.GetChild(0).renderer.material.color;
+				selectedSquare.transform.GetChild(0).renderer.material.color = selectedSquareDestColor;
+				selectedSquareDest.transform.GetChild(0).renderer.material.color = selectedSquareColor;
 				selectedSquare.GetComponent<Square>().isPainted = false;
 				selectedSquareDest.GetComponent<Square>().isPainted = true;
 				if(!hasLine2(selectedSquareDest.GetComponent<Square>().i, selectedSquareDest.GetComponent<Square>().j))
@@ -67,10 +67,8 @@ public class SquareMatrix : MonoBehaviour
 		{
 			for (int j = 0; j < columns; j++) 
 			{
-				GameObject squareObject = (GameObject) Instantiate(square);
-				squareObject.renderer.material.color = Color.black;
-				Vector3 squarePosition = new Vector3(squareObject.transform.position.x + offset * j, squareObject.transform.position.y - offset * i, squareObject.transform.position.z);
-				squareObject.transform.position = squarePosition;
+				Vector3 squarePosition = new Vector3(square.transform.position.x + offset * j, square.transform.position.y - offset * i, square.transform.position.z);
+				GameObject squareObject = (GameObject)Instantiate(square, squarePosition, Quaternion.identity);
 				squareObject.GetComponent<Square>().i = i;
 				squareObject.GetComponent<Square>().j = j;
 				matrix[i,j] = squareObject;
@@ -91,11 +89,11 @@ public class SquareMatrix : MonoBehaviour
 			j = Random.Range(0, columns);
 			squareObject = matrix[i,j];
 			squareScript = squareObject.GetComponent<Square>();
-			
+
 			if(!squareScript.isPainted)
 			{
 				Color squareColor = getRandomColor();
-				squareObject.renderer.material.color = squareColor;
+				squareObject.transform.GetChild(0).renderer.material.color = squareColor;
 				squareScript.isPainted = true;
 				if(!hasLine2(i, j))
 					paintedSquares++;
@@ -152,7 +150,7 @@ public class SquareMatrix : MonoBehaviour
 
 	public bool hasLine2(int i, int j)
 	{
-		Color color = matrix[i,j].renderer.material.color;
+		Color color = matrix[i,j].transform.GetChild(0).renderer.material.color;
 
 		// Clear Lists
 		listLeft.Clear ();
@@ -164,19 +162,19 @@ public class SquareMatrix : MonoBehaviour
 		//Fill Lists
 
 		// List Left
-		for (int k = j - 1; (k >= 0) && (color == matrix[i,k].renderer.material.color); k--) 
+		for (int k = j - 1; (k >= 0) && (color == matrix[i,k].transform.GetChild(0).renderer.material.color); k--) 
 			listLeft.Add(i + ";" + k);
 
 		// List Right
-		for (int k = j + 1; (k < columns) && (color == matrix[i,k].renderer.material.color); k++) 
+		for (int k = j + 1; (k < columns) && (color == matrix[i,k].transform.GetChild(0).renderer.material.color); k++) 
 			listRight.Add(i + ";" + k);
 
 		// List Up
-		for (int k = i - 1; (k >= 0) && (color == matrix[k,j].renderer.material.color); k--) 
+		for (int k = i - 1; (k >= 0) && (color == matrix[k,j].transform.GetChild(0).renderer.material.color); k--) 
 			listUp.Add(k + ";" + j);
 
 		// List Down
-		for (int k = i + 1; (k < rows) && (color == matrix[k,j].renderer.material.color); k++) 
+		for (int k = i + 1; (k < rows) && (color == matrix[k,j].transform.GetChild(0).renderer.material.color); k++) 
 			listDown.Add(k + ";" + j);
 
 		// Checks for line
@@ -200,13 +198,13 @@ public class SquareMatrix : MonoBehaviour
 
 	public void setDefaultColorToLine(int i, int j, List<string> list)
 	{
-		matrix[i, j].renderer.material.color = Color.black;
+		matrix[i, j].transform.GetChild(0).renderer.material.color = Color.black;
 		matrix[i, j].GetComponent<Square>().isPainted = false;
 		foreach(string index in list)
 		{
 			int i2 = System.Convert.ToInt32(index.Split(';')[0]);
 			int j2 = System.Convert.ToInt32(index.Split(';')[1]);
-			matrix[i2, j2].renderer.material.color = Color.black;
+			matrix[i2, j2].transform.GetChild(0).renderer.material.color = Color.black;
 			matrix[i2, j2].GetComponent<Square>().isPainted = false;
 		}
 	}
