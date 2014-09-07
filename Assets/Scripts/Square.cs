@@ -42,11 +42,12 @@ public class Square : MonoBehaviour {
 		{
 			isSelected = true;
 			squareMatrixScript.selectedSquare = this.gameObject;
-			anim.Play("Front to back");
+			anim.Play("Back to front");
 		}
 		else if(!isPainted && squareMatrixScript.selectedSquare != null)
 		{
 			isSelectedDest = true;
+			squareMatrixScript.selectedSquare.transform.GetChild (0).animation.Play("Back to front");
 			squareMatrixScript.selectedSquareDest = this.gameObject;
 		}
 		else if(isPainted && squareMatrixScript.selectedSquare != null)
