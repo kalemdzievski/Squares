@@ -14,7 +14,7 @@ public class MenuButtons : MonoBehaviour {
 	void OnGUI () {
 
 		GUI.skin = skin;
-		skin.button.fontSize = (int)Screen.dpi/3;
+		skin.button.fontSize = (int)Screen.dpi/5;
 
 		//Tuka se kreirani kopcinjata
 		if(GUI.Button (new Rect (0, Screen.height/3, Screen.width , Screen.height/10),btnStart)) 
@@ -31,7 +31,8 @@ public class MenuButtons : MonoBehaviour {
 		{
 			Application.Quit();
 		}
-
+		if (Input.GetKeyDown(KeyCode.Escape))
+			Application.Quit();
 	}
 
 

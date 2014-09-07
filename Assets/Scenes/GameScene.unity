@@ -134,7 +134,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_SortingLayerID: 0
-  m_Sprite: {fileID: 21300000, guid: c5a8649822b7fde47af26b88e97a8243, type: 3}
+  m_Sprite: {fileID: 21300000, guid: dce011db15ab458489e61f6b25d5708f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &519700604
 GameObject:
