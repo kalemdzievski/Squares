@@ -119,9 +119,10 @@ Animation:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: d6b7a43f0d65a514fb7440e3f82417fb, type: 2}
+  m_Animation: {fileID: 0}
   m_Animations:
   - {fileID: 7400000, guid: d6b7a43f0d65a514fb7440e3f82417fb, type: 2}
+  - {fileID: 7400000, guid: 35181bba9e154c84fbded46554680b62, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
@@ -144,6 +145,7 @@ MonoBehaviour:
   squareMatrixScript: {fileID: 0}
   i: 0
   j: 0
+  anim: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
