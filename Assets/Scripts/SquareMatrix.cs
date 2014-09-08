@@ -6,10 +6,9 @@ using AssemblyCSharp;
 public class SquareMatrix : MonoBehaviour
 {
 	public GameObject square, selectedSquare, selectedSquareDest;
-	public int rows, columns, randomSquaresPainted, score;
+	public int rows, columns, randomSquaresPainted, score, combo;
 	public float offset;
 	public GameObject [,] matrix;
-
 	private List<string> listLeft, listRight, listDown, listUp, listLine;
 
 	void Awake()
@@ -24,6 +23,7 @@ public class SquareMatrix : MonoBehaviour
 		columns = 7;
 		offset = 4;
 		score = 0;
+		combo = 0;
 		listLeft = new List<string>();
 		listRight = new List<string>();
 		listDown = new List<string>();
@@ -49,10 +49,16 @@ public class SquareMatrix : MonoBehaviour
 				selectedSquare.GetComponent<Square>().isPainted = false;
 				selectedSquareDest.GetComponent<Square>().isPainted = true;
 				int line = hasLine2(selectedSquareDest.GetComponent<Square>().i, selectedSquareDest.GetComponent<Square>().j);
-				if(line == 1)
+				if(line == 1) {
+					if(combo >= 3)
+						score += combo * 100;
 					paintRandomSquares(5);
-				else 
+					combo = 0;
+				}
+				else {
 					score += line * 100;
+					combo++;
+				}
 				selectedSquare = null;
 				selectedSquareDest = null;
 			}
@@ -64,6 +70,7 @@ public class SquareMatrix : MonoBehaviour
 		}
 
 		GameObject.FindGameObjectWithTag ("Score").guiText.text = score.ToString();
+		GameObject.FindGameObjectWithTag ("Combo").guiText.text = "x" + combo.ToString();
 	}
 
 	void initMatrix(int rows, int columns)
