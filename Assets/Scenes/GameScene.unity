@@ -372,7 +372,7 @@ GameObject:
   - 114: {fileID: 686312896}
   m_Layer: 0
   m_Name: ScoreValue
-  m_TagString: Untagged
+  m_TagString: Score
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -396,7 +396,7 @@ GUIText:
   m_GameObject: {fileID: 686312895}
   m_Enabled: 1
   serializedVersion: 3
-  m_Text: 123456
+  m_Text: 0
   m_Anchor: 4
   m_Alignment: 1
   m_PixelOffset: {x: 0, y: 0}
@@ -615,7 +615,7 @@ GameObject:
   - 114: {fileID: 2048180537}
   m_Layer: 0
   m_Name: ComboValue
-  m_TagString: Untagged
+  m_TagString: Combo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -639,7 +639,7 @@ GUIText:
   m_GameObject: {fileID: 2048180536}
   m_Enabled: 1
   serializedVersion: 3
-  m_Text: x2
+  m_Text: 
   m_Anchor: 4
   m_Alignment: 1
   m_PixelOffset: {x: 0, y: 0}
@@ -698,6 +698,7 @@ MonoBehaviour:
   rows: 6
   columns: 6
   randomSquaresPainted: 0
+  score: 0
   offset: 6
 --- !u!4 &2128516761
 Transform:
