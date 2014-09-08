@@ -9,9 +9,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 400000}
   - 33: {fileID: 3300000}
-  - 65: {fileID: 6500000}
   - 23: {fileID: 2300000}
   - 111: {fileID: 11100000}
+  - 65: {fileID: 6500000}
   m_Layer: 10
   m_Name: Square
   m_TagString: Square
@@ -89,7 +89,7 @@ MeshFilter:
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!65 &6500000
 BoxCollider:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
@@ -109,7 +109,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.5, y: 2.5, z: 1}
+  m_Size: {x: 3.79999995, y: 3.79999995, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!111 &11100000
 Animation:
@@ -123,6 +123,7 @@ Animation:
   m_Animations:
   - {fileID: 7400000, guid: d6b7a43f0d65a514fb7440e3f82417fb, type: 2}
   - {fileID: 7400000, guid: 35181bba9e154c84fbded46554680b62, type: 2}
+  - {fileID: 7400000, guid: e4fdda76d1313f2498b398d9f11b4d65, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
