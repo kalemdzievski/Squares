@@ -66,6 +66,7 @@ public class Square : MonoBehaviour {
 	void OnMouseUp() 
 	{
 		anim.Play("Back to front rotation");
+
 	}
 
 }
