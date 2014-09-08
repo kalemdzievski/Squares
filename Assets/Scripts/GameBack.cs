@@ -7,8 +7,8 @@ public class GameBack : MonoBehaviour {
 	SpriteRenderer sr;
 	void Start () {
 		sr = GetComponent<SpriteRenderer> ();
-		float xmas = Screen.width*Camera.main.orthographicSize*2.1f /(Screen.height*1.0f);//
-		float yScale =Camera.main.orthographicSize*2.1f  / sr.renderer.bounds.size.y; 
+		float xmas = Screen.width*Camera.main.orthographicSize*2.5f /(Screen.height*1.0f);//
+		float yScale =Camera.main.orthographicSize*2.5f  / sr.renderer.bounds.size.y; 
 		float xScale = 0;
 		if (Screen.height > Screen.width)
 			xScale = xmas / sr.renderer.bounds.size.x;

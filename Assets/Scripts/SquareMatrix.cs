@@ -6,7 +6,8 @@ using AssemblyCSharp;
 public class SquareMatrix : MonoBehaviour
 {
 	public GameObject square, selectedSquare, selectedSquareDest;
-	public int rows, columns, offset, randomSquaresPainted;
+	public int rows, columns, randomSquaresPainted;
+	public float offset;
 	public GameObject [,] matrix;
 
 	private List<string> listLeft, listRight, listDown, listUp, listLine;
@@ -19,9 +20,9 @@ public class SquareMatrix : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		rows = 8;
-		columns = 8;
-		offset = 3;
+		rows = 7;
+		columns = 7;
+		offset = 4;
 		listLeft = new List<string>();
 		listRight = new List<string>();
 		listDown = new List<string>();

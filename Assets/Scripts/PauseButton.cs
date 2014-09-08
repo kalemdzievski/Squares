@@ -3,17 +3,18 @@ using System.Collections;
 
 public class PauseButton : MonoBehaviour {
 
+
 	public GUISkin skin = null;
-	private string pause = "II";
 
 	void OnGUI () {
 
 		GUI.skin = skin;
-		this.skin.button.fontSize = (int)Screen.dpi / 3;
+		this.skin.button.fontSize = (int)Screen.dpi / 7;
 		//Pause button
-		if (GUI.Button (new Rect (Screen.width - Screen.height/11, Screen.height - Screen.height/14, Screen.height/11, Screen.height/14),pause)) {
+		if (GUI.Button (new Rect (Screen.width - Screen.height/20, Screen.height - Screen.height/20, Screen.height/20, Screen.height/20),"II")) {
 			Application.LoadLevel(0);
 				}
+
 		if (Input.GetKeyDown(KeyCode.Escape))
 			Application.LoadLevel (0);
 
