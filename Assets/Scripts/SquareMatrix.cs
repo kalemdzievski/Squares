@@ -6,7 +6,7 @@ using AssemblyCSharp;
 public class SquareMatrix : MonoBehaviour
 {
 	public GameObject square, selectedSquare, selectedSquareDest;
-	public int rows, columns, randomSquaresPainted;
+	public int rows, columns, randomSquaresPainted, score;
 	public float offset;
 	public GameObject [,] matrix;
 
@@ -23,6 +23,7 @@ public class SquareMatrix : MonoBehaviour
 		rows = 7;
 		columns = 7;
 		offset = 4;
+		score = 0;
 		listLeft = new List<string>();
 		listRight = new List<string>();
 		listDown = new List<string>();
@@ -47,8 +48,11 @@ public class SquareMatrix : MonoBehaviour
 				selectedSquareDest.transform.GetChild(0).renderer.material.color = selectedSquareColor;
 				selectedSquare.GetComponent<Square>().isPainted = false;
 				selectedSquareDest.GetComponent<Square>().isPainted = true;
-				if(!hasLine2(selectedSquareDest.GetComponent<Square>().i, selectedSquareDest.GetComponent<Square>().j))
+				int line = hasLine2(selectedSquareDest.GetComponent<Square>().i, selectedSquareDest.GetComponent<Square>().j);
+				if(line == 1)
 					paintRandomSquares(5);
+				else 
+					score += line * 100;
 				selectedSquare = null;
 				selectedSquareDest = null;
 			}
@@ -58,6 +62,8 @@ public class SquareMatrix : MonoBehaviour
 				selectedSquareDest = null;
 			}
 		}
+
+		GameObject.FindGameObjectWithTag ("Score").guiText.text = score.ToString();
 	}
 
 	void initMatrix(int rows, int columns)
@@ -96,8 +102,11 @@ public class SquareMatrix : MonoBehaviour
 				Color squareColor = getRandomColor();
 				squareObject.transform.GetChild(0).renderer.material.color = squareColor;
 				squareScript.isPainted = true;
-				if(!hasLine2(i, j))
+				int line = hasLine2(i, j);
+				if(line == 1)
 					paintedSquares++;
+				else 
+					score += line * 100;
 			}
 		}
 
@@ -149,7 +158,7 @@ public class SquareMatrix : MonoBehaviour
 		return path.findPath();
 	}
 
-	public bool hasLine2(int i, int j)
+	public int hasLine2(int i, int j)
 	{
 		Color color = matrix[i,j].transform.GetChild(0).renderer.material.color;
 
@@ -179,22 +188,22 @@ public class SquareMatrix : MonoBehaviour
 			listDown.Add(k + ";" + j);
 
 		// Checks for line
-		bool horizontal = false, vertical = false;
+		int line = 1;
 
 		if(listLeft.Count + listRight.Count >= 2)
 		{
 			listLeft.AddRange(listRight);
 			setDefaultColorToLine(i, j, listLeft);
-			horizontal = true;
+			line += listLeft.Count;
 		}
 		if(listUp.Count + listDown.Count >= 2)
 		{
 			listUp.AddRange(listDown);
 			setDefaultColorToLine(i, j, listUp);
-			vertical = true;
+			line += listUp.Count;
 		}
 
-		return horizontal || vertical;
+		return line;
 	}
 
 	public void setDefaultColorToLine(int i, int j, List<string> list)
