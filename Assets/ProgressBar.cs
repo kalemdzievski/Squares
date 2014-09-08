@@ -1,21 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MenuTitle : MonoBehaviour {
-	
+public class ProgressBar : MonoBehaviour {
+
 
 	// Use this for initialization
 	void Start () {
-
-
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
-		guiText.text = "SQUARES";
-		guiText.fontSize = Screen.width / 5;
-
 	}
 }
