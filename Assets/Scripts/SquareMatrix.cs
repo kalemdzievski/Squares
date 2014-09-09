@@ -10,6 +10,7 @@ public class SquareMatrix : MonoBehaviour
 	public float offset;
 	public GameObject [,] matrix;
 	private List<string> listLeft, listRight, listDown, listUp, listLine;
+	private Fade2 fade;
 
 	void Awake()
 	{
@@ -19,6 +20,7 @@ public class SquareMatrix : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
+		Fade2.getInstance ();
 		rows = 7;
 		columns = 7;
 		offset = 4;
@@ -42,10 +44,15 @@ public class SquareMatrix : MonoBehaviour
 		{
 			if(path())
 			{
-				Color selectedSquareColor = selectedSquare.transform.GetChild(0).renderer.material.color;
-				Color selectedSquareDestColor = selectedSquareDest.transform.GetChild(0).renderer.material.color;
-				selectedSquare.transform.GetChild(0).renderer.material.color = selectedSquareDestColor;
-				selectedSquareDest.transform.GetChild(0).renderer.material.color = selectedSquareColor;
+				Color selectedSquareColorFrom = selectedSquare.transform.GetChild(0).renderer.material.color;
+				Color selectedSquareColorTo = selectedSquareDest.transform.GetChild(0).renderer.material.color;
+
+				Color selectedSquareDestColorFrom = selectedSquareDest.transform.GetChild(0).renderer.material.color;
+				Color selectedSquareDestColorTo = selectedSquare.transform.GetChild(0).renderer.material.color;
+
+				Fade2.use.Colors(selectedSquare.transform.GetChild(0).renderer.material, selectedSquareColorFrom, selectedSquareColorTo, 0.5f, Fade2.EaseType.InOut);
+				Fade2.use.Colors(selectedSquareDest.transform.GetChild(0).renderer.material, selectedSquareDestColorFrom, selectedSquareDestColorTo, 0.5f, Fade2.EaseType.InOut);
+
 				selectedSquare.GetComponent<Square>().isPainted = false;
 				selectedSquareDest.GetComponent<Square>().isPainted = true;
 				int line = hasLine2(selectedSquareDest.GetComponent<Square>().i, selectedSquareDest.GetComponent<Square>().j);
