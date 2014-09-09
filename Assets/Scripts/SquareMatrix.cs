@@ -59,14 +59,12 @@ public class SquareMatrix : MonoBehaviour
 					score += line * 100;
 					combo++;
 				}
-				selectedSquare = null;
-				selectedSquareDest = null;
 			}
-			else 
-			{
+
+			if(!selectedSquare.transform.GetChild(0).animation.isPlaying)
 				selectedSquare = null;
+			if(!selectedSquareDest.transform.GetChild(0).animation.isPlaying)
 				selectedSquareDest = null;
-			}
 		}
 
 		GameObject.FindGameObjectWithTag ("Score").guiText.text = score.ToString();
