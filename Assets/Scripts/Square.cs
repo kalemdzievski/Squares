@@ -47,26 +47,23 @@ public class Square : MonoBehaviour {
 		else if(!isPainted && squareMatrixScript.selectedSquare != null)
 		{
 			isSelectedDest = true;
-			squareMatrixScript.selectedSquare.transform.GetChild (0).animation.Play("Back to front");
+			squareMatrixScript.selectedSquare.transform.GetChild (0).animation.Play("Back to front rotation");
 			squareMatrixScript.selectedSquareDest = this.gameObject;
 		}
 		else if(isPainted && squareMatrixScript.selectedSquare != null)
 		{
 			isSelected = true;
-			squareMatrixScript.selectedSquare.transform.GetChild (0).animation.Play("Back to front");
+			squareMatrixScript.selectedSquare.transform.GetChild (0).animation.Play("Back to front rotation");
 			squareMatrixScript.selectedSquare = this.gameObject;
 			squareMatrixScript.selectedSquare.transform.GetChild (0).animation.Play("Front to back");
 			squareMatrixScript.selectedSquareDest = null;
 		}
-
-		//anim.Play("Front to back");
-		//anim.Play("Back to front");
 	}
 
 	void OnMouseUp() 
 	{
-		anim.Play("Back to front rotation");
-
+		//if(squareMatrixScript.selectedSquare == null)
+			//anim.Play("Back to front rotation");
 	}
 
 }
