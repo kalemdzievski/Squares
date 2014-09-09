@@ -226,7 +226,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fd30bff67da68345806af1ae7185e80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musictheme: {fileID: 268703355}
 --- !u!82 &268703357
 AudioSource:
   m_ObjectHideFlags: 0
