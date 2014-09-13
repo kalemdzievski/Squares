@@ -47,9 +47,12 @@ public class Square : MonoBehaviour {
 		else if(!isPainted && squareMatrixScript.selectedSquare != null)
 		{
 			isSelectedDest = true;
-			squareMatrixScript.selectedSquare.transform.GetChild (0).animation.Play("Rotation up");
 			squareMatrixScript.selectedSquareDest = this.gameObject;
-			squareMatrixScript.selectedSquareDest.transform.GetChild (0).animation.Play("Rotation down");
+			if(squareMatrixScript.path())
+			{
+				squareMatrixScript.selectedSquare.transform.GetChild (0).animation.Play("Rotation up");
+				squareMatrixScript.selectedSquareDest.transform.GetChild (0).animation.Play("Rotation down");
+			}
 		}
 		else if(isPainted && squareMatrixScript.selectedSquare != null)
 		{
@@ -57,7 +60,6 @@ public class Square : MonoBehaviour {
 			squareMatrixScript.selectedSquare.transform.GetChild (0).animation.Play("Deselect");
 			squareMatrixScript.selectedSquare = this.gameObject;
 			squareMatrixScript.selectedSquare.transform.GetChild (0).animation.Play("Select");
-			squareMatrixScript.selectedSquareDest = null;
 		}
 	}
 
