@@ -42,7 +42,7 @@ public class Square : MonoBehaviour {
 		{
 			isSelected = true;
 			squareMatrixScript.selectedSquare = this.gameObject;
-			//anim.Play("Front to back");
+			anim.Play("Rotation up");
 		}
 		else if(!isPainted && squareMatrixScript.selectedSquare != null)
 		{

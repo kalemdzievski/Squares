@@ -10,7 +10,6 @@ public class SquareMatrix : MonoBehaviour
 	public float offset;
 	public GameObject [,] matrix;
 	private List<string> listLeft, listRight, listDown, listUp, listLine;
-	private Fade2 fade;
 
 	void Awake()
 	{
@@ -20,7 +19,6 @@ public class SquareMatrix : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		Fade2.getInstance ();
 		rows = 7;
 		columns = 7;
 		offset = 4;
@@ -44,15 +42,6 @@ public class SquareMatrix : MonoBehaviour
 		{
 			if(path())
 			{
-				//Color selectedSquareColorFrom = selectedSquare.transform.GetChild(0).renderer.material.color;
-				//Color selectedSquareColorTo = selectedSquareDest.transform.GetChild(0).renderer.material.color;
-
-				//Color selectedSquareDestColorFrom = selectedSquareDest.transform.GetChild(0).renderer.material.color;
-				//Color selectedSquareDestColorTo = selectedSquare.transform.GetChild(0).renderer.material.color;
-
-				//Fade2.use.Colors(selectedSquare.transform.GetChild(0).renderer.material, selectedSquareColorFrom, selectedSquareColorTo, 3f, Fade2.EaseType.InOut);
-				//Fade2.use.Colors(selectedSquareDest.transform.GetChild(0).renderer.material, selectedSquareDestColorFrom, selectedSquareDestColorTo, 3f, Fade2.EaseType.InOut);
-
 				Color selectedSquareColor = selectedSquare.transform.GetChild(0).renderer.material.color;
 				Color selectedSquareDestColor = selectedSquareDest.transform.GetChild(0).renderer.material.color;
 
@@ -84,6 +73,11 @@ public class SquareMatrix : MonoBehaviour
 		
 		GameObject.FindGameObjectWithTag ("Score").guiText.text = score.ToString();
 		GameObject.FindGameObjectWithTag ("Combo").guiText.text = "x" + combo.ToString();
+
+		if (selectedSquare != null) {
+			selectedSquare.transform.GetChild(0).renderer.material.color = Color.Lerp(selectedSquare.transform.GetChild(0).renderer.material.color, Color.black, Time.deltaTime*3);		
+		}
+
 	}
 
 	void initMatrix(int rows, int columns)
