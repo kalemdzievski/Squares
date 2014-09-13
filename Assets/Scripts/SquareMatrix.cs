@@ -44,36 +44,44 @@ public class SquareMatrix : MonoBehaviour
 		{
 			if(path())
 			{
-				Color selectedSquareColorFrom = selectedSquare.transform.GetChild(0).renderer.material.color;
-				Color selectedSquareColorTo = selectedSquareDest.transform.GetChild(0).renderer.material.color;
+				//Color selectedSquareColorFrom = selectedSquare.transform.GetChild(0).renderer.material.color;
+				//Color selectedSquareColorTo = selectedSquareDest.transform.GetChild(0).renderer.material.color;
 
-				Color selectedSquareDestColorFrom = selectedSquareDest.transform.GetChild(0).renderer.material.color;
-				Color selectedSquareDestColorTo = selectedSquare.transform.GetChild(0).renderer.material.color;
+				//Color selectedSquareDestColorFrom = selectedSquareDest.transform.GetChild(0).renderer.material.color;
+				//Color selectedSquareDestColorTo = selectedSquare.transform.GetChild(0).renderer.material.color;
 
-				Fade2.use.Colors(selectedSquare.transform.GetChild(0).renderer.material, selectedSquareColorFrom, selectedSquareColorTo, 0.5f, Fade2.EaseType.InOut);
-				Fade2.use.Colors(selectedSquareDest.transform.GetChild(0).renderer.material, selectedSquareDestColorFrom, selectedSquareDestColorTo, 0.5f, Fade2.EaseType.InOut);
+				//Fade2.use.Colors(selectedSquare.transform.GetChild(0).renderer.material, selectedSquareColorFrom, selectedSquareColorTo, 3f, Fade2.EaseType.InOut);
+				//Fade2.use.Colors(selectedSquareDest.transform.GetChild(0).renderer.material, selectedSquareDestColorFrom, selectedSquareDestColorTo, 3f, Fade2.EaseType.InOut);
+
+				Color selectedSquareColor = selectedSquare.transform.GetChild(0).renderer.material.color;
+				Color selectedSquareDestColor = selectedSquareDest.transform.GetChild(0).renderer.material.color;
 
 				selectedSquare.GetComponent<Square>().isPainted = false;
 				selectedSquareDest.GetComponent<Square>().isPainted = true;
+
+				selectedSquare.transform.GetChild(0).renderer.material.color = selectedSquareDestColor;
+			    selectedSquareDest.transform.GetChild(0).renderer.material.color = selectedSquareColor;
+				
 				int line = hasLine2(selectedSquareDest.GetComponent<Square>().i, selectedSquareDest.GetComponent<Square>().j);
 				if(line == 1) {
 					if(combo >= 3)
 						score += combo * 100;
 					paintRandomSquares(5);
 					combo = 0;
+
+					selectedSquare = null;
+					selectedSquareDest = null;
 				}
 				else {
 					score += line * 100;
 					combo++;
+					
+					selectedSquare = null;
+					selectedSquareDest = null;
 				}
 			}
-
-			if(!selectedSquare.transform.GetChild(0).animation.isPlaying)
-				selectedSquare = null;
-			if(!selectedSquareDest.transform.GetChild(0).animation.isPlaying)
-				selectedSquareDest = null;
 		}
-
+		
 		GameObject.FindGameObjectWithTag ("Score").guiText.text = score.ToString();
 		GameObject.FindGameObjectWithTag ("Combo").guiText.text = "x" + combo.ToString();
 	}

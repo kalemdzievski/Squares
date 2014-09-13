@@ -125,6 +125,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+  m_RootOrder: 8
 --- !u!114 &163275810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,6 +176,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+  m_RootOrder: 0
 --- !u!212 &190629950
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -193,9 +195,8 @@ SpriteRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayer: 0
-  m_SortingOrder: 0
   m_SortingLayerID: 0
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: dce011db15ab458489e61f6b25d5708f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &268703355
@@ -226,7 +227,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fd30bff67da68345806af1ae7185e80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musictheme: {fileID: 268703355}
 --- !u!82 &268703357
 AudioSource:
   m_ObjectHideFlags: 0
@@ -296,6 +296,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+  m_RootOrder: 4
 --- !u!1 &318159324
 GameObject:
   m_ObjectHideFlags: 0
@@ -347,6 +348,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+  m_RootOrder: 2
 --- !u!114 &318159327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -420,6 +422,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+  m_RootOrder: 11
 --- !u!1 &561020819
 GameObject:
   m_ObjectHideFlags: 0
@@ -458,6 +461,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+  m_RootOrder: 7
 --- !u!1 &686312895
 GameObject:
   m_ObjectHideFlags: 0
@@ -520,6 +524,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+  m_RootOrder: 9
 --- !u!1 &686507800
 GameObject:
   m_ObjectHideFlags: 0
@@ -587,8 +592,11 @@ Camera:
     m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
   m_HDR: 0
   m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: .0219999999
 --- !u!4 &686507805
 Transform:
   m_ObjectHideFlags: 0
@@ -600,6 +608,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+  m_RootOrder: 5
 --- !u!1 &1236700548
 GameObject:
   m_ObjectHideFlags: 0
@@ -662,6 +671,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+  m_RootOrder: 10
 --- !u!1 &1553277920
 GameObject:
   m_ObjectHideFlags: 0
@@ -701,6 +711,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+  m_RootOrder: 6
 --- !u!1 &2048180536
 GameObject:
   m_ObjectHideFlags: 0
@@ -763,6 +774,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+  m_RootOrder: 3
 --- !u!1 &2128516759
 GameObject:
   m_ObjectHideFlags: 0
@@ -810,3 +822,4 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+  m_RootOrder: 1
