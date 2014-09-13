@@ -74,9 +74,9 @@ public class SquareMatrix : MonoBehaviour
 		GameObject.FindGameObjectWithTag ("Score").guiText.text = score.ToString();
 		GameObject.FindGameObjectWithTag ("Combo").guiText.text = "x" + combo.ToString();
 
-		if (selectedSquare != null) {
-			selectedSquare.transform.GetChild(0).renderer.material.color = Color.Lerp(selectedSquare.transform.GetChild(0).renderer.material.color, Color.black, Time.deltaTime*3);		
-		}
+		//if (selectedSquare != null) {
+		//	selectedSquare.transform.GetChild(0).renderer.material.color = Color.Lerp(selectedSquare.transform.GetChild(0).renderer.material.color, Color.black, Time.deltaTime*3);		
+		//}
 
 	}
 
