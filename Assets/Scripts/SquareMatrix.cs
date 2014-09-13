@@ -47,32 +47,35 @@ public class SquareMatrix : MonoBehaviour
 
 				selectedSquare.GetComponent<Square>().isPainted = false;
 				selectedSquareDest.GetComponent<Square>().isPainted = true;
-
-				selectedSquare.transform.GetChild(0).renderer.material.color = selectedSquareDestColor;
-			    selectedSquareDest.transform.GetChild(0).renderer.material.color = selectedSquareColor;
+				
+				selectedSquare.transform.GetChild(0).renderer.material.color = Color.Lerp(selectedSquareColor, selectedSquareDestColor, Time.deltaTime*15);
+				selectedSquareDest.transform.GetChild(0).renderer.material.color = Color.Lerp(selectedSquareDestColor, selectedSquareColor, Time.deltaTime*15);
 				
 				int line = hasLine2(selectedSquareDest.GetComponent<Square>().i, selectedSquareDest.GetComponent<Square>().j);
-				if(line == 1) {
-					if(combo >= 3)
-						score += combo * 100;
-					paintRandomSquares(5);
-					combo = 0;
 
+				if(!selectedSquare.transform.GetChild(0).animation.isPlaying)
 					selectedSquare = null;
+				if(!selectedSquareDest.transform.GetChild(0).animation.isPlaying)
 					selectedSquareDest = null;
+
+				if(selectedSquare == null && selectedSquareDest == null)
+				{
+					if(line == 1) {
+						if(combo >= 3)
+							score += combo * 100;
+						paintRandomSquares(5);
+						combo = 0;
+					}
+					else {
+						score += line * 100;
+						combo++;
+					}
 				}
-				else {
-					score += line * 100;
-					combo++;
-					
-					selectedSquare = null;
-					selectedSquareDest = null;
-				}
+				
+				GameObject.FindGameObjectWithTag ("Score").guiText.text = score.ToString();
+				GameObject.FindGameObjectWithTag ("Combo").guiText.text = "x" + combo.ToString();
 			}
 		}
-		
-		GameObject.FindGameObjectWithTag ("Score").guiText.text = score.ToString();
-		GameObject.FindGameObjectWithTag ("Combo").guiText.text = "x" + combo.ToString();
 
 		//if (selectedSquare != null) {
 		//	selectedSquare.transform.GetChild(0).renderer.material.color = Color.Lerp(selectedSquare.transform.GetChild(0).renderer.material.color, Color.black, Time.deltaTime*3);		
