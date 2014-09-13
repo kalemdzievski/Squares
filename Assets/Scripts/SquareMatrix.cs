@@ -21,7 +21,7 @@ public class SquareMatrix : MonoBehaviour
 	{
 		rows = 7;
 		columns = 7;
-		offset = 4;
+		offset = 3.5f;
 		score = 0;
 		combo = 0;
 		listLeft = new List<string>();
