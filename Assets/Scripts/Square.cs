@@ -42,7 +42,7 @@ public class Square : MonoBehaviour {
 		{
 			isSelected = true;
 			squareMatrixScript.selectedSquare = this.gameObject;
-			anim.Play("Rotation up");
+			anim.Play("Select");
 		}
 		else if(!isPainted && squareMatrixScript.selectedSquare != null)
 		{
@@ -54,9 +54,9 @@ public class Square : MonoBehaviour {
 		else if(isPainted && squareMatrixScript.selectedSquare != null)
 		{
 			isSelected = true;
-			//squareMatrixScript.selectedSquare.transform.GetChild (0).animation.Play("Back to front rotation");
+			squareMatrixScript.selectedSquare.transform.GetChild (0).animation.Play("Deselect");
 			squareMatrixScript.selectedSquare = this.gameObject;
-			//squareMatrixScript.selectedSquare.transform.GetChild (0).animation.Play("Front to back");
+			squareMatrixScript.selectedSquare.transform.GetChild (0).animation.Play("Select");
 			squareMatrixScript.selectedSquareDest = null;
 		}
 	}
