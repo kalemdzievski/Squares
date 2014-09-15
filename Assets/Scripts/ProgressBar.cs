@@ -10,21 +10,25 @@ public class ProgressBar : MonoBehaviour {
 	public Texture progressBar;
 	public Color startColor;
 	public Color endColor;
+	public SquareMatrix squareMatrixScript;
 
-	// Use this for initialization
-	void Start () {
+	void Awake()
+	{
 		barWidth = Screen.width - 20.0f;
 		barHeight = 10.0f;
 		seconds = 10.0f;
+		currWidth = barWidth;
 		startColor = guiTexture.color;
 		endColor = Color.red;
 		transform.position = Vector3.zero;
 		transform.localScale = Vector3.zero;
+		squareMatrixScript = GameObject.FindGameObjectWithTag ("Block").GetComponent<SquareMatrix> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (currWidth <= 0) {
+			++squareMatrixScript.randomSquaresPainted;
 			currWidth = barWidth;
 			guiTexture.color = startColor;
 		}
