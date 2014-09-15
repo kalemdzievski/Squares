@@ -47,6 +47,7 @@ public class SquareMatrix : MonoBehaviour
 		offset = 3.5f;
 		score = 0;
 		combo = 0;
+		randomSquaresPainted = 5;
 		listLeft = new List<string>();
 		listRight = new List<string>();
 		listDown = new List<string>();
@@ -62,7 +63,7 @@ public class SquareMatrix : MonoBehaviour
 	{
 		initVariables ();
 		initMatrix (rows, columns);
-		paintRandomSquares (5);
+		paintRandomSquares (randomSquaresPainted);
 	}
 	
 	// Update is called once per frame
@@ -75,13 +76,13 @@ public class SquareMatrix : MonoBehaviour
 			selectedSquareColor = Color.clear;
 			selectedSquareDestColor = Color.clear;
 		}
-
+		/*
 		if(selectedSquareColor != Color.clear && selectedSquareDestColor != Color.clear)
 		{
 			selectedSquare.transform.GetChild(0).renderer.material.color = Color.Lerp(selectedSquareColor, selectedSquareDestColor, Time.time);
 			selectedSquareDest.transform.GetChild(0).renderer.material.color = Color.Lerp(selectedSquareDestColor, selectedSquareColor, Time.time);
 		}
-
+		*/
 	}
 
 	public void move()
@@ -98,11 +99,11 @@ public class SquareMatrix : MonoBehaviour
 			selectedSquareDest.transform.GetChild(0).renderer.material.color = selectedSquareColor;
 				
 			int line = checkForLine(selectedSquareDest.GetComponent<Square>().i, selectedSquareDest.GetComponent<Square>().j);
-				
+
 			if(line == 1) {
 				if(combo >= 3)
 					score += combo * 100;
-				paintRandomSquares(5);
+				paintRandomSquares(randomSquaresPainted);
 				combo = 0;
 			}
 			else {
@@ -121,7 +122,8 @@ public class SquareMatrix : MonoBehaviour
 		int i, j;
 		GameObject squareObject;
 		Square squareScript;
-
+		
+		Debug.Log ("paint " + numberOfSquares);
 		while(paintedSquares < numberOfSquares)
 		{
 			i = Random.Range(0, rows);
