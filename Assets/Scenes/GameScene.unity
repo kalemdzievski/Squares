@@ -420,6 +420,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 561020821}
   - 114: {fileID: 561020822}
+  - 131: {fileID: 561020820}
   m_Layer: 0
   m_Name: ProgressBar
   m_TagString: Untagged
@@ -427,6 +428,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!131 &561020820
+GUITexture:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 561020819}
+  m_Enabled: 1
+  m_Texture: {fileID: 2800000, guid: 15b067561240e434595518c0103aa3e5, type: 3}
+  m_Color: {r: 0, g: 1, b: .586206913, a: .858823538}
+  m_PixelInset:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: -100
+    height: 0
+  m_LeftBorder: 0
+  m_RightBorder: 0
+  m_TopBorder: 0
+  m_BottomBorder: 0
 --- !u!4 &561020821
 Transform:
   m_ObjectHideFlags: 0
@@ -455,6 +475,8 @@ MonoBehaviour:
   barHeight: 0
   seconds: 0
   progressBar: {fileID: 2800000, guid: 6da02c44a5fde5241acb78bda7e5b455, type: 3}
+  startColor: {r: 0, g: 0, b: 0, a: 0}
+  endColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &686312895
 GameObject:
   m_ObjectHideFlags: 0

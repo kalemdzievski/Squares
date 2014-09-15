@@ -14,7 +14,7 @@ public class ProgressBar : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		barWidth = Screen.width - 20.0f;
-		barHeight = 12.0f;
+		barHeight = 10.0f;
 		seconds = 10.0f;
 		startColor = guiTexture.color;
 		endColor = Color.red;
@@ -34,6 +34,6 @@ public class ProgressBar : MonoBehaviour {
 
 	void OnGUI () {
 
-		guiTexture.pixelInset = new Rect (10 ,Screen.height - 20, currWidth, barHeight);
+		guiTexture.pixelInset = new Rect (10 ,Screen.height - 18, currWidth, barHeight);
 	}
 }
