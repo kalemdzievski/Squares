@@ -787,8 +787,6 @@ MonoBehaviour:
   rows: 6
   columns: 6
   randomSquaresPainted: 0
-  score: 0
-  combo: 0
   offset: 6
 --- !u!4 &2128516761
 Transform:

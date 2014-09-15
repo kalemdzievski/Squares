@@ -5,20 +5,43 @@ using AssemblyCSharp;
 
 public class SquareMatrix : MonoBehaviour
 {
-	public GameObject square, selectedSquare, selectedSquareDest;
-	public int rows, columns, randomSquaresPainted, score, combo;
+	public GameObject square;
+	public GameObject selectedSquare;
+	public GameObject selectedSquareDest;
+	private Color selectedSquareColor;
+	private Color selectedSquareDestColor;
+	public int rows;
+	public int columns;
+	public int randomSquaresPainted;
+	private int score;
+	private int combo;
 	public float offset;
 	public GameObject [,] matrix;
-	private List<string> listLeft, listRight, listDown, listUp, listLine;
+	private List<string> listLeft;
+	private List<string> listRight;
+	private List<string> listDown;
+	private List<string> listUp;
+	private List<string> listLine;
 
-	void Awake()
+	void initMatrix(int rows, int columns)
 	{
-
+		matrix = new GameObject[rows, columns];
+		
+		for (int i = 0; i < rows; i++) 
+		{
+			for (int j = 0; j < columns; j++) 
+			{
+				Vector3 squarePosition = new Vector3(square.transform.position.x + offset * j, square.transform.position.y - offset * i, square.transform.position.z);
+				GameObject squareObject = (GameObject)Instantiate(square, squarePosition, Quaternion.identity);
+				squareObject.GetComponent<Square>().i = i;
+				squareObject.GetComponent<Square>().j = j;
+				matrix[i,j] = squareObject;
+			}
+		}
 	}
 
-	// Use this for initialization
-	void Start ()
-	{
+	void initVariables()
+	{		
 		rows = 7;
 		columns = 7;
 		offset = 3.5f;
@@ -31,6 +54,13 @@ public class SquareMatrix : MonoBehaviour
 		listLine = new List<string>();
 		selectedSquare = null;
 		selectedSquareDest = null;
+		selectedSquareColor = Color.clear;
+		selectedSquareDestColor = Color.clear;
+	}
+	
+	void Awake()
+	{
+		initVariables ();
 		initMatrix (rows, columns);
 		paintRandomSquares (5);
 	}
@@ -38,65 +68,51 @@ public class SquareMatrix : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		if (selectedSquare != null && selectedSquareDest != null) 
+		if(selectedSquare != null && selectedSquareDest != null && !selectedSquare.transform.GetChild(0).animation.isPlaying && !selectedSquareDest.transform.GetChild(0).animation.isPlaying)
 		{
-			if(path())
-			{
-				Color selectedSquareColor = selectedSquare.transform.GetChild(0).renderer.material.color;
-				Color selectedSquareDestColor = selectedSquareDest.transform.GetChild(0).renderer.material.color;
-
-				selectedSquare.GetComponent<Square>().isPainted = false;
-				selectedSquareDest.GetComponent<Square>().isPainted = true;
-				
-				selectedSquare.transform.GetChild(0).renderer.material.color = Color.Lerp(selectedSquareColor, selectedSquareDestColor, Time.deltaTime*15);
-				selectedSquareDest.transform.GetChild(0).renderer.material.color = Color.Lerp(selectedSquareDestColor, selectedSquareColor, Time.deltaTime*15);
-				
-				int line = hasLine2(selectedSquareDest.GetComponent<Square>().i, selectedSquareDest.GetComponent<Square>().j);
-
-				if(!selectedSquare.transform.GetChild(0).animation.isPlaying)
-					selectedSquare = null;
-				if(!selectedSquareDest.transform.GetChild(0).animation.isPlaying)
-					selectedSquareDest = null;
-
-				if(selectedSquare == null && selectedSquareDest == null)
-				{
-					if(line == 1) {
-						if(combo >= 3)
-							score += combo * 100;
-						paintRandomSquares(5);
-						combo = 0;
-					}
-					else {
-						score += line * 100;
-						combo++;
-					}
-				}
-				
-				GameObject.FindGameObjectWithTag ("Score").guiText.text = score.ToString();
-				GameObject.FindGameObjectWithTag ("Combo").guiText.text = "x" + combo.ToString();
-			}
+			selectedSquare = null;
+			selectedSquareDest = null;
+			selectedSquareColor = Color.clear;
+			selectedSquareDestColor = Color.clear;
 		}
-
-		//if (selectedSquare != null) {
-		//	selectedSquare.transform.GetChild(0).renderer.material.color = Color.Lerp(selectedSquare.transform.GetChild(0).renderer.material.color, Color.black, Time.deltaTime*3);		
-		//}
-
+		/*
+		if(selectedSquareColor != Color.clear && selectedSquareDestColor != Color.clear)
+		{
+			Debug.Log("Lerp");
+			selectedSquare.transform.GetChild(0).renderer.material.color = Color.Lerp(selectedSquareColor, selectedSquareDestColor, Time.deltaTime*60);
+			selectedSquareDest.transform.GetChild(0).renderer.material.color = Color.Lerp(selectedSquareDestColor, selectedSquareColor, Time.deltaTime*60);
+		}
+		*/
 	}
 
-	void initMatrix(int rows, int columns)
+	public void move()
 	{
-		matrix = new GameObject[rows, columns];
-
-		for (int i = 0; i < rows; i++) 
+		if (selectedSquare != null && selectedSquareDest != null && path()) 
 		{
-			for (int j = 0; j < columns; j++) 
-			{
-				Vector3 squarePosition = new Vector3(square.transform.position.x + offset * j, square.transform.position.y - offset * i, square.transform.position.z);
-				GameObject squareObject = (GameObject)Instantiate(square, squarePosition, Quaternion.identity);
-				squareObject.GetComponent<Square>().i = i;
-				squareObject.GetComponent<Square>().j = j;
-				matrix[i,j] = squareObject;
+			selectedSquareColor = selectedSquare.transform.GetChild(0).renderer.material.color;
+			selectedSquareDestColor = selectedSquareDest.transform.GetChild(0).renderer.material.color;
+				
+			selectedSquare.GetComponent<Square>().isPainted = false;
+			selectedSquareDest.GetComponent<Square>().isPainted = true;
+				
+			selectedSquare.transform.GetChild(0).renderer.material.color = selectedSquareDestColor;
+			selectedSquareDest.transform.GetChild(0).renderer.material.color = selectedSquareColor;
+				
+			int line = checkForLine(selectedSquareDest.GetComponent<Square>().i, selectedSquareDest.GetComponent<Square>().j);
+				
+			if(line == 1) {
+				if(combo >= 3)
+					score += combo * 100;
+				paintRandomSquares(5);
+				combo = 0;
 			}
+			else {
+				score += line * 100;
+				combo++;
+			}
+				
+			GameObject.FindGameObjectWithTag ("Score").guiText.text = score.ToString();
+			GameObject.FindGameObjectWithTag ("Combo").guiText.text = "x" + combo.ToString();
 		}
 	}
 
@@ -119,7 +135,7 @@ public class SquareMatrix : MonoBehaviour
 				Color squareColor = getRandomColor();
 				squareObject.transform.GetChild(0).renderer.material.color = squareColor;
 				squareScript.isPainted = true;
-				int line = hasLine2(i, j);
+				int line = checkForLine(i, j);
 				if(line == 1)
 					paintedSquares++;
 				else 
@@ -175,7 +191,7 @@ public class SquareMatrix : MonoBehaviour
 		return path.findPath();
 	}
 
-	public int hasLine2(int i, int j)
+	int checkForLine(int i, int j)
 	{
 		Color color = matrix[i,j].transform.GetChild(0).renderer.material.color;
 
@@ -223,7 +239,7 @@ public class SquareMatrix : MonoBehaviour
 		return line;
 	}
 
-	public void setDefaultColorToLine(int i, int j, List<string> list)
+	void setDefaultColorToLine(int i, int j, List<string> list)
 	{
 		matrix[i, j].transform.GetChild(0).renderer.material.color = Color.black;
 		matrix[i, j].GetComponent<Square>().isPainted = false;
@@ -236,7 +252,7 @@ public class SquareMatrix : MonoBehaviour
 		}
 	}
 	
-	public Color getRandomColor()
+	Color getRandomColor()
 	{
 		int color = Random.Range (0, 5);
 
