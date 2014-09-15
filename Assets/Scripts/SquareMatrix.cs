@@ -75,14 +75,13 @@ public class SquareMatrix : MonoBehaviour
 			selectedSquareColor = Color.clear;
 			selectedSquareDestColor = Color.clear;
 		}
-		/*
+
 		if(selectedSquareColor != Color.clear && selectedSquareDestColor != Color.clear)
 		{
-			Debug.Log("Lerp");
-			selectedSquare.transform.GetChild(0).renderer.material.color = Color.Lerp(selectedSquareColor, selectedSquareDestColor, Time.deltaTime*60);
-			selectedSquareDest.transform.GetChild(0).renderer.material.color = Color.Lerp(selectedSquareDestColor, selectedSquareColor, Time.deltaTime*60);
+			selectedSquare.transform.GetChild(0).renderer.material.color = Color.Lerp(selectedSquareColor, selectedSquareDestColor, Time.time);
+			selectedSquareDest.transform.GetChild(0).renderer.material.color = Color.Lerp(selectedSquareDestColor, selectedSquareColor, Time.time);
 		}
-		*/
+
 	}
 
 	public void move()

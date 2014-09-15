@@ -419,6 +419,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 561020821}
+  - 114: {fileID: 561020822}
   m_Layer: 0
   m_Name: ProgressBar
   m_TagString: Untagged
@@ -433,11 +434,26 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 561020819}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 82.0915985, y: -17.6481304, z: 63.0150871}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
+--- !u!114 &561020822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 561020819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f160f004e925725478f2710ba454cdfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barWidth: 0
+  barHeight: 0
+  timer: 0
+  progressBar: {fileID: 2800000, guid: 6da02c44a5fde5241acb78bda7e5b455, type: 3}
 --- !u!1 &686312895
 GameObject:
   m_ObjectHideFlags: 0
