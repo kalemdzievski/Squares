@@ -8,6 +8,7 @@ public class PauseButton : MonoBehaviour {
 	public Font pauseMenuFont;
 	public GUIStyle PauseBox = null;
 	public GUIStyle PauseTitle = null;
+	public GUIStyle PauseBtnBox = null;
 
 	private Texture2D MakeTex( int width, int height, Color col )
 	{
@@ -23,11 +24,11 @@ public class PauseButton : MonoBehaviour {
 	}
   
 	void OnGUI () {
-		this.skin.box.fontSize = (int)Screen.dpi / 7;
 		GUI.skin = skin;
-		this.skin.button.fontSize = (int)Screen.dpi / 7;
+		this.skin.button.fontSize = (int)Screen.width / 12; // Golemina na font na kopcinja vo pause menu
+		PauseBtnBox.fontSize = (int)Screen.dpi / 8;//Font na pauza kopce
 		//Pause button
-		if (GUI.Button (new Rect (Screen.width - Screen.height/20, Screen.height - Screen.height/20, Screen.height/20, Screen.height/20),"II")) {
+		if (GUI.Button (new Rect (Screen.width - Screen.height/20, Screen.height - Screen.height/20, Screen.height/20, Screen.height/20),"II",PauseBtnBox)) {
 
 
 			if(pauseEnabled == true){
@@ -62,19 +63,20 @@ public class PauseButton : MonoBehaviour {
 
 			//Make a background box
 			GUI.Box(new Rect(0,0, Screen.width ,Screen.height), "", PauseBox);
-			GUI.TextArea(new Rect(0,Screen.height/4, Screen.width, 30), "GAME PAUSED",PauseTitle);
+			GUI.TextArea(new Rect(0,Screen.height/4, Screen.width, 30),"GAME PAUSED",PauseTitle);
+			PauseTitle.fontSize = (int)Screen.dpi/4; // golemina na font na naslov vo Pause Menu
 
 
 			PauseBox.normal.background = MakeTex( 2, 2, new Color( 1f, 1f, 1f, 0.8f ) );
 			//Resume Menu button
-			if(GUI.Button(new Rect(0, Screen.height/7 + 2*Screen.height/10, Screen.width , Screen.height/11), "RESUME")){
+			if(GUI.Button(new Rect(0, Screen.height/7 + 2*Screen.height/10, Screen.width , Screen.height/11), "Resume")){
 				pauseEnabled = false;
 				Time.timeScale = 1;
 				AudioListener.volume = 1;
 			}
 
 			//Make Main Menu button
-			if(GUI.Button(new Rect(0, Screen.height/7 + 3*Screen.height/10, Screen.width , Screen.height/11), "RETRY")){
+			if(GUI.Button(new Rect(0, Screen.height/7 + 3*Screen.height/10, Screen.width , Screen.height/11), "Retry")){
 				Application.LoadLevel(1);
 				pauseEnabled = false;
 				Time.timeScale = 1;
@@ -82,12 +84,12 @@ public class PauseButton : MonoBehaviour {
 			}
 
 			//Make Main Menu button
-			if(GUI.Button(new Rect(0, Screen.height/7 + 4*Screen.height/10, Screen.width , Screen.height/11), "MAIN MENU")){
+			if(GUI.Button(new Rect(0, Screen.height/7 + 4*Screen.height/10, Screen.width , Screen.height/11), "Main Menu")){
 				Application.LoadLevel(0);
 			}
 			
 			//Make quit game button
-			if (GUI.Button (new Rect (0, Screen.height/7 + 5*Screen.height/10, Screen.width , Screen.height/11), "QUIT GAME")){
+			if (GUI.Button (new Rect (0, Screen.height/7 + 5*Screen.height/10, Screen.width , Screen.height/11), "Quit Game")){
 				Application.Quit();
 			}
 		}
