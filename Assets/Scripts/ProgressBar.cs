@@ -18,8 +18,8 @@ public class ProgressBar : MonoBehaviour {
 	{
 		Debug.Log ("PROGRESS BAR");
 		progressBar = GameObject.Find ("ProgressBar").guiTexture;
-		currWidth = barWidth = Screen.width - 20.0f;
-		barHeight = 10.0f;
+		currWidth = barWidth = Screen.width;
+		barHeight = Screen.width/14;
 		seconds = 10.0f;
 		currWidth = barWidth;
 		fadeDuration = 2.0f;
@@ -47,6 +47,6 @@ public class ProgressBar : MonoBehaviour {
 	}
 		
 	void OnGUI () {
-		progressBar.pixelInset = new Rect (10 ,Screen.height - 18, currWidth, barHeight);
+		progressBar.pixelInset = new Rect (0 ,Screen.height-barHeight, currWidth, barHeight);
 	}
 }
