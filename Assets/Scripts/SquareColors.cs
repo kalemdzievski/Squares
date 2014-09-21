@@ -24,6 +24,7 @@ namespace AssemblyCSharp
 		public Color PURPLE;
 		public Color ORANGE;
 		public Color GREEN;
+		public Color GREY;
 
 		public SquareColors ()
 		{
@@ -37,6 +38,7 @@ namespace AssemblyCSharp
 			PURPLE = new Color32 (124, 90, 180, 1);
 			ORANGE = new Color32 (188, 117, 79, 1);
 			GREEN = new Color32 (96, 143, 68, 1);
+			GREY = new Color32 (40, 40, 40, 1);
 		}
 	}
 }
