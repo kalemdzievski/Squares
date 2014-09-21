@@ -13,6 +13,7 @@ public class SquareMatrix : MonoBehaviour
 	public int rows;
 	public int columns;
 	public int randomSquaresPainted;
+	public int paintedSquares;
 	private int score;
 	private int combo;
 	public float offset;
@@ -48,7 +49,8 @@ public class SquareMatrix : MonoBehaviour
 		offset = 3.5f;
 		score = 0;
 		combo = 0;
-		randomSquaresPainted = 5;
+		paintedSquares = 0;
+		randomSquaresPainted = 4;
 		listLeft = new List<string>();
 		listRight = new List<string>();
 		listDown = new List<string>();
@@ -121,13 +123,12 @@ public class SquareMatrix : MonoBehaviour
 
 	void paintRandomSquares(int numberOfSquares)
 	{
-		int paintedSquares = 0;
+		int randomPaintedSquares = 0;
 		int i, j;
 		GameObject squareObject;
 		Square squareScript;
-		
-		Debug.Log ("paint " + numberOfSquares);
-		while(paintedSquares < numberOfSquares)
+
+		while(randomPaintedSquares < numberOfSquares)
 		{
 			i = Random.Range(0, rows);
 			j = Random.Range(0, columns);
@@ -140,10 +141,20 @@ public class SquareMatrix : MonoBehaviour
 				squareObject.transform.GetChild(0).renderer.material.color = squareColor;
 				squareScript.isPainted = true;
 				int line = checkForLine(i, j);
-				if(line == 1)
+				if(line == 1){
+					randomPaintedSquares++;
 					paintedSquares++;
+				}
 				else 
 					score += line * 100;
+			}
+			
+			Debug.Log("PAINTED SQUARES: " + paintedSquares);
+			if(paintedSquares >= 49)
+			{
+				// ********* POP UP GAME OVER ********************
+				Debug.Log("GAME OVER");
+				break;
 			}
 		}
 
@@ -246,6 +257,7 @@ public class SquareMatrix : MonoBehaviour
 	void setDefaultColorToLine(int i, int j, List<string> list)
 	{
 		matrix[i, j].transform.GetChild(0).renderer.material.color = colors.GREY;
+		paintedSquares--;
 		matrix[i, j].GetComponent<Square>().isPainted = false;
 		foreach(string index in list)
 		{
@@ -253,6 +265,7 @@ public class SquareMatrix : MonoBehaviour
 			int j2 = System.Convert.ToInt32(index.Split(';')[1]);
 			matrix[i2, j2].transform.GetChild(0).renderer.material.color = colors.GREY;
 			matrix[i2, j2].GetComponent<Square>().isPainted = false;
+			paintedSquares--;
 		}
 	}
 	
