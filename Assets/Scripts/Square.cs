@@ -20,6 +20,7 @@ public class Square : MonoBehaviour {
 
 	void Awake()
 	{
+		Debug.Log ("SQUARE");
 		initSquare ();
 		squareMatrixScript = GameObject.FindGameObjectWithTag ("Block").GetComponent<SquareMatrix> ();
 	}
@@ -40,15 +41,21 @@ public class Square : MonoBehaviour {
 		}
 		else if(!isPainted && squareMatrixScript.selectedSquare != null)
 		{
-			isSelectedDest = true;
 			squareMatrixScript.selectedSquareDest = this.gameObject;
 			if(squareMatrixScript.path())
 			{
+				isSelectedDest = true;
 				squareMatrixScript.move ();
 				squareMatrixScript.selectedSquare.transform.GetChild (0).animation.Play("Rotation up");
 				squareMatrixScript.selectedSquare.transform.GetChild (0).animation.Play("Deselect");
 				squareMatrixScript.selectedSquareDest.transform.GetChild (0).animation.Play("Rotation down");
 			}
+			else
+			{
+				isSelectedDest = false;
+				squareMatrixScript.selectedSquareDest = null;
+			}
+
 		}
 		else if(isPainted && squareMatrixScript.selectedSquare != null)
 		{

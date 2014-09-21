@@ -22,6 +22,7 @@ public class SquareMatrix : MonoBehaviour
 	private List<string> listDown;
 	private List<string> listUp;
 	private List<string> listLine;
+	public SquareColors colors;
 
 	void initMatrix(int rows, int columns)
 	{
@@ -57,10 +58,12 @@ public class SquareMatrix : MonoBehaviour
 		selectedSquareDest = null;
 		selectedSquareColor = Color.clear;
 		selectedSquareDestColor = Color.clear;
+		colors = new SquareColors ();
 	}
 	
 	void Awake()
 	{
+		Debug.Log ("SQUARE MATRIX");
 		initVariables ();
 		initMatrix (rows, columns);
 		paintRandomSquares (randomSquaresPainted);
@@ -255,22 +258,29 @@ public class SquareMatrix : MonoBehaviour
 	
 	Color getRandomColor()
 	{
-		int color = Random.Range (0, 5);
+		int color = Random.Range (0, randomSquaresPainted);
 
 		switch (color)
 		{
 			case 0:
-				return Color.blue;
+				return colors.BLUE;
 			case 1:
-				return Color.red;
+				return colors.YELLOW;
 			case 2:
-				return Color.green;
+				return colors.GREEN;
 			case 3:
-				return Color.yellow;
+				return colors.ORANGE;
 			case 4:
-				return Color.white;
+				return colors.MAROON;
+			case 5:
+				return colors.PURPLE;
+			case 6:
+				return colors.PINK;
+			case 7:
+				return colors.TEAL;
 			default:
-				return Color.black;
+				return colors.BLUE;
+				
 		}
 	}
 	

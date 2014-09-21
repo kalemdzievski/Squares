@@ -77,6 +77,10 @@ public class PauseButton : MonoBehaviour {
 			//Make Main Menu button
 			if(GUI.Button(new Rect(0, Screen.height/7 + 3*Screen.height/10, Screen.width , Screen.height/11), "RETRY")){
 				Application.LoadLevel(1);
+				pauseEnabled = false;
+				Time.timeScale = 1;
+				AudioListener.volume = 1;
+				Screen.showCursor = false; 
 			}
 
 			//Make Main Menu button

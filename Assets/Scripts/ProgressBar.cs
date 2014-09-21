@@ -16,6 +16,7 @@ public class ProgressBar : MonoBehaviour {
 
 	void Awake()
 	{
+		Debug.Log ("PROGRESS BAR");
 		progressBar = GameObject.Find ("ProgressBar").guiTexture;
 		currWidth = barWidth = Screen.width - 20.0f;
 		barHeight = 10.0f;
@@ -34,7 +35,8 @@ public class ProgressBar : MonoBehaviour {
 	void Update () {
 
 		if (currWidth < 0) {
-			++squareMatrixScript.randomSquaresPainted;
+			if(squareMatrixScript.randomSquaresPainted < 10)
+				++squareMatrixScript.randomSquaresPainted;
 			currWidth = barWidth;
 			progressBar.color = startColor;
 			Instantiate(popupText);
