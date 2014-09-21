@@ -20,7 +20,7 @@ public class ProgressBar : MonoBehaviour {
 		progressBar = GameObject.Find ("ProgressBar").guiTexture;
 		currWidth = barWidth = Screen.width;
 		barHeight = Screen.width/14;
-		seconds = 10.0f;
+		seconds = 60.0f;
 		currWidth = barWidth;
 		fadeDuration = 2.0f;
 		startColor = guiTexture.color;
