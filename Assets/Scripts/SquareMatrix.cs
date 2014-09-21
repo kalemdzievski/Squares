@@ -227,13 +227,13 @@ public class SquareMatrix : MonoBehaviour
 		// Checks for line
 		int line = 1;
 
-		if(listLeft.Count + listRight.Count >= 2)
+		if(listLeft.Count + listRight.Count >= 3)
 		{
 			listLeft.AddRange(listRight);
 			setDefaultColorToLine(i, j, listLeft);
 			line += listLeft.Count;
 		}
-		if(listUp.Count + listDown.Count >= 2)
+		if(listUp.Count + listDown.Count >= 3)
 		{
 			listUp.AddRange(listDown);
 			setDefaultColorToLine(i, j, listUp);
