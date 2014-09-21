@@ -50,8 +50,9 @@ public class PauseButton : MonoBehaviour {
 
 				}
 
-		if (Input.GetKeyDown(KeyCode.Escape))
-			Application.LoadLevel (0);
+		if (Input.GetKeyDown (KeyCode.Escape)) {
+			pauseEnabled = true;
+				}
 
 
 
