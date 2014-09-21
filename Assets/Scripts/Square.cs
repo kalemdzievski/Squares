@@ -105,7 +105,7 @@ public class Square : MonoBehaviour {
 			}
 
 		}
-		else if(isPainted && squareMatrixScript.selectedSquare != null && !squareMatrixScript.selectedSquare.transform.GetChild(0).animation.isPlaying)
+		else if(isPainted && squareMatrixScript.selectedSquare != null && squareMatrixScript.selectedSquareDest == null && !squareMatrixScript.selectedSquare.transform.GetChild(0).animation.isPlaying)
 		{
 			isSelected = true;
 			squareMatrixScript.selectedSquare.GetComponent<Square>().isSelected = false;
@@ -146,7 +146,6 @@ public class Square : MonoBehaviour {
 				}
 			}
 		}
-
 	}
 
 	private void initMazeMatrix() {

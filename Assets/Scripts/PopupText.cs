@@ -31,7 +31,6 @@ public class PopupText : MonoBehaviour {
 			c.a = Mathf.Lerp(1.0f,0.0f, ratio / 0.9f);
 			guiText.color = c;			
 		}
-		Debug.Log ("TIME: " + Time.deltaTime);
 		transform.position = Vector3.Lerp (transform.position, to, ratio / 10);
 	}
 
