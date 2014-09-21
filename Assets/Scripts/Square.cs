@@ -13,6 +13,8 @@ public class Square : MonoBehaviour {
 	public Animation anim;
 	public char [,] mazematrix;
 	public SquareColors colors;
+	public Material solidColorMat;
+	public Material noPathMat;
 
 	private void initSquare()
 	{
@@ -69,11 +71,11 @@ public class Square : MonoBehaviour {
 					if(!squareMatrixScript.matrix[i,j].GetComponent<Square>().isPainted) {
 						if(noPath(i,j)) {
 							squareMatrixScript.matrix[i,j].GetComponent<Square>().isAccessible = false;
-							squareMatrixScript.matrix[i,j].transform.GetChild(0).renderer.material.color = Color.magenta;
+							squareMatrixScript.matrix[i,j].transform.GetChild(0).renderer.material = noPathMat;
 						}
 						else {
 							squareMatrixScript.matrix[i,j].GetComponent<Square>().isAccessible = true;
-							squareMatrixScript.matrix[i,j].transform.GetChild(0).renderer.material.color = colors.GREY;
+							squareMatrixScript.matrix[i,j].transform.GetChild(0).renderer.material = solidColorMat;
 						}
 					}
 				}
@@ -88,7 +90,7 @@ public class Square : MonoBehaviour {
 					for(int j = 0; j<squareMatrixScript.columns; j++) {
 						if(!squareMatrixScript.matrix[i,j].GetComponent<Square>().isAccessible) {
 							squareMatrixScript.matrix[i,j].GetComponent<Square>().isAccessible = true;
-							squareMatrixScript.matrix[i,j].transform.GetChild(0).renderer.material.color = colors.GREY;
+							squareMatrixScript.matrix[i,j].transform.GetChild(0).renderer.material = solidColorMat;
 						}
 					}
 				}
@@ -135,11 +137,11 @@ public class Square : MonoBehaviour {
 					if(!squareMatrixScript.matrix[i,j].GetComponent<Square>().isPainted) {
 						if(noPath(i,j)) {
 							squareMatrixScript.matrix[i,j].GetComponent<Square>().isAccessible = false;
-							squareMatrixScript.matrix[i,j].transform.GetChild(0).renderer.material.color = Color.magenta;
+							squareMatrixScript.matrix[i,j].transform.GetChild(0).renderer.material = noPathMat;
 						}
 						else {
 							squareMatrixScript.matrix[i,j].GetComponent<Square>().isAccessible = true;
-							squareMatrixScript.matrix[i,j].transform.GetChild(0).renderer.material.color = colors.GREY;
+							squareMatrixScript.matrix[i,j].transform.GetChild(0).renderer.material = solidColorMat;
 						}
 					}
 				}

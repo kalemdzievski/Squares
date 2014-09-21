@@ -150,6 +150,8 @@ MonoBehaviour:
   i: 0
   j: 0
   anim: {fileID: 0}
+  solidColorMat: {fileID: 2100000, guid: e4cfe147798dd914a96d76b41ec1ed0f, type: 2}
+  noPathMat: {fileID: 2100000, guid: 89a5b5ba3b0ca7d48acbb13f4d4c13b6, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
