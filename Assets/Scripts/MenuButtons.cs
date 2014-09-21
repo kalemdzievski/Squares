@@ -22,6 +22,9 @@ public class MenuButtons : MonoBehaviour {
 			clicksound.audio.Play();
 			DontDestroyOnLoad(clicksound);
 			Application.LoadLevel(1);
+			Time.timeScale = 1;
+			AudioListener.volume = 1;
+			Screen.showCursor = false;   
 
 		}
 
