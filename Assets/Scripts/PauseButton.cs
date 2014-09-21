@@ -35,7 +35,6 @@ public class PauseButton : MonoBehaviour {
 				pauseEnabled = false;
 				Time.timeScale = 1;
 				AudioListener.volume = 1;
-				Screen.showCursor = false;
 
 			}
 			
@@ -44,7 +43,6 @@ public class PauseButton : MonoBehaviour {
 				pauseEnabled = true;
 				AudioListener.volume = 0;
 				Time.timeScale = 0;
-				Screen.showCursor = true;
 
 			}
 
@@ -52,6 +50,7 @@ public class PauseButton : MonoBehaviour {
 
 		if (Input.GetKeyDown (KeyCode.Escape)) {
 			pauseEnabled = true;
+			Time.timeScale = 0;
 				}
 
 
@@ -72,7 +71,6 @@ public class PauseButton : MonoBehaviour {
 				pauseEnabled = false;
 				Time.timeScale = 1;
 				AudioListener.volume = 1;
-				Screen.showCursor = false; 
 			}
 
 			//Make Main Menu button
@@ -81,7 +79,6 @@ public class PauseButton : MonoBehaviour {
 				pauseEnabled = false;
 				Time.timeScale = 1;
 				AudioListener.volume = 1;
-				Screen.showCursor = false; 
 			}
 
 			//Make Main Menu button
@@ -111,8 +108,7 @@ public class PauseButton : MonoBehaviour {
 				//unpause the game
 				pauseEnabled = false;
 				Time.timeScale = 1;
-				AudioListener.volume = 1;
-				Screen.showCursor = false;          
+				AudioListener.volume = 1;        
 			}
 			
 			//else if game isn't paused, then pause it
@@ -120,7 +116,6 @@ public class PauseButton : MonoBehaviour {
 				pauseEnabled = true;
 				AudioListener.volume = 0;
 				Time.timeScale = 0;
-				Screen.showCursor = true;
 			}
 		}
 	}
