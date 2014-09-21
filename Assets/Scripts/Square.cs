@@ -66,10 +66,10 @@ public class Square : MonoBehaviour {
 				for(int j = 0; j<squareMatrixScript.columns; j++) {
 					if(!squareMatrixScript.matrix[i,j].GetComponent<Square>().isPainted) {
 						if(noPath(i,j)) {
-							squareMatrixScript.matrix[i,j].transform.GetChild(0).renderer.material.color = Color.grey;
+							squareMatrixScript.matrix[i,j].transform.GetChild(0).renderer.material.color = Color.magenta;
 						}
 						else {
-							squareMatrixScript.matrix[i,j].transform.GetChild(0).renderer.material.color = Color.black;
+							squareMatrixScript.matrix[i,j].transform.GetChild(0).renderer.material.color = colors.GREY;
 						}
 					}
 				}
@@ -123,10 +123,10 @@ public class Square : MonoBehaviour {
 				for(int j = 0; j<squareMatrixScript.columns; j++) {
 					if(!squareMatrixScript.matrix[i,j].GetComponent<Square>().isPainted) {
 						if(noPath(i,j)) {
-							squareMatrixScript.matrix[i,j].transform.GetChild(0).renderer.material.color = Color.grey;
+							squareMatrixScript.matrix[i,j].transform.GetChild(0).renderer.material.color = Color.magenta;
 						}
 						else {
-							squareMatrixScript.matrix[i,j].transform.GetChild(0).renderer.material.color = Color.black;
+							squareMatrixScript.matrix[i,j].transform.GetChild(0).renderer.material.color = colors.GREY;
 						}
 					}
 				}
