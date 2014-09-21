@@ -942,6 +942,7 @@ MonoBehaviour:
   rows: 6
   columns: 6
   randomSquaresPainted: 0
+  paintedSquares: 0
   offset: 6
 --- !u!4 &2128516761
 Transform:
