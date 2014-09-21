@@ -7,6 +7,7 @@ public class Square : MonoBehaviour {
 	public bool isPainted;
 	public bool isSelected;
 	public bool isSelectedDest;
+	public bool isAccessible;
 	public SquareMatrix squareMatrixScript;
 	public int i, j;
 	public Animation anim;
@@ -18,6 +19,7 @@ public class Square : MonoBehaviour {
 		isPainted = false;
 		isSelected = false;
 		isSelectedDest = false;
+		isAccessible = true;
 		anim = this.gameObject.transform.GetChild (0).animation;
 		colors = new SquareColors();
 	}
@@ -66,20 +68,30 @@ public class Square : MonoBehaviour {
 				for(int j = 0; j<squareMatrixScript.columns; j++) {
 					if(!squareMatrixScript.matrix[i,j].GetComponent<Square>().isPainted) {
 						if(noPath(i,j)) {
+							squareMatrixScript.matrix[i,j].GetComponent<Square>().isAccessible = false;
 							squareMatrixScript.matrix[i,j].transform.GetChild(0).renderer.material.color = Color.magenta;
 						}
 						else {
+							squareMatrixScript.matrix[i,j].GetComponent<Square>().isAccessible = true;
 							squareMatrixScript.matrix[i,j].transform.GetChild(0).renderer.material.color = colors.GREY;
 						}
 					}
 				}
 			}
 		}
-		else if(!isPainted && squareMatrixScript.selectedSquare != null)
+		else if(!isPainted && squareMatrixScript.selectedSquare != null && !squareMatrixScript.selectedSquare.transform.GetChild(0).animation.isPlaying)
 		{
 			squareMatrixScript.selectedSquareDest = this.gameObject;
 			if(squareMatrixScript.path())
 			{
+				for(int i = 0; i<squareMatrixScript.rows; i++) {
+					for(int j = 0; j<squareMatrixScript.columns; j++) {
+						if(!squareMatrixScript.matrix[i,j].GetComponent<Square>().isAccessible) {
+							squareMatrixScript.matrix[i,j].GetComponent<Square>().isAccessible = true;
+							squareMatrixScript.matrix[i,j].transform.GetChild(0).renderer.material.color = colors.GREY;
+						}
+					}
+				}
 				isSelectedDest = true;
 				squareMatrixScript.move ();
 				squareMatrixScript.selectedSquare.transform.GetChild (0).animation.Play("Rotation up");
@@ -123,9 +135,11 @@ public class Square : MonoBehaviour {
 				for(int j = 0; j<squareMatrixScript.columns; j++) {
 					if(!squareMatrixScript.matrix[i,j].GetComponent<Square>().isPainted) {
 						if(noPath(i,j)) {
+							squareMatrixScript.matrix[i,j].GetComponent<Square>().isAccessible = false;
 							squareMatrixScript.matrix[i,j].transform.GetChild(0).renderer.material.color = Color.magenta;
 						}
 						else {
+							squareMatrixScript.matrix[i,j].GetComponent<Square>().isAccessible = true;
 							squareMatrixScript.matrix[i,j].transform.GetChild(0).renderer.material.color = colors.GREY;
 						}
 					}
