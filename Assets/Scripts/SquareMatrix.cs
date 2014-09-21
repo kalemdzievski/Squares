@@ -245,13 +245,13 @@ public class SquareMatrix : MonoBehaviour
 
 	void setDefaultColorToLine(int i, int j, List<string> list)
 	{
-		matrix[i, j].transform.GetChild(0).renderer.material.color = Color.black;
+		matrix[i, j].transform.GetChild(0).renderer.material.color = colors.GREY;
 		matrix[i, j].GetComponent<Square>().isPainted = false;
 		foreach(string index in list)
 		{
 			int i2 = System.Convert.ToInt32(index.Split(';')[0]);
 			int j2 = System.Convert.ToInt32(index.Split(';')[1]);
-			matrix[i2, j2].transform.GetChild(0).renderer.material.color = Color.black;
+			matrix[i2, j2].transform.GetChild(0).renderer.material.color = colors.GREY;
 			matrix[i2, j2].GetComponent<Square>().isPainted = false;
 		}
 	}
