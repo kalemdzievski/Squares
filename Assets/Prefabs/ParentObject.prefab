@@ -126,6 +126,7 @@ Animation:
   - {fileID: 7400000, guid: a867910c01b7e0145a0adbd2d72317a2, type: 2}
   - {fileID: 7400000, guid: af97fd339df82514abf9612d8239a578, type: 2}
   - {fileID: 7400000, guid: 2cf12442b2e03494e8f72b8c92d02719, type: 2}
+  - {fileID: 7400000, guid: 7ca91e42d325a8841851e591bd2e7c45, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
@@ -142,9 +143,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPainted: 0
-  isClicked: 0
   isSelected: 0
   isSelectedDest: 0
+  isAccessible: 0
   squareMatrixScript: {fileID: 0}
   i: 0
   j: 0

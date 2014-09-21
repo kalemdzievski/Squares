@@ -94,8 +94,7 @@ public class Square : MonoBehaviour {
 				}
 				isSelectedDest = true;
 				squareMatrixScript.move ();
-				squareMatrixScript.selectedSquare.transform.GetChild (0).animation.Play("Rotation up");
-				squareMatrixScript.selectedSquare.transform.GetChild (0).animation.Play("Deselect");
+				squareMatrixScript.selectedSquare.transform.GetChild (0).animation.Play("Deselect rotation");
 				squareMatrixScript.selectedSquareDest.transform.GetChild (0).animation.Play("Rotation down");
 			}
 			else
