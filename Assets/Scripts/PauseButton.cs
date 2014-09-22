@@ -98,7 +98,7 @@ public class PauseButton : MonoBehaviour {
 	void Start () {
 		widthLeft = -Screen.width;
 		widthRight = Screen.width;
-		speed = Screen.width / 30.0f;
+		speed = Screen.width / 10.0f;
 		pauseBoxColor = new Color (1.0f, 1.0f, 1.0f, 0.0f);
 	}
 	
@@ -117,7 +117,7 @@ public class PauseButton : MonoBehaviour {
 			else {
 				widthRight -= speed;
 			}
-			pauseBoxColor.a = Mathf.Lerp(pauseBoxColor.a, 0.7f, Time.fixedDeltaTime / 0.6f);
+			pauseBoxColor.a = Mathf.Lerp(pauseBoxColor.a, 0.7f, Time.fixedDeltaTime / 0.2f);
 		} 
 		else {
 			widthLeft = -Screen.width;
