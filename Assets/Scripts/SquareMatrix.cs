@@ -113,6 +113,7 @@ public class SquareMatrix : MonoBehaviour
 			}
 			else {
 				score += line * 100;
+				paintedSquares -= line;
 				combo++;
 			}
 				
@@ -145,8 +146,10 @@ public class SquareMatrix : MonoBehaviour
 					randomPaintedSquares++;
 					paintedSquares++;
 				}
-				else 
+				else {
 					score += line * 100;
+					paintedSquares -= line;
+				}
 			}
 			
 			Debug.Log("PAINTED SQUARES: " + paintedSquares);
@@ -257,7 +260,6 @@ public class SquareMatrix : MonoBehaviour
 	void setDefaultColorToLine(int i, int j, List<string> list)
 	{
 		matrix[i, j].transform.GetChild(0).renderer.material.color = colors.GREY;
-		paintedSquares--;
 		matrix[i, j].GetComponent<Square>().isPainted = false;
 		foreach(string index in list)
 		{
@@ -265,7 +267,6 @@ public class SquareMatrix : MonoBehaviour
 			int j2 = System.Convert.ToInt32(index.Split(';')[1]);
 			matrix[i2, j2].transform.GetChild(0).renderer.material.color = colors.GREY;
 			matrix[i2, j2].GetComponent<Square>().isPainted = false;
-			paintedSquares--;
 		}
 	}
 	
