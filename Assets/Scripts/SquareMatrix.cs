@@ -26,6 +26,7 @@ public class SquareMatrix : MonoBehaviour
 	private List<string> listLine;
 	public SquareColors colors;
 	public bool matrixFull = false;
+	int gargara;
 
 	private Texture2D MakeTex( int width, int height, Color col )
 	{
@@ -59,6 +60,7 @@ public class SquareMatrix : MonoBehaviour
 
 	void initVariables()
 	{		
+		gargara = 0;
 		rows = 7;
 		columns = 7;
 		offset = 3.5f;
@@ -107,6 +109,7 @@ public class SquareMatrix : MonoBehaviour
 
 	public void move()
 	{
+		gargara++;
 		if (selectedSquare != null && selectedSquareDest != null && path()) 
 		{
 			selectedSquareColor = selectedSquare.transform.GetChild(0).renderer.material.color;
@@ -121,17 +124,20 @@ public class SquareMatrix : MonoBehaviour
 			int line = checkForLine(selectedSquareDest.GetComponent<Square>().i, selectedSquareDest.GetComponent<Square>().j);
 
 			if(line == 1) {
-				if(combo >= 3)
-					score += combo * 100;
+				score += combo * 100;
 				paintRandomSquares(randomSquaresPainted);
 				combo = 0;
 			}
 			else {
 				score += line * 100;
-				paintedSquares -= line;
+				
+				Debug.Log(gargara + "PAINTED SQUARES: " + paintedSquares);	
+				Debug.Log(gargara + "MINUS PAINTED SQUARES IN MOVE: - " + line);
+				paintedSquares -= line;	
+				Debug.Log(gargara + "PAINTED SQUARES: " + paintedSquares);	
 				combo++;
 			}
-				
+
 			GameObject.FindGameObjectWithTag ("Score").guiText.text = score.ToString();
 			GameObject.FindGameObjectWithTag ("Combo").guiText.text = "x" + combo.ToString();
 		}
@@ -143,7 +149,8 @@ public class SquareMatrix : MonoBehaviour
 		int i, j;
 		GameObject squareObject;
 		Square squareScript;
-
+		Debug.Log(gargara + "PAINTED SQUARES: " + paintedSquares);
+		
 		while(randomPaintedSquares < numberOfSquares)
 		{
 			i = Random.Range(0, rows);
@@ -158,16 +165,19 @@ public class SquareMatrix : MonoBehaviour
 				squareScript.isPainted = true;
 				int line = checkForLine(i, j);
 				if(line == 1){
+					Debug.Log(randomPaintedSquares + "PLUS RANDOM SQUARE");
 					randomPaintedSquares++;
 					paintedSquares++;
 				}
 				else {
 					score += line * 100;
+					Debug.Log(gargara + "PAINTED SQUARES: " + paintedSquares);
 					paintedSquares -= line;
+					Debug.Log(gargara + "MINUS PAINTED SQUARES IN RANDOM: - " + line);
+					Debug.Log(gargara + "PAINTED SQUARES: " + paintedSquares);
 				}
 			}
-			
-			Debug.Log("PAINTED SQUARES: " + paintedSquares);
+
 			if(paintedSquares >= 49)
 			{
 				// ********* POP UP GAME OVER ********************
@@ -181,6 +191,9 @@ public class SquareMatrix : MonoBehaviour
 			}
 		}
 
+		
+		Debug.Log(gargara + "PLUS PAINTED SQUARES IN RANDOM: + " + randomPaintedSquares);
+		Debug.Log(gargara + "PAINTED SQUARES: " + paintedSquares);
 	}
 
 	void OnGUI()
