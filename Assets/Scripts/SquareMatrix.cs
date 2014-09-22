@@ -5,6 +5,7 @@ using AssemblyCSharp;
 
 public class SquareMatrix : MonoBehaviour
 {
+	public GUIStyle GameOverBox = null;
 	public GameObject square;
 	public GameObject selectedSquare;
 	public GameObject selectedSquareDest;
@@ -24,6 +25,20 @@ public class SquareMatrix : MonoBehaviour
 	private List<string> listUp;
 	private List<string> listLine;
 	public SquareColors colors;
+	public bool matrixFull = false;
+
+	private Texture2D MakeTex( int width, int height, Color col )
+	{
+		Color[] pix = new Color[width * height];
+		for( int i = 0; i < pix.Length; ++i )
+		{
+			pix[ i ] = col;
+		}
+		Texture2D result = new Texture2D( width, height );
+		result.SetPixels( pix );
+		result.Apply();
+		return result;
+	}
 
 	void initMatrix(int rows, int columns)
 	{
@@ -156,12 +171,35 @@ public class SquareMatrix : MonoBehaviour
 			if(paintedSquares >= 49)
 			{
 				// ********* POP UP GAME OVER ********************
+				matrixFull = true;
 				Debug.Log("GAME OVER");
 				break;
+			}
+			else
+			{
+				matrixFull = false;
 			}
 		}
 
 	}
+
+	void OnGUI()
+	{
+		if (matrixFull == true) {
+			//Create White background for the game over screen
+			GUI.Box(new Rect(0,0, Screen.width ,Screen.height), "", GameOverBox);
+			GameOverBox.normal.background = MakeTex( 2, 2, new Color( 1f, 1f, 1f, 0.8f ) );
+
+			//Create gameover text
+			GUI.TextArea(new Rect(0,Screen.height/4, Screen.width, 30),"GAME OVER");
+
+
+
+			//Pause the bar and game animations
+			Time.timeScale = 1;
+				}
+
+		}
 
 	//Path algorithm
 	public bool path()
