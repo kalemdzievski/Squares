@@ -5,6 +5,7 @@ using AssemblyCSharp;
 
 public class SquareMatrix : MonoBehaviour
 {
+	public GUIStyle GameOverBox = null;
 	public GameObject square;
 	public GameObject selectedSquare;
 	public GameObject selectedSquareDest;
@@ -24,6 +25,20 @@ public class SquareMatrix : MonoBehaviour
 	private List<string> listUp;
 	private List<string> listLine;
 	public SquareColors colors;
+	public bool matrixFull = false;
+
+	private Texture2D MakeTex( int width, int height, Color col )
+	{
+		Color[] pix = new Color[width * height];
+		for( int i = 0; i < pix.Length; ++i )
+		{
+			pix[ i ] = col;
+		}
+		Texture2D result = new Texture2D( width, height );
+		result.SetPixels( pix );
+		result.Apply();
+		return result;
+	}
 
 	void initMatrix(int rows, int columns)
 	{
@@ -113,6 +128,7 @@ public class SquareMatrix : MonoBehaviour
 			}
 			else {
 				score += line * 100;
+				paintedSquares -= line;
 				combo++;
 			}
 				
@@ -145,20 +161,45 @@ public class SquareMatrix : MonoBehaviour
 					randomPaintedSquares++;
 					paintedSquares++;
 				}
-				else 
+				else {
 					score += line * 100;
+					paintedSquares -= line;
+				}
 			}
 			
 			Debug.Log("PAINTED SQUARES: " + paintedSquares);
 			if(paintedSquares >= 49)
 			{
 				// ********* POP UP GAME OVER ********************
+				matrixFull = true;
 				Debug.Log("GAME OVER");
 				break;
+			}
+			else
+			{
+				matrixFull = false;
 			}
 		}
 
 	}
+
+	void OnGUI()
+	{
+		if (matrixFull == true) {
+			//Create White background for the game over screen
+			GUI.Box(new Rect(0,0, Screen.width ,Screen.height), "", GameOverBox);
+			GameOverBox.normal.background = MakeTex( 2, 2, new Color( 1f, 1f, 1f, 0.8f ) );
+
+			//Create gameover text
+			GUI.TextArea(new Rect(0,Screen.height/4, Screen.width, 30),"GAME OVER");
+
+
+
+			//Pause the bar and game animations
+			Time.timeScale = 1;
+				}
+
+		}
 
 	//Path algorithm
 	public bool path()
@@ -257,7 +298,6 @@ public class SquareMatrix : MonoBehaviour
 	void setDefaultColorToLine(int i, int j, List<string> list)
 	{
 		matrix[i, j].transform.GetChild(0).renderer.material.color = colors.GREY;
-		paintedSquares--;
 		matrix[i, j].GetComponent<Square>().isPainted = false;
 		foreach(string index in list)
 		{
@@ -265,7 +305,6 @@ public class SquareMatrix : MonoBehaviour
 			int j2 = System.Convert.ToInt32(index.Split(';')[1]);
 			matrix[i2, j2].transform.GetChild(0).renderer.material.color = colors.GREY;
 			matrix[i2, j2].GetComponent<Square>().isPainted = false;
-			paintedSquares--;
 		}
 	}
 	
