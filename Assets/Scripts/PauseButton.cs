@@ -61,21 +61,20 @@ public class PauseButton : MonoBehaviour {
 		if(pauseEnabled == true){
 			//Make a background box
 			GUI.Box(new Rect(0, 0, Screen.width ,Screen.height), "", PauseBox);
-			GUI.TextArea(new Rect(0,Screen.height/5.5f, Screen.width, 30),"GAME PAUSED",PauseTitle);
-			PauseTitle.fontSize = (int)Screen.dpi/4; // golemina na font na naslov vo Pause Menu
+
 			PauseBox.normal.background = MakeTex( 2, 2, pauseBoxColor );
 
 			//Resume Menu button
 			widthLeft = (widthLeft >= 0) ? 0 : widthLeft;
 			widthRight = (widthRight <= 0) ? 0 : widthRight;
-			if(GUI.Button(new Rect(widthLeft, Screen.height/4, Screen.width , Screen.height/11), "Resume")){
+			if(GUI.Button(new Rect(widthLeft, Screen.height/3, Screen.width , Screen.height/11), "Resume")){
 				pauseEnabled = false;
 				Time.timeScale = 1;
 				AudioListener.volume = 1;
 			}
 
 			//Make Retry button
-			if(GUI.Button(new Rect(widthRight, Screen.height/4 + Screen.height/10, Screen.width , Screen.height/11), "Retry")){
+			if(GUI.Button(new Rect(widthRight, Screen.height/3 + Screen.height/10, Screen.width , Screen.height/11), "Retry")){
 				Application.LoadLevel(1);
 				pauseEnabled = false;
 				Time.timeScale = 1;
@@ -83,12 +82,12 @@ public class PauseButton : MonoBehaviour {
 			}
 
 			//Make Main Menu button
-			if(GUI.Button(new Rect(widthLeft, Screen.height/4 + 2*Screen.height/10, Screen.width , Screen.height/11), "Main Menu")){
+			if(GUI.Button(new Rect(widthLeft, Screen.height/3 + 2*Screen.height/10, Screen.width , Screen.height/11), "Main Menu")){
 				Application.LoadLevel(0);
 			}
 			
 			//Make quit game button
-			if (GUI.Button (new Rect (widthRight, Screen.height/4 + 3*Screen.height/10, Screen.width , Screen.height/11), "Quit Game")){
+			if (GUI.Button (new Rect (widthRight, Screen.height/3 + 3*Screen.height/10, Screen.width , Screen.height/11), "Quit Game")){
 				Application.Quit();
 			}
 		}
