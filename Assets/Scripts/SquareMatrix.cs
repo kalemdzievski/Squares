@@ -9,6 +9,7 @@ public class SquareMatrix : MonoBehaviour
 	public GameObject square;
 	public GameObject selectedSquare;
 	public GameObject selectedSquareDest;
+	public GameObject gameOverPopUp;
 	private Color selectedSquareColor;
 	private Color selectedSquareDestColor;
 	public int rows;
@@ -169,8 +170,8 @@ public class SquareMatrix : MonoBehaviour
 
 			if(paintedSquares >= 49)
 			{
-				// ********* POP UP GAME OVER ********************
-				matrixFull = true;
+				Instantiate(gameOverPopUp);
+				//matrixFull = true;
 				Debug.Log("GAME OVER");
 				break;
 			}
