@@ -61,7 +61,7 @@ public class PauseButton : MonoBehaviour {
 		if(pauseEnabled == true){
 			//Make a background box
 			GUI.Box(new Rect(0, 0, Screen.width ,Screen.height), "", PauseBox);
-			GUI.TextArea(new Rect(0,Screen.height/6.0f, Screen.width, 30),"GAME PAUSED",PauseTitle);
+			GUI.Label(new Rect(0,Screen.height/6.0f, Screen.width, 30),"GAME PAUSED",PauseTitle);
 			PauseTitle.fontSize = (int)Screen.dpi/4; // golemina na font na naslov vo Pause Menu
 			PauseBox.normal.background = MakeTex( 2, 2, pauseBoxColor );
 
