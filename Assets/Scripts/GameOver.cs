@@ -3,6 +3,7 @@ using System.Collections;
 
 public class GameOver : MonoBehaviour {
 
+	public GUISkin skin;
 	public GUIStyle BackgroundFade;
 	public GUIStyle Title;
 	public Font pauseMenuFont;
@@ -23,9 +24,7 @@ public class GameOver : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		BackgroundFade = null;
 		pauseBoxColor = new Color (1.0f, 1.0f, 1.0f, 0.0f);
-		Title.fontSize = (int)Screen.dpi/4;
 	}
 	
 	// Update is called once per frame
@@ -34,7 +33,21 @@ public class GameOver : MonoBehaviour {
 	}
 
 	void OnGUI () {
-		GUI.Label (new Rect (0, Screen.height / 6.0f, Screen.width, 30), "GAME OVER", Title);
+		GUI.skin = skin;
+		GUI.Box(new Rect(0, 0, Screen.width ,Screen.height), "", BackgroundFade);
+		GUI.Label (new Rect (0, Screen.height / 4.0f, Screen.width, 30), "GAME OVER", Title);
 		BackgroundFade.normal.background = MakeTex( 2, 2, pauseBoxColor );
+
+		//Retry button
+		if(GUI.Button(new Rect(0, Screen.height/4 + Screen.height/10, Screen.width , Screen.height/11), "Retry")){
+			Application.LoadLevel(1);
+			Time.timeScale = 1;
+			AudioListener.volume = 1;
+		}
+		
+		//Main menu button
+		if(GUI.Button(new Rect(0, Screen.height/4 + 2*Screen.height/10, Screen.width , Screen.height/11), "Main Menu")){
+			Application.LoadLevel(0);
+		}
 	}
 }
