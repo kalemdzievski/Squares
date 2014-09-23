@@ -130,11 +130,7 @@ public class SquareMatrix : MonoBehaviour
 			}
 			else {
 				score += line * 100;
-				
-				Debug.Log(gargara + "PAINTED SQUARES: " + paintedSquares);	
-				Debug.Log(gargara + "MINUS PAINTED SQUARES IN MOVE: - " + line);
-				paintedSquares -= line;	
-				Debug.Log(gargara + "PAINTED SQUARES: " + paintedSquares);	
+				paintedSquares -= line;		
 				combo++;
 			}
 
@@ -149,7 +145,6 @@ public class SquareMatrix : MonoBehaviour
 		int i, j;
 		GameObject squareObject;
 		Square squareScript;
-		Debug.Log(gargara + "PAINTED SQUARES: " + paintedSquares);
 		
 		while(randomPaintedSquares < numberOfSquares)
 		{
@@ -163,18 +158,12 @@ public class SquareMatrix : MonoBehaviour
 				Color squareColor = getRandomColor();
 				squareObject.transform.GetChild(0).renderer.material.color = squareColor;
 				squareScript.isPainted = true;
+				randomPaintedSquares++;
+				paintedSquares++;
 				int line = checkForLine(i, j);
-				if(line == 1){
-					Debug.Log(randomPaintedSquares + "PLUS RANDOM SQUARE");
-					randomPaintedSquares++;
-					paintedSquares++;
-				}
-				else {
+				if(line != 1){
 					score += line * 100;
-					Debug.Log(gargara + "PAINTED SQUARES: " + paintedSquares);
 					paintedSquares -= line;
-					Debug.Log(gargara + "MINUS PAINTED SQUARES IN RANDOM: - " + line);
-					Debug.Log(gargara + "PAINTED SQUARES: " + paintedSquares);
 				}
 			}
 
@@ -190,10 +179,6 @@ public class SquareMatrix : MonoBehaviour
 				matrixFull = false;
 			}
 		}
-
-		
-		Debug.Log(gargara + "PLUS PAINTED SQUARES IN RANDOM: + " + randomPaintedSquares);
-		Debug.Log(gargara + "PAINTED SQUARES: " + paintedSquares);
 	}
 
 	void OnGUI()
