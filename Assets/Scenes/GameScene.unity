@@ -1002,6 +1002,7 @@ MonoBehaviour:
   square: {fileID: 100002, guid: 84f017ae8294569489e0ed4fac90181b, type: 2}
   selectedSquare: {fileID: 100002, guid: 84f017ae8294569489e0ed4fac90181b, type: 2}
   selectedSquareDest: {fileID: 100002, guid: 84f017ae8294569489e0ed4fac90181b, type: 2}
+  gameOverPopUp: {fileID: 100000, guid: 90991fa71e0e11d449591e747ed96a61, type: 2}
   rows: 6
   columns: 6
   randomSquaresPainted: 0
