@@ -29,6 +29,7 @@ public class GameOver : MonoBehaviour {
 	void Start () {
 		pauseBoxColor = new Color (1.0f, 1.0f, 1.0f, 0.0f);
 		Time.timeScale = 0;
+		Destroy (GameObject.FindGameObjectWithTag("Pause"));
 	}
 	
 	// Update is called once per frame
