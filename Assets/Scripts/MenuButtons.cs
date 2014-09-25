@@ -9,6 +9,7 @@ public class MenuButtons : MonoBehaviour {
 	public string btnScores = string.Empty;
 	public string btnExit = string.Empty;
 	public GameObject clicksound = null;
+	public GameObject helpbox = null;
 
 
 	void OnGUI () {
@@ -38,6 +39,7 @@ public class MenuButtons : MonoBehaviour {
 		if (GUI.Button (new Rect (0, Screen.height / 3 + 2 * Screen.height / 11 + 2 * Screen.height / 20, Screen.width, Screen.height / 11), btnScores)) {
 			clicksound.audio.Play();
 			DontDestroyOnLoad(clicksound);
+			Application.LoadLevel(2);
 		}
 
 		if(GUI.Button (new Rect (0, Screen.height/3 + 3*Screen.height/11 + 3*Screen.height/20, Screen.width, Screen.height/11), btnExit))
