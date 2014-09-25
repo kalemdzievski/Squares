@@ -38,7 +38,6 @@ public class PauseButton : MonoBehaviour {
 				pauseEnabled = true;
 				AudioListener.volume = 0;
 				Time.timeScale = 0;
-			}
 		}
 
 		if (Input.GetKeyDown (KeyCode.Escape)) {
