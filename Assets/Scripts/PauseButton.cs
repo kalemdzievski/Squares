@@ -35,22 +35,10 @@ public class PauseButton : MonoBehaviour {
 		PauseBtnBox.fontSize = (int)Screen.dpi / 8;//Font na pauza kopce
 		//Pause button
 		if (GUI.Button (new Rect (Screen.width - Screen.height/20, Screen.height - Screen.height/20, Screen.height/20, Screen.height/20),"II",PauseBtnBox)) {
-
-			if(pauseEnabled == true){
-				//unpause the game
-				pauseEnabled = false;
-				Time.timeScale = 1;
-				AudioListener.volume = 1;
-
-			}
-			
-			//else if game isn't paused, then pause it
-			else if(pauseEnabled == false){
 				pauseEnabled = true;
 				AudioListener.volume = 0;
 				Time.timeScale = 0;
 			}
-
 		}
 
 		if (Input.GetKeyDown (KeyCode.Escape)) {
