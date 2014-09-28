@@ -28,11 +28,12 @@ public class PauseButton : MonoBehaviour {
 	}
   
 	void OnGUI () {
-		GUI.skin = skin;
-		GUI.skin.box.font = pauseMenuFont;
-		GUI.skin.button.font = pauseMenuFont;
+		GUI.skin 				  = skin;
+		GUI.skin.box.font 		  = pauseMenuFont;
+		GUI.skin.button.font 	  = pauseMenuFont;
 		this.skin.button.fontSize = (int)Screen.width / 12; // Golemina na font na kopcinja vo pause menu
-		PauseBtnBox.fontSize = (int)Screen.dpi / 8;//Font na pauza kopce
+		PauseBtnBox.fontSize 	  = (int)Screen.dpi / 8;//Font na pauza kopce
+
 		//Pause button
 		if (GUI.Button (new Rect (Screen.width - Screen.height/20, Screen.height - Screen.height/20, Screen.height/20, Screen.height/20),"II",PauseBtnBox)) {
 				pauseEnabled = true;
@@ -84,32 +85,21 @@ public class PauseButton : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		widthLeft = -Screen.width;
-		widthRight = Screen.width;
-		speed = Screen.width / 10.0f;
+		widthLeft 	  = -Screen.width;
+		widthRight 	  = Screen.width;
 		pauseBoxColor = new Color (1.0f, 1.0f, 1.0f, 0.0f);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (pauseEnabled) {
-			if(widthLeft >= 0) {
-				widthLeft = 0;
-			}
-			else {
-				widthLeft += speed;
-			}
-			if (widthRight <= 0) {
-				widthRight = 0;
-			}
-			else {
-				widthRight -= speed;
-			}
+			widthLeft 		= Mathf.Lerp(widthLeft, 0, Time.fixedDeltaTime / 0.12f);
+			widthRight 		= Mathf.Lerp(widthRight, 0, Time.fixedDeltaTime / 0.12f);
 			pauseBoxColor.a = Mathf.Lerp(pauseBoxColor.a, 0.7f, Time.fixedDeltaTime / 0.2f);
 		} 
 		else {
-			widthLeft = -Screen.width;
-			widthRight = Screen.width;
+			widthLeft 	= -Screen.width;
+			widthRight 	= Screen.width;
 			pauseBoxColor.a = 0.0f;
 		}
 
