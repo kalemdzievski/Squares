@@ -20,6 +20,7 @@ public class SquareMatrix : MonoBehaviour
 	private int combo;
 	public float offset;
 	public GameObject [,] matrix;
+	public Gadgets gadgetsScript;
 	private List<string> listLeft;
 	private List<string> listRight;
 	private List<string> listDown;
@@ -64,6 +65,7 @@ public class SquareMatrix : MonoBehaviour
 		selectedSquareColor = Color.clear;
 		selectedSquareDestColor = Color.clear;
 		colors = new SquareColors ();
+		gadgetsScript = GameObject.FindGameObjectWithTag ("Gadgets").GetComponent<Gadgets> ();
 	}
 	
 	void Awake()
@@ -126,6 +128,9 @@ public class SquareMatrix : MonoBehaviour
 
 	void paintRandomSquares(int numberOfSquares)
 	{
+		if (gadgetsScript.noSquares)
+			return;
+
 		int randomPaintedSquares = 0;
 		int i, j;
 		GameObject squareObject;
@@ -169,6 +174,9 @@ public class SquareMatrix : MonoBehaviour
 	//Path algorithm
 	public bool path()
 	{
+		if (gadgetsScript.freeMove)
+			return true;
+
 		string [] input = new string[rows + 2];
 		Path path = new Path();
 		char [,] mazematrix = new char[rows + 2, columns + 2];

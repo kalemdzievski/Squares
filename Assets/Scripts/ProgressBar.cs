@@ -7,12 +7,14 @@ public class ProgressBar : MonoBehaviour {
 	public float currWidth;
 	public float barHeight;
 	public float seconds;
+	public float freezeSeconds;
 	public float fadeDuration;
 	public Color startColor;
 	public Color endColor;
 	public GUITexture progressBar;
 	public GameObject popupText;
 	public SquareMatrix squareMatrixScript;
+	public Gadgets gadgetsScript;
 
 	void Awake()
 	{
@@ -28,7 +30,8 @@ public class ProgressBar : MonoBehaviour {
 		transform.position = Vector3.zero;
 		transform.localScale = Vector3.zero;
 		squareMatrixScript = GameObject.FindGameObjectWithTag ("Block").GetComponent<SquareMatrix> ();
-
+		gadgetsScript = GameObject.FindGameObjectWithTag ("Gadgets").GetComponent<Gadgets> ();
+		freezeSeconds = 0f;
 	}
 		
 	// Update is called once per frame
@@ -42,8 +45,21 @@ public class ProgressBar : MonoBehaviour {
 			Instantiate(popupText);
 		}
 
-		currWidth -= barWidth / seconds * Time.deltaTime;
-		progressBar.color = Color.Lerp (guiTexture.color, endColor, Time.deltaTime / seconds);
+		if(!gadgetsScript.freezeTime)
+		{
+			currWidth -= barWidth / seconds * Time.deltaTime;
+			progressBar.color = Color.Lerp (guiTexture.color, endColor, Time.deltaTime / seconds);
+		}
+		else
+		{
+			freezeSeconds += Time.deltaTime;
+		}
+
+		if(freezeSeconds >= 10)
+		{
+			freezeSeconds = 0f;
+			gadgetsScript.freezeTime = false;
+		}
 	}
 		
 	void OnGUI () {
