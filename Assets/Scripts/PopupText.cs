@@ -9,7 +9,7 @@ public class PopupText : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		duration = 1.5f;
+		duration = 2.0f;
 		to = new Vector3 (transform.position.x, transform.position.y - 0.05f, transform.position.z);
 		seconds = 0.0f;
 	}

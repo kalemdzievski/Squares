@@ -75,7 +75,7 @@ GUIText:
   m_FontStyle: 0
   m_Color:
     serializedVersion: 2
-    rgba: 0
+    rgba: 16777215
   m_PixelCorrect: 1
   m_RichText: 1
 --- !u!1001 &100100000
