@@ -411,12 +411,14 @@ MonoBehaviour:
   currWidth: 0
   barHeight: 0
   seconds: 0
+  freezeSeconds: 0
   fadeDuration: 0
   startColor: {r: 0, g: 0, b: 0, a: 0}
   endColor: {r: 0, g: 0, b: 0, a: 0}
   progressBar: {fileID: 0}
   popupText: {fileID: 100000, guid: 170460c9501f7ff43a4f57127dfa925e, type: 2}
   squareMatrixScript: {fileID: 0}
+  gadgetsScript: {fileID: 0}
 --- !u!1 &686312895
 GameObject:
   m_ObjectHideFlags: 0
@@ -798,7 +800,7 @@ GameObject:
   - 114: {fileID: 1913671695}
   m_Layer: 0
   m_Name: Gadgets
-  m_TagString: Untagged
+  m_TagString: Gadgets
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -823,6 +825,9 @@ MonoBehaviour:
   FreezeTimeTex: {fileID: 0}
   NoSquareTex: {fileID: 0}
   FreeMoveTex: {fileID: 0}
+  freeMove: 0
+  freezeTime: 0
+  noSquares: 0
 --- !u!4 &1913671696
 Transform:
   m_ObjectHideFlags: 0
@@ -993,6 +998,7 @@ MonoBehaviour:
   randomSquaresPainted: 0
   paintedSquares: 0
   offset: 6
+  gadgetsScript: {fileID: 0}
   matrixFull: 0
 --- !u!4 &2128516761
 Transform:
