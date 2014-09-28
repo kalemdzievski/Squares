@@ -27,20 +27,6 @@ public class SquareMatrix : MonoBehaviour
 	private List<string> listLine;
 	public SquareColors colors;
 	public bool matrixFull = false;
-	int gargara;
-
-	private Texture2D MakeTex( int width, int height, Color col )
-	{
-		Color[] pix = new Color[width * height];
-		for( int i = 0; i < pix.Length; ++i )
-		{
-			pix[ i ] = col;
-		}
-		Texture2D result = new Texture2D( width, height );
-		result.SetPixels( pix );
-		result.Apply();
-		return result;
-	}
 
 	void initMatrix(int rows, int columns)
 	{
@@ -61,10 +47,9 @@ public class SquareMatrix : MonoBehaviour
 
 	void initVariables()
 	{		
-		gargara = 0;
 		rows = 7;
 		columns = 7;
-		offset = 3.5f;
+		offset = 3.8f;
 		score = 0;
 		combo = 0;
 		paintedSquares = 0;
@@ -110,7 +95,6 @@ public class SquareMatrix : MonoBehaviour
 
 	public void move()
 	{
-		gargara++;
 		if (selectedSquare != null && selectedSquareDest != null && path()) 
 		{
 			selectedSquareColor = selectedSquare.transform.GetChild(0).renderer.material.color;
@@ -181,24 +165,6 @@ public class SquareMatrix : MonoBehaviour
 			}
 		}
 	}
-
-	void OnGUI()
-	{
-		if (matrixFull == true) {
-			//Create White background for the game over screen
-			GUI.Box(new Rect(0,0, Screen.width ,Screen.height), "", GameOverBox);
-			GameOverBox.normal.background = MakeTex( 2, 2, new Color( 1f, 1f, 1f, 0.8f ) );
-
-			//Create gameover text
-			GUI.TextArea(new Rect(0,Screen.height/4, Screen.width, 30),"GAME OVER");
-
-
-
-			//Pause the bar and game animations
-			Time.timeScale = 1;
-				}
-
-		}
 
 	//Path algorithm
 	public bool path()
