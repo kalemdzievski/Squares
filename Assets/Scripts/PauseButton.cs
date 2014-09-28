@@ -54,8 +54,6 @@ public class PauseButton : MonoBehaviour {
 			PauseBox.normal.background = MakeTex( 2, 2, pauseBoxColor );
 
 			//Resume Menu button
-			widthLeft = (widthLeft >= 0) ? 0 : widthLeft;
-			widthRight = (widthRight <= 0) ? 0 : widthRight;
 			if(GUI.Button(new Rect(widthLeft, Screen.height/4, Screen.width , Screen.height/11), "Resume")){
 				pauseEnabled = false;
 				Time.timeScale = 1;
