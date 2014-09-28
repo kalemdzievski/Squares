@@ -32,7 +32,7 @@ public class PauseButton : MonoBehaviour {
 		GUI.skin.box.font = pauseMenuFont;
 		GUI.skin.button.font = pauseMenuFont;
 		this.skin.button.fontSize = (int)Screen.width / 12; // Golemina na font na kopcinja vo pause menu
-		PauseBtnBox.fontSize = (int)Screen.dpi / 8;//Font na pauza kopce
+		PauseBtnBox.fontSize = (int)Screen.width / 16;//Font na pauza kopce
 		//Pause button
 		if (GUI.Button (new Rect (Screen.width - Screen.height/20, Screen.height - Screen.height/20, Screen.height/20, Screen.height/20),"II",PauseBtnBox)) {
 				pauseEnabled = true;
