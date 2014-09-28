@@ -9,9 +9,15 @@ public class Gadgets : MonoBehaviour {
 	public float topPosition;
 	public float leftPosition;
 	public Color gadgetColor;
-	public Texture FreezeTimeTex;
-	public Texture NoSquareTex;
-	public Texture FreeMoveTex;
+	public GUIStyle FreezeTimeTex;
+	public GUIStyle NoSquareTex;
+	public GUIStyle FreeMoveTex;
+	public Texture2D FreezeTimeIcon = null;
+	public Texture2D NoSquareIcon = null;
+	public Texture2D FreeMoveIcon = null;
+	public GUIContent FreezeTimeContent;
+	public GUIContent NoSquareContent;
+	public GUIContent FreeMoveContent;
 
 	public bool freeMove;
 	public bool freezeTime;
@@ -19,11 +25,15 @@ public class Gadgets : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		leftPosition  = (float)Screen.width / 16;
-		topPosition   = (float)Screen.height - 60;
-		gadgetsWidth  = (float)Screen.width / 4;
-		gadgetsHeight = (float)Screen.height / 10;
-		offset = gadgetsWidth + leftPosition;
+		leftPosition  = (Screen.width / 3 - Screen.width / 3.2f)/2;
+		topPosition   = (float)Screen.height - 2*Screen.width / 6;
+		gadgetsWidth  = (float)Screen.width / 3.2f;
+		gadgetsHeight = (float)Screen.width / 5;
+		offset = Screen.width / 3 - Screen.width / 3.2f;
+		//offset = gadgetsWidth + leftPosition;
+		FreezeTimeContent.image = FreezeTimeIcon;
+		NoSquareContent.image = NoSquareIcon;
+		FreeMoveContent.image = FreeMoveIcon;
 
 		freeMove = false;
 		freezeTime = false;
@@ -38,18 +48,18 @@ public class Gadgets : MonoBehaviour {
 	void OnGUI () {
 
 		//Freeze time gadget
-		if (GUI.Button (new Rect (leftPosition, topPosition, gadgetsWidth, gadgetsHeight), FreezeTimeTex)) {
+		if (GUI.Button (new Rect (leftPosition, topPosition, gadgetsWidth, gadgetsHeight),FreezeTimeContent, FreezeTimeTex)) {
 			if(!freezeTime)
 				freezeTime = true;
 		}
 
 		//Free move gadget
-		if (GUI.Button (new Rect (leftPosition + offset, topPosition, gadgetsWidth, gadgetsHeight), FreezeTimeTex)) {
+		if (GUI.Button (new Rect (leftPosition + Screen.width / 3, topPosition, gadgetsWidth, gadgetsHeight),FreeMoveContent, FreeMoveTex)) {
 			freeMove = !freeMove;
 		}
 
 		//No squares gadget
-		if (GUI.Button (new Rect (leftPosition + offset*2, topPosition, gadgetsWidth, gadgetsHeight), FreezeTimeTex)) {
+		if (GUI.Button (new Rect (leftPosition + 2*Screen.width / 3, topPosition, gadgetsWidth, gadgetsHeight),NoSquareContent, NoSquareTex)) {
 			noSquares = !noSquares;
 		}
 	}
