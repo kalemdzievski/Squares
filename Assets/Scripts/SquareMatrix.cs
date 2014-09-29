@@ -111,18 +111,20 @@ public class SquareMatrix : MonoBehaviour
 			int line = checkForLine(selectedSquareDest.GetComponent<Square>().i, selectedSquareDest.GetComponent<Square>().j);
 
 			if(line == 1) {
-				score += combo * 100;
 				paintRandomSquares(randomSquaresPainted);
 				combo = 0;
 			}
 			else {
-				score += line * 100;
+				if(combo != 0)
+					score += line * 10 * combo;
+				else
+					score += line * 10;
 				paintedSquares -= line;		
 				combo++;
 			}
 
 			GameObject.FindGameObjectWithTag ("Score").guiText.text = score.ToString();
-			GameObject.FindGameObjectWithTag ("Combo").guiText.text = "x" + combo.ToString();
+			GameObject.FindGameObjectWithTag ("Combo").guiText.text = combo.ToString() + "x";
 		}
 	}
 
@@ -152,8 +154,12 @@ public class SquareMatrix : MonoBehaviour
 				paintedSquares++;
 				int line = checkForLine(i, j);
 				if(line != 1){
-					score += line * 100;
+					if(combo != 0)
+						score += line * 10 * combo;
+					else
+						score += line * 10;
 					paintedSquares -= line;
+					combo++;
 				}
 			}
 
