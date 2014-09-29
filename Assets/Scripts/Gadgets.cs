@@ -28,7 +28,7 @@ public class Gadgets : MonoBehaviour {
 		leftPosition  = (Screen.width / 3 - Screen.width / 3.2f)/2;
 		topPosition   = (float)Screen.height - 2*Screen.width / 6;
 		gadgetsWidth  = (float)Screen.width / 3.2f;
-		gadgetsHeight = (float)Screen.width / 5;
+		gadgetsHeight = (float)Screen.width / 6;
 		offset = Screen.width / 3 - Screen.width / 3.2f;
 		//offset = gadgetsWidth + leftPosition;
 		FreezeTimeContent.image = FreezeTimeIcon;

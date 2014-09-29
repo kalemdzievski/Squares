@@ -2,23 +2,29 @@
 using System.Collections;
 
 public class MenuButtons : MonoBehaviour {
-	
-	public GUISkin skin = null;
+
 	public string btnStart = string.Empty;
-	public string btnOptions = string.Empty;
 	public string btnScores = string.Empty;
+	public string btnHelp = string.Empty;
 	public string btnExit = string.Empty;
 	public GameObject clicksound = null;
-	public GameObject helpbox = null;
-
+	public GUIStyle StartStyle = null;
+	public GUIStyle ScoresStyle = null;
+	public GUIStyle HelpStyle = null;
+	public GUIStyle ExitStyle = null;
 
 	void OnGUI () {
 
-		GUI.skin = skin;
-		skin.button.fontSize = (int)Screen.width/10;
-
+		StartStyle.fontSize = (int)Screen.width/10;
+		StartStyle.padding.left = Screen.width / 20;
+		ScoresStyle.fontSize = (int)Screen.width/10;
+		ScoresStyle.padding.left = Screen.width / 20;
+		HelpStyle.fontSize = (int)Screen.width/10;
+		HelpStyle.padding.left = Screen.width / 20;
+		ExitStyle.fontSize = (int)Screen.width/10;
+		ExitStyle.padding.left = Screen.width / 20;
 		//Tuka se kreirani kopcinjata
-		if(GUI.Button (new Rect (0, Screen.height/3, Screen.width , Screen.height/11),btnStart)) 
+		if(GUI.Button (new Rect (0, Screen.height/3, Screen.width , Screen.height/11),btnStart,StartStyle)) 
 		{
 			clicksound.audio.Play();
 			DontDestroyOnLoad(clicksound);
@@ -29,20 +35,20 @@ public class MenuButtons : MonoBehaviour {
 
 		}
 
-		if (GUI.Button (new Rect (0, Screen.height / 3 + Screen.height / 11 + Screen.height / 20, Screen.width, Screen.height / 11), btnOptions)) {
+		if (GUI.Button (new Rect (0, Screen.height / 3 + Screen.height / 11 + Screen.height / 20, Screen.width, Screen.height / 11), btnScores,ScoresStyle)) {
 
 			clicksound.audio.Play();
 			DontDestroyOnLoad(clicksound);
 		}
 
 
-		if (GUI.Button (new Rect (0, Screen.height / 3 + 2 * Screen.height / 11 + 2 * Screen.height / 20, Screen.width, Screen.height / 11), btnScores)) {
+		if (GUI.Button (new Rect (0, Screen.height / 3 + 2 * Screen.height / 11 + 2 * Screen.height / 20, Screen.width, Screen.height / 11), btnHelp,HelpStyle)) {
 			clicksound.audio.Play();
 			DontDestroyOnLoad(clicksound);
 			Application.LoadLevel(2);
 		}
 
-		if(GUI.Button (new Rect (0, Screen.height/3 + 3*Screen.height/11 + 3*Screen.height/20, Screen.width, Screen.height/11), btnExit))
+		if(GUI.Button (new Rect (0, Screen.height/3 + 3*Screen.height/11 + 3*Screen.height/20, Screen.width, Screen.height/11), btnExit,ExitStyle))
 		{
 			clicksound.audio.Play();
 			Application.Quit();
