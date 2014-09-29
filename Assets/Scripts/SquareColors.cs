@@ -14,30 +14,28 @@ namespace AssemblyCSharp
 {
 	public class SquareColors
 	{
-		public Color LIGHT_PINK;
-		public Color YELLOW;
-		public Color LIGHT_GREEN;
-		public Color PINK;
-		public Color TEAL;
+		public Color RED;
 		public Color BLUE;
-		public Color MAROON;
+		public Color YELLOW;
+		public Color GREEN;
 		public Color PURPLE;
 		public Color ORANGE;
-		public Color GREEN;
+		public Color TEAL;
+		public Color WHITE;
+		public Color PINK;
 		public Color GREY;
 
 		public SquareColors ()
 		{
-			LIGHT_PINK = new Color32 (187, 115, 164, 1);
-			YELLOW = new Color32 (216, 196, 24, 1);
-			LIGHT_GREEN = new Color32 (155, 213, 42, 1);
-			PINK = new Color32 (221, 54, 113, 1);
-			TEAL = new Color32 (39, 158, 131, 1);
-			BLUE = new Color32 (39, 90, 159, 1);
-			MAROON = new Color32 (160, 44, 44, 1);
-			PURPLE = new Color32 (124, 90, 180, 1);
-			ORANGE = new Color32 (188, 117, 79, 1);
-			GREEN = new Color32 (96, 143, 68, 1);
+			RED = new Color32 (255, 0, 66, 1);
+			BLUE = new Color32 (0, 150, 255, 1);
+			YELLOW = new Color32 (255, 255, 0, 1);
+			GREEN = new Color32 (106, 196, 0, 1);
+			PURPLE = new Color32 (115, 0, 200, 1);
+			ORANGE = new Color32 (255, 126, 0, 1);
+			TEAL = new Color32 (0, 255, 143, 1);
+			WHITE = new Color32 (255, 255, 255, 1);
+			PINK = new Color32 (228, 0, 255, 1);
 			GREY = new Color32 (40, 40, 40, 1);
 		}
 	}

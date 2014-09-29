@@ -294,23 +294,23 @@ public class SquareMatrix : MonoBehaviour
 		switch (color)
 		{
 			case 0:
-				return colors.BLUE;
+				return colors.RED;
 			case 1:
-				return colors.YELLOW;
-			case 2:
-				return colors.GREEN;
-			case 3:
-				return colors.ORANGE;
-			case 4:
-				return colors.MAROON;
-			case 5:
-				return colors.PURPLE;
-			case 6:
-				return colors.PINK;
-			case 7:
-				return colors.TEAL;
-			default:
 				return colors.BLUE;
+			case 2:
+				return colors.YELLOW;
+			case 3:
+				return colors.GREEN;
+			case 4:
+				return colors.PURPLE;
+			case 5:
+				return colors.ORANGE;
+			case 6:
+				return colors.TEAL;
+			case 7:
+				return colors.WHITE;
+			default:
+				return colors.RED;
 				
 		}
 	}
