@@ -124,7 +124,7 @@ public class SquareMatrix : MonoBehaviour
 			}
 
 			GameObject.FindGameObjectWithTag ("Score").guiText.text = score.ToString();
-			GameObject.FindGameObjectWithTag ("Combo").guiText.text = combo.ToString() + "x";
+			GameObject.FindGameObjectWithTag ("Combo").guiText.text = "x" + combo.ToString();
 		}
 	}
 
