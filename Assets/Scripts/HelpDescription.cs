@@ -23,11 +23,12 @@ public class HelpDescription : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		HelpBoxColor = new Color (1.0f, 1.0f, 1.0f, 0.7f);
+		HelpBoxColor = new Color (1.0f, 1.0f, 1.0f, 0.1f);
 	}
 
 	void OnGUI()
 	{
+		HelpButton.padding.left = Screen.width / 20;
 		GUI.BeginScrollView (new Rect (0, 0, Screen.width, Screen.height), scrollPosition, new Rect (0, 0, 20, 20));
 		GUI.Box(new Rect(Screen.width/20,Screen.height/40,Screen.width - 2*Screen.width/20,Screen.height - 8*Screen.width/22),"",BackgroundFade);
 		BackgroundFade.normal.background = MakeTex( 2, 2, HelpBoxColor );
