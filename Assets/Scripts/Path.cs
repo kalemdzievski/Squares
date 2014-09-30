@@ -134,7 +134,12 @@ namespace AssemblyCSharp
 					else s.Pop();
 				}
 				return hasPath;
-			}
 		}
+		
+		public void pathDictionary()
+		{
+			h.Clear();
+		}
+	}
 }
 
