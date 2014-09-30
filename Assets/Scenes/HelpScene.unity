@@ -240,8 +240,8 @@ MonoBehaviour:
   HelpButton:
     m_Name: 
     m_Normal:
-      m_Background: {fileID: 2800000, guid: d474308ef1c07b942bc4f4ed2d12130e, type: 3}
-      m_TextColor: {r: .996078432, g: 0, b: .258823544, a: 1}
+      m_Background: {fileID: 2800000, guid: e887ce8ec1fcaad4d8ac028d4196d190, type: 3}
+      m_TextColor: {r: .0784313753, g: .0784313753, b: .0784313753, a: 1}
     m_Hover:
       m_Background: {fileID: 2800000, guid: 9b4acd603689ea04a9e72a244f522f5b, type: 3}
       m_TextColor: {r: .996078432, g: .517647088, b: .388235301, a: 1}
