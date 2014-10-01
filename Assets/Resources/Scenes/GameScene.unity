@@ -1428,6 +1428,7 @@ MonoBehaviour:
   offset: 6
   gadgetsScript: {fileID: 0}
   matrixFull: 0
+  FinalScore: 
 --- !u!4 &2128516761
 Transform:
   m_ObjectHideFlags: 0
