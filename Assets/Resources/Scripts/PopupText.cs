@@ -21,7 +21,7 @@ public class PopupText : MonoBehaviour {
 			Destroy(gameObject);		
 		}
 
-		Color c = guiText.color;
+		Color c = Color.white;
 		float ratio = seconds / duration;
 		if (seconds <= duration / 2.0f) {
 			c.a = Mathf.Lerp(0.0f,1.0f, ratio / 0.9f);

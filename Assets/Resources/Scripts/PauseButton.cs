@@ -39,7 +39,7 @@ public class PauseButton : MonoBehaviour {
 		PauseBtnBox.fontSize      = (int)Screen.width / 16;//Font na pauza kopce
 
 		//Pause button
-		if (GUI.Button (new Rect (Screen.width - Screen.height/20, Screen.height - Screen.height/20, Screen.height/20, Screen.height/20),"II",PauseBtnBox)) {
+		if (GUI.Button (new Rect (Screen.width - Screen.height/15, Screen.height/10, Screen.height/15, Screen.height/15),"II",PauseBtnBox)) {
 				pauseEnabled = true;
 				AudioListener.volume = 0;
 				Time.timeScale = 0;
