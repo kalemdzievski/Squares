@@ -1253,6 +1253,9 @@ MonoBehaviour:
   freeMove: 0
   freezeTime: 0
   noSquares: 0
+  squareMatrixScript: {fileID: 0}
+  solidColorMat: {fileID: 2100000, guid: e4cfe147798dd914a96d76b41ec1ed0f, type: 2}
+  noPathMat: {fileID: 2100000, guid: 89a5b5ba3b0ca7d48acbb13f4d4c13b6, type: 2}
 --- !u!4 &1913671696
 Transform:
   m_ObjectHideFlags: 0
