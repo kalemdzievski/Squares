@@ -86,7 +86,7 @@ GameObject:
   - 114: {fileID: 163275810}
   m_Layer: 0
   m_Name: ScoreText
-  m_TagString: Untagged
+  m_TagString: ScoreText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -297,7 +297,7 @@ GameObject:
   - 114: {fileID: 318159327}
   m_Layer: 0
   m_Name: ComboText
-  m_TagString: Untagged
+  m_TagString: ComboText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

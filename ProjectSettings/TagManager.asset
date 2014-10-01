@@ -10,6 +10,8 @@ TagManager:
   - Combo
   - Pause
   - Gadgets
+  - ScoreText
+  - ComboText
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX

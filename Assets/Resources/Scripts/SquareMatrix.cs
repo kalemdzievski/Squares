@@ -28,6 +28,7 @@ public class SquareMatrix : MonoBehaviour
 	private List<string> listLine;
 	public SquareColors colors;
 	public bool matrixFull = false;
+	public string FinalScore = string.Empty;
 
 	void initMatrix(int rows, int columns)
 	{
@@ -166,6 +167,11 @@ public class SquareMatrix : MonoBehaviour
 			if(paintedSquares >= 49)
 			{
 				Instantiate(gameOverPopUp);
+				Destroy(gadgetsScript);
+				Destroy(GameObject.FindGameObjectWithTag("ComboText"));
+				Destroy(GameObject.FindGameObjectWithTag("Combo"));
+				Destroy(GameObject.FindGameObjectWithTag("ScoreText"));
+				Destroy(GameObject.FindGameObjectWithTag("Score"));
 				//matrixFull = true;
 				Debug.Log("GAME OVER");
 				break;
