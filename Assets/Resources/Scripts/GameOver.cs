@@ -56,10 +56,14 @@ public class GameOver : MonoBehaviour {
 		retryStyle.fontStyle = FontStyle.Bold;
 		retryStyle.alignment = TextAnchor.MiddleCenter;
 		retryStyle.normal.textColor = new Color (0.0f, 0.0f, 0.0f);
+		retryStyle.normal.background = (Texture2D)Resources.Load("Textures/resumeTex");
+		retryStyle.fontSize = (int)Screen.width / 12;
 
 		mmStyle.fontStyle = FontStyle.Bold;
 		mmStyle.alignment = TextAnchor.MiddleCenter;
 		mmStyle.normal.textColor = new Color (0.0f, 0.0f, 0.0f);
+		mmStyle.normal.background = (Texture2D)Resources.Load("Textures/moveTex");
+		mmStyle.fontSize = (int)Screen.width / 12;
 
 		//Retry button
 		if(GUI.Button(new Rect(0, Screen.height/3 + Screen.height/10, Screen.width , Screen.height/11), "Retry",retryStyle)){
