@@ -13,6 +13,7 @@ public class GameOver : MonoBehaviour {
 	public GUIText ScoreText;
 	public GUIStyle retryStyle;
 	public GUIStyle mmStyle;
+	public SquareMatrix squareMatrixScript;
 
 	private Texture2D MakeTex( int width, int height, Color col )
 	{
@@ -25,6 +26,10 @@ public class GameOver : MonoBehaviour {
 		result.SetPixels( pix );
 		result.Apply();
 		return result;
+	}
+
+	void Awake() {
+		squareMatrixScript = GameObject.FindGameObjectWithTag ("Block").GetComponent<SquareMatrix> ();
 	}
 
 	// Use this for initialization
@@ -44,7 +49,7 @@ public class GameOver : MonoBehaviour {
 		GUI.Box(new Rect(0, 0, Screen.width ,Screen.height), "", BackgroundFade);
 		GUI.Label (new Rect (0, Screen.height / 3, Screen.width, 30), "GAME OVER", Title);
 		GUI.Label (new Rect (0, Screen.height / 10, Screen.width, 30), "SCORE", ScoreStyle);
-		GUI.Label (new Rect (0, Screen.height / 6, Screen.width, 30), GameObject.FindGameObjectWithTag ("Score").guiText.text.ToString(), ScoreValStyle);
+		GUI.Label (new Rect (0, Screen.height / 6, Screen.width, 30), squareMatrixScript.score.ToString(), ScoreValStyle);
 		BackgroundFade.normal.background = MakeTex( 2, 2, pauseBoxColor );
 		Title.fontSize = (int)Screen.width / 12;
 		Title.normal.textColor = new Color (1.0f, 0.0f, 0.3f);

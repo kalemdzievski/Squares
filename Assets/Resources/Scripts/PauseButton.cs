@@ -90,6 +90,7 @@ public class PauseButton : MonoBehaviour {
 		widthLeft 	  = -Screen.width;
 		widthRight 	  = Screen.width;
 		pauseBoxColor = new Color (0.0f, 0.0f, 0.0f, 0.0f);
+		Time.timeScale = 1;
 	}
 	
 	// Update is called once per frame

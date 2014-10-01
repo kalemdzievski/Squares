@@ -16,8 +16,8 @@ public class SquareMatrix : MonoBehaviour
 	public int columns;
 	public int randomSquaresPainted;
 	public int paintedSquares;
-	private int score;
-	private int combo;
+	public int score;
+	public int combo;
 	public float offset;
 	public GameObject [,] matrix;
 	public Gadgets gadgetsScript;
@@ -176,10 +176,8 @@ public class SquareMatrix : MonoBehaviour
 				Debug.Log("GAME OVER");
 				break;
 			}
-			else
-			{
-				matrixFull = false;
-			}
+			if(paintedSquares <= 0)
+				paintRandomSquares(randomSquaresPainted);
 		}
 	}
 
