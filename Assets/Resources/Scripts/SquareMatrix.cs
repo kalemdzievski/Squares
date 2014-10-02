@@ -150,6 +150,8 @@ public class SquareMatrix : MonoBehaviour
 			{
 				Color squareColor = getRandomColor();
 				squareObject.transform.GetChild(0).renderer.material.color = squareColor;
+				squareObject.transform.GetChild(0).transform.localScale = new Vector3(4.3f, 4.3f, 0.8f);
+				squareObject.transform.GetChild(0).animation.Play("Deselect");
 				squareScript.isPainted = true;
 				randomPaintedSquares++;
 				paintedSquares++;
