@@ -372,8 +372,8 @@ GUITexture:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 561020819}
   m_Enabled: 1
-  m_Texture: {fileID: 2800000, guid: 4b50b01437def7c428741df7d528b024, type: 3}
-  m_Color: {r: .41568628, g: .764705896, b: 0, a: .858823538}
+  m_Texture: {fileID: 2800000, guid: ae3ebbe49e71e2f43919f43bbb1e3256, type: 3}
+  m_Color: {r: 1, g: .764705896, b: 0, a: .858823538}
   m_PixelInset:
     serializedVersion: 2
     x: 0
@@ -1254,6 +1254,7 @@ MonoBehaviour:
   freezeTime: 0
   noSquares: 0
   squareMatrixScript: {fileID: 0}
+  squareScript: {fileID: 0}
   solidColorMat: {fileID: 2100000, guid: e4cfe147798dd914a96d76b41ec1ed0f, type: 2}
   noPathMat: {fileID: 2100000, guid: 89a5b5ba3b0ca7d48acbb13f4d4c13b6, type: 2}
 --- !u!4 &1913671696

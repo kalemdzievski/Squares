@@ -51,7 +51,6 @@ public class Square : MonoBehaviour {
 	{
 		if(isPainted && squareMatrixScript.selectedSquare == null)
 		{
-			noPathSquares.Clear();
 			isSelected = true;
 			squareMatrixScript.selectedSquare = this.gameObject;
 			anim.Play("Select");
@@ -59,6 +58,7 @@ public class Square : MonoBehaviour {
 			if(!gadgetsScript.freeMove)
 			{
 				//Initialize maze
+				noPathSquares.Clear();
 				for (int i = 0; i < squareMatrixScript.rows; i++)
 				{
 					for (int j = 0; j < squareMatrixScript.columns; j++)
@@ -98,6 +98,7 @@ public class Square : MonoBehaviour {
 			squareMatrixScript.selectedSquareDest = this.gameObject;
 			if(squareMatrixScript.path())
 			{
+				noPathSquares.Clear();
 				for(int i = 0; i<squareMatrixScript.rows; i++) {
 					for(int j = 0; j<squareMatrixScript.columns; j++) {
 						if(!squareMatrixScript.matrix[i,j].GetComponent<Square>().isAccessible) {
@@ -153,6 +154,7 @@ public class Square : MonoBehaviour {
 							if(noPath(i,j)) {
 								squareMatrixScript.matrix[i,j].GetComponent<Square>().isAccessible = false;
 								squareMatrixScript.matrix[i,j].transform.GetChild(0).renderer.material = noPathMat;
+								noPathSquares.Add(squareMatrixScript.matrix[i,j]);
 							}
 							else {
 								squareMatrixScript.matrix[i,j].GetComponent<Square>().isAccessible = true;

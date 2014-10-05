@@ -18,7 +18,6 @@ public class ProgressBar : MonoBehaviour {
 
 	void Awake()
 	{
-		Debug.Log ("PROGRESS BAR");
 		progressBar = GameObject.Find ("ProgressBar").guiTexture;
 		currWidth = barWidth = Screen.width;
 		barHeight = Screen.width/14;
