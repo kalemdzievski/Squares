@@ -189,8 +189,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   btnStart: Start
-  btnScores: High Scores
-  btnHelp: Help
+  btnScores: Leaderboard
+  btnHelp: Achievements
   btnExit: Exit
   clicksound: {fileID: 100977293}
   StartStyle:
@@ -665,6 +665,11 @@ MonoBehaviour:
     m_FixedHeight: 0
     m_StretchWidth: 1
     m_StretchHeight: 0
+  pos1: 0
+  pos2: 0
+  pos3: 0
+  pos4: 0
+  endPos: 0
 --- !u!4 &202583157
 Transform:
   m_ObjectHideFlags: 0
