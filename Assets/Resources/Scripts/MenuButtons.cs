@@ -50,6 +50,7 @@ public class MenuButtons : MonoBehaviour {
 
 		if (GUI.Button (new Rect (0, Screen.height / 3 + Screen.height / 11 + Screen.height / 20, Screen.width - Screen.width/5, Screen.height / 11), btnScores,ScoresStyle)) {
 
+			Social.ShowLeaderboardUI();
 			clicksound.audio.Play();
 			DontDestroyOnLoad(clicksound);
 		}

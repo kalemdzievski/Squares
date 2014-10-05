@@ -2,6 +2,8 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using AssemblyCSharp;
+using GooglePlayGames;
+using UnityEngine.SocialPlatforms;
 
 public class SquareMatrix : MonoBehaviour
 {
@@ -174,7 +176,11 @@ public class SquareMatrix : MonoBehaviour
 				Destroy(GameObject.FindGameObjectWithTag("Combo"));
 				Destroy(GameObject.FindGameObjectWithTag("ScoreText"));
 				Destroy(GameObject.FindGameObjectWithTag("Score"));
-				//matrixFull = true;
+
+				Social.ReportScore(score, "CgkIip-4vp4DEAIQBg", (bool success) => {
+					// handle success or failure
+				});
+
 				Debug.Log("GAME OVER");
 				break;
 			}
