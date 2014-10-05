@@ -16,25 +16,24 @@ public class MenuButtons : MonoBehaviour {
 	public GUIStyle scoresTex = null;
 	public GUIStyle helpTex = null;
 	public GUIStyle exitTex = null;
+	public float pos1, pos2, pos3, pos4, endPos;
 
 	void OnGUI () {
 
-		StartStyle.fontSize = (int)Screen.width/10;
-		StartStyle.padding.left = Screen.width / 20;
-		ScoresStyle.fontSize = (int)Screen.width/10;
+		StartStyle.fontSize 	 = (int)Screen.width/10;
+		StartStyle.padding.left  = Screen.width / 20;
+		ScoresStyle.fontSize 	 = (int)Screen.width/10;
 		ScoresStyle.padding.left = Screen.width / 20;
-		HelpStyle.fontSize = (int)Screen.width/10;
-		HelpStyle.padding.left = Screen.width / 20;
-		ExitStyle.fontSize = (int)Screen.width/10;
-		ExitStyle.padding.left = Screen.width / 20;
-
-
+		HelpStyle.fontSize 		 = (int)Screen.width/10;
+		HelpStyle.padding.left   = Screen.width / 20;
+		ExitStyle.fontSize 		 = (int)Screen.width/10;
+		ExitStyle.padding.left   = Screen.width / 20;
 
 		//Sharenite kocki desno pokraj kopcinjata
-		GUI.Box(new Rect(Screen.width - Screen.height/11, Screen.height/3, Screen.height/11, Screen.height/11),"",startTex);
-		GUI.Box(new Rect(Screen.width - Screen.height/11, Screen.height / 3 + Screen.height / 11 + Screen.height / 20, Screen.height/11, Screen.height/11),"",scoresTex);
-		GUI.Box(new Rect(Screen.width - Screen.height/11, Screen.height / 3 + 2 * Screen.height / 11 + 2 * Screen.height / 20, Screen.height/11, Screen.height/11),"",helpTex);
-		GUI.Box(new Rect(Screen.width - Screen.height/11, Screen.height/3 + 3*Screen.height/11 + 3*Screen.height/20, Screen.height/11, Screen.height/11),"",exitTex);
+		GUI.Box(new Rect(pos1, Screen.height/3, Screen.height/11, Screen.height/11),"",startTex);
+		GUI.Box(new Rect(pos2, Screen.height / 3 + Screen.height / 11 + Screen.height / 20, Screen.height/11, Screen.height/11),"",scoresTex);
+		GUI.Box(new Rect(pos3, Screen.height / 3 + 2 * Screen.height / 11 + 2 * Screen.height / 20, Screen.height/11, Screen.height/11),"",helpTex);
+		GUI.Box(new Rect(pos4, Screen.height/3 + 3*Screen.height/11 + 3*Screen.height/20, Screen.height/11, Screen.height/11),"",exitTex);
 
 		//Tuka se kreirani kopcinjata
 		if(GUI.Button (new Rect (0, Screen.height/3, Screen.width - Screen.width/5 , Screen.height/11),btnStart,StartStyle)) 
@@ -44,18 +43,17 @@ public class MenuButtons : MonoBehaviour {
 			Application.LoadLevel(1);
 			Time.timeScale = 1;
 			AudioListener.volume = 1;
-			Screen.showCursor = false;   
-
+			Screen.showCursor = false; 
 		}
 
 		if (GUI.Button (new Rect (0, Screen.height / 3 + Screen.height / 11 + Screen.height / 20, Screen.width - Screen.width/5, Screen.height / 11), btnScores,ScoresStyle)) {
-
 			clicksound.audio.Play();
 			DontDestroyOnLoad(clicksound);
 		}
 
 
 		if (GUI.Button (new Rect (0, Screen.height / 3 + 2 * Screen.height / 11 + 2 * Screen.height / 20, Screen.width - Screen.width/5, Screen.height / 11), btnHelp,HelpStyle)) {
+	
 			clicksound.audio.Play();
 			DontDestroyOnLoad(clicksound);
 			Application.LoadLevel(2);
@@ -74,13 +72,19 @@ public class MenuButtons : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+		pos1 = Screen.width + 50;
+		pos2 = Screen.width + 100;
+		pos3 = Screen.width + 200;
+		pos4 = Screen.width + 300;
+		endPos = Screen.width - Screen.height / 11;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
-		
-	
+		pos1 = Mathf.Lerp (pos1, endPos, Time.fixedDeltaTime / 0.2f);
+		pos2 = Mathf.Lerp (pos2, endPos, Time.fixedDeltaTime / 0.2f);
+		pos3 = Mathf.Lerp (pos3, endPos, Time.fixedDeltaTime / 0.2f);
+		pos4 = Mathf.Lerp (pos4, endPos, Time.fixedDeltaTime / 0.2f);
 	}
+	
 }
