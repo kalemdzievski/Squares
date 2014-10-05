@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using AssemblyCSharp;
+using System.Collections.Generic;
 
 public class Square : MonoBehaviour {
 
@@ -17,6 +18,7 @@ public class Square : MonoBehaviour {
 	public Material noPathMat;
 	public Gadgets gadgetsScript;
 	public Path path;
+	public List<GameObject> noPathSquares;
 
 	private void initSquare()
 	{
@@ -27,6 +29,7 @@ public class Square : MonoBehaviour {
 		anim = this.gameObject.transform.GetChild (0).animation;
 		colors = new SquareColors();
 		path = new Path();
+		noPathSquares = new List<GameObject> ();
 	}
 
 	void Awake()
@@ -48,6 +51,7 @@ public class Square : MonoBehaviour {
 	{
 		if(isPainted && squareMatrixScript.selectedSquare == null)
 		{
+			noPathSquares.Clear();
 			isSelected = true;
 			squareMatrixScript.selectedSquare = this.gameObject;
 			anim.Play("Select");
@@ -78,6 +82,7 @@ public class Square : MonoBehaviour {
 							if(noPath(i,j)) {
 								squareMatrixScript.matrix[i,j].GetComponent<Square>().isAccessible = false;
 								squareMatrixScript.matrix[i,j].transform.GetChild(0).renderer.material = noPathMat;
+								noPathSquares.Add(squareMatrixScript.matrix[i,j]);
 							}
 							else {
 								squareMatrixScript.matrix[i,j].GetComponent<Square>().isAccessible = true;
@@ -124,6 +129,7 @@ public class Square : MonoBehaviour {
 			if(!gadgetsScript.freeMove)
 			{
 				//Initialize maze
+				noPathSquares.Clear();
 				for (int i = 0; i < squareMatrixScript.rows; i++)
 				{
 					for (int j = 0; j < squareMatrixScript.columns; j++)

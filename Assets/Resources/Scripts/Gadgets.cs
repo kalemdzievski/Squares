@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using AssemblyCSharp;
+using System.Collections.Generic;
 
 public class Gadgets : MonoBehaviour {
 
@@ -25,6 +26,7 @@ public class Gadgets : MonoBehaviour {
 	public bool noSquares;
 
 	public SquareMatrix squareMatrixScript;
+	public Square squareScript;
 	public Material solidColorMat;
 	public Material noPathMat;
 	public char [,] mazematrix;
@@ -73,52 +75,16 @@ public class Gadgets : MonoBehaviour {
 			freeMove = !freeMove;
 			if(squareMatrixScript.selectedSquare != null)
 			{
+				squareScript = squareMatrixScript.selectedSquare.GetComponent<Square>();
 				if(freeMove)
 				{
-					for(int i = 0; i<squareMatrixScript.rows; i++) {
-						for(int j = 0; j<squareMatrixScript.columns; j++) {
-							if(!squareMatrixScript.matrix[i,j].GetComponent<Square>().isAccessible) {
-								squareMatrixScript.matrix[i,j].GetComponent<Square>().isAccessible = true;
-								squareMatrixScript.matrix[i,j].transform.GetChild(0).renderer.material = solidColorMat;
-							}
-						}
-					}
+					for(int i=0; i<squareScript.noPathSquares.Count; i++)
+						squareScript.noPathSquares[i].transform.GetChild(0).renderer.material = solidColorMat;
 				}
-				else{
-					//Initialize maze
-					for (int i = 0; i < squareMatrixScript.rows; i++)
-					{
-						for (int j = 0; j < squareMatrixScript.columns; j++)
-						{
-							if (squareMatrixScript.matrix[i,j].GetComponent<Square>().isPainted)
-							{
-								mazematrix[i + 1, j + 1] = '#';
-							}
-							else mazematrix[i + 1, j + 1] = ' ';
-							
-							if (squareMatrixScript.matrix[i,j].Equals(squareMatrixScript.selectedSquare))
-							{
-								mazematrix[i + 1, j + 1] = 'S';
-							}
-						}
-					}
-
-					for(int i = 0; i<squareMatrixScript.rows; i++) {
-						for(int j = 0; j<squareMatrixScript.columns; j++) {
-							if(!squareMatrixScript.matrix[i,j].GetComponent<Square>().isPainted) {
-								/*
-								if(noPath(i,j)) {
-									squareMatrixScript.matrix[i,j].GetComponent<Square>().isAccessible = false;
-									squareMatrixScript.matrix[i,j].transform.GetChild(0).renderer.material = noPathMat;
-								}
-								else {
-									squareMatrixScript.matrix[i,j].GetComponent<Square>().isAccessible = true;
-									squareMatrixScript.matrix[i,j].transform.GetChild(0).renderer.material = solidColorMat;
-								}
-								*/
-							}
-						}
-					}
+				else
+				{
+					for(int i=0; i<squareScript.noPathSquares.Count; i++)
+						squareScript.noPathSquares[i].transform.GetChild(0).renderer.material = noPathMat;
 				}
 			}
 		}
