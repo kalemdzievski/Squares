@@ -14,6 +14,9 @@ public class GameOver : MonoBehaviour {
 	public GUIStyle retryStyle;
 	public GUIStyle mmStyle;
 	public SquareMatrix squareMatrixScript;
+	public float widthLeft;
+	public float widthRight;
+	public float speed;
 
 	private Texture2D MakeTex( int width, int height, Color col )
 	{
@@ -34,6 +37,8 @@ public class GameOver : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		widthLeft 	  = -Screen.width;
+		widthRight 	  = Screen.width;
 		pauseBoxColor = new Color (0.0f, 0.0f, 0.0f, 0.0f);
 		Time.timeScale = 0;
 		Destroy (GameObject.FindGameObjectWithTag("Pause"));
@@ -41,6 +46,8 @@ public class GameOver : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		widthLeft 		= Mathf.Lerp(widthLeft, 0, Time.fixedDeltaTime / 0.12f);
+		widthRight 		= Mathf.Lerp(widthRight, 0, Time.fixedDeltaTime / 0.12f);
 		pauseBoxColor.a = Mathf.Lerp(pauseBoxColor.a, 0.9f, Time.fixedDeltaTime / 0.2f);
 	}
 
@@ -71,14 +78,14 @@ public class GameOver : MonoBehaviour {
 		mmStyle.fontSize = (int)Screen.width / 12;
 
 		//Retry button
-		if(GUI.Button(new Rect(0, Screen.height/3 + Screen.height/10, Screen.width , Screen.height/11), "Retry",retryStyle)){
+		if(GUI.Button(new Rect(widthLeft, Screen.height/3 + Screen.height/10, Screen.width , Screen.height/11), "Retry",retryStyle)){
 			Application.LoadLevel(1);
 			Time.timeScale = 1;
 			AudioListener.volume = 1;
 		}
 		
 		//Main menu button
-		if(GUI.Button(new Rect(0, Screen.height/3 + 2*Screen.height/10, Screen.width , Screen.height/11), "Main Menu",mmStyle)){
+		if(GUI.Button(new Rect(widthRight, Screen.height/3 + 2*Screen.height/10, Screen.width , Screen.height/11), "Main Menu",mmStyle)){
 			Application.LoadLevel(0);
 		}
 	}
