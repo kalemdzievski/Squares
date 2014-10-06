@@ -16,7 +16,11 @@ public class MenuButtons : MonoBehaviour {
 	public GUIStyle scoresTex = null;
 	public GUIStyle helpTex = null;
 	public GUIStyle exitTex = null;
+	public GUIStyle HelpceStyle = null;
+	public GUIStyle gpStyle = null;
 	public float pos1, pos2, pos3, pos4, endPos;
+	public GUIContent gpContent = null;
+	public Texture2D gpTex = null;
 
 	void OnGUI () {
 
@@ -28,15 +32,17 @@ public class MenuButtons : MonoBehaviour {
 		HelpStyle.padding.left   = Screen.width / 20;
 		ExitStyle.fontSize 		 = (int)Screen.width/10;
 		ExitStyle.padding.left   = Screen.width / 20;
+		HelpceStyle.fontSize 	 = (int)Screen.width/12;
+		gpContent.image = gpTex;
 
 		//Sharenite kocki desno pokraj kopcinjata
-		GUI.Box(new Rect(pos1, Screen.height/3, Screen.height/11, Screen.height/11),"",startTex);
-		GUI.Box(new Rect(pos2, Screen.height / 3 + Screen.height / 11 + Screen.height / 20, Screen.height/11, Screen.height/11),"",scoresTex);
-		GUI.Box(new Rect(pos3, Screen.height / 3 + 2 * Screen.height / 11 + 2 * Screen.height / 20, Screen.height/11, Screen.height/11),"",helpTex);
-		GUI.Box(new Rect(pos4, Screen.height/3 + 3*Screen.height/11 + 3*Screen.height/20, Screen.height/11, Screen.height/11),"",exitTex);
+		GUI.Box(new Rect(pos1, Screen.height/4, Screen.height/11, Screen.height/11),"",startTex);
+		GUI.Box(new Rect(pos2, Screen.height / 4 + Screen.height / 11 + Screen.height / 20, Screen.height/11, Screen.height/11),"",scoresTex);
+		GUI.Box(new Rect(pos3, Screen.height / 4 + 2 * Screen.height / 11 + 2 * Screen.height / 20, Screen.height/11, Screen.height/11),"",helpTex);
+		GUI.Box(new Rect(pos4, Screen.height/4 + 3*Screen.height/11 + 3*Screen.height/20, Screen.height/11, Screen.height/11),"",exitTex);
 
 		//Tuka se kreirani kopcinjata
-		if(GUI.Button (new Rect (0, Screen.height/3, Screen.width - Screen.width/5 , Screen.height/11),btnStart,StartStyle)) 
+		if(GUI.Button (new Rect (0, Screen.height/4, Screen.width - Screen.width/5 , Screen.height/11),btnStart,StartStyle)) 
 		{
 			clicksound.audio.Play();
 			DontDestroyOnLoad(clicksound);
@@ -46,24 +52,37 @@ public class MenuButtons : MonoBehaviour {
 			Screen.showCursor = false; 
 		}
 
-		if (GUI.Button (new Rect (0, Screen.height / 3 + Screen.height / 11 + Screen.height / 20, Screen.width - Screen.width/5, Screen.height / 11), btnScores,ScoresStyle)) {
+		if (GUI.Button (new Rect (0, Screen.height / 4 + Screen.height / 11 + Screen.height / 20, Screen.width - Screen.width/5, Screen.height / 11), btnScores,ScoresStyle)) {
 			clicksound.audio.Play();
 			DontDestroyOnLoad(clicksound);
 		}
 
 
-		if (GUI.Button (new Rect (0, Screen.height / 3 + 2 * Screen.height / 11 + 2 * Screen.height / 20, Screen.width - Screen.width/5, Screen.height / 11), btnHelp,HelpStyle)) {
+		if (GUI.Button (new Rect (0, Screen.height / 4 + 2 * Screen.height / 11 + 2 * Screen.height / 20, Screen.width - Screen.width/5, Screen.height / 11), btnHelp,HelpStyle)) {
 	
 			clicksound.audio.Play();
 			DontDestroyOnLoad(clicksound);
 			Application.LoadLevel(2);
 		}
 
-		if(GUI.Button (new Rect (0, Screen.height/3 + 3*Screen.height/11 + 3*Screen.height/20, Screen.width - Screen.width/5, Screen.height/11), btnExit,ExitStyle))
+		if(GUI.Button (new Rect (0, Screen.height/4 + 3*Screen.height/11 + 3*Screen.height/20, Screen.width - Screen.width/5, Screen.height/11), btnExit,ExitStyle))
 		{
 			clicksound.audio.Play();
 			Application.Quit();
 		}
+
+
+		//helpce kopcence dolcence u kjoshence desnence
+		if(GUI.Button (new Rect (Screen.width-Screen.height/11,Screen.height-Screen.height/11,Screen.height/11,Screen.height/11),"?",HelpceStyle))
+		{
+			clicksound.audio.Play();
+		}
+
+		if(GUI.Button (new Rect (0,Screen.height-Screen.height/11,Screen.height/11,Screen.height/11),gpContent,gpStyle))
+		{
+			clicksound.audio.Play();
+		}
+
 		if (Input.GetKeyDown(KeyCode.Escape))
 			Application.Quit();
 	}
