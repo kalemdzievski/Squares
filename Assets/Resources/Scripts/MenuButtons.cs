@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using GooglePlayGames;
+using UnityEngine.SocialPlatforms;
 
 public class MenuButtons : MonoBehaviour {
 
@@ -47,16 +49,16 @@ public class MenuButtons : MonoBehaviour {
 		}
 
 		if (GUI.Button (new Rect (0, Screen.height / 3 + Screen.height / 11 + Screen.height / 20, Screen.width - Screen.width/5, Screen.height / 11), btnScores,ScoresStyle)) {
+			((PlayGamesPlatform) Social.Active).ShowLeaderboardUI("CgkIip-4vp4DEAIQBg");
 			clicksound.audio.Play();
 			DontDestroyOnLoad(clicksound);
 		}
 
 
 		if (GUI.Button (new Rect (0, Screen.height / 3 + 2 * Screen.height / 11 + 2 * Screen.height / 20, Screen.width - Screen.width/5, Screen.height / 11), btnHelp,HelpStyle)) {
-	
+			Social.ShowAchievementsUI();
 			clicksound.audio.Play();
 			DontDestroyOnLoad(clicksound);
-			Application.LoadLevel(2);
 		}
 
 		if(GUI.Button (new Rect (0, Screen.height/3 + 3*Screen.height/11 + 3*Screen.height/20, Screen.width - Screen.width/5, Screen.height/11), btnExit,ExitStyle))

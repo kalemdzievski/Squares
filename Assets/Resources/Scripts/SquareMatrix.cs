@@ -283,6 +283,13 @@ public class SquareMatrix : MonoBehaviour
 			line += listUp.Count;
 		}
 
+		if(line == 5)
+			Achievements.unlockAchievement(Achievements.LINE5, Achievements.PROGRESS);
+		if(line == 6)
+			Achievements.unlockAchievement(Achievements.LINE6, Achievements.PROGRESS);
+		if(line == 7)
+			Achievements.unlockAchievement(Achievements.LINE7, Achievements.PROGRESS);
+
 		return line;
 	}
 

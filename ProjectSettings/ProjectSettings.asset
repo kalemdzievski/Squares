@@ -97,7 +97,7 @@ PlayerSettings:
   iPadHighResLandscapeSplashScreen: {fileID: 0}
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 2
-  AndroidKeystoreName: C:/Users/Aleksandra/Dropbox/Squares.keystore
+  AndroidKeystoreName: C:/Users/Nikola/Dropbox/Squares.keystore
   AndroidKeyaliasName: squares
   resolutionDialogBanner: {fileID: 0}
   m_BuildTargetIcons:
