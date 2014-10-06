@@ -3,10 +3,10 @@ using System.Collections;
 
 public class MenuButtons : MonoBehaviour {
 
-	public string btnStart = string.Empty;
-	public string btnScores = string.Empty;
-	public string btnHelp = string.Empty;
-	public string btnExit = string.Empty;
+	public string btnStart 		 = string.Empty;
+	public string btnScores 	 = string.Empty;
+	public string btnHelp 		 = string.Empty;
+	public string btnExit 		 = string.Empty;
 	public GameObject clicksound = null;
 	public GUIStyle StartStyle = null;
 	public GUIStyle ScoresStyle = null;
@@ -42,6 +42,7 @@ public class MenuButtons : MonoBehaviour {
 		GUI.Box(new Rect(pos4, Screen.height/4 + 3*Screen.height/11 + 3*Screen.height/20, Screen.height/11, Screen.height/11),"",exitTex);
 
 		//Tuka se kreirani kopcinjata
+
 		if(GUI.Button (new Rect (0, Screen.height/4, Screen.width - Screen.width/5 , Screen.height/11),btnStart,StartStyle)) 
 		{
 			clicksound.audio.Play();
@@ -57,8 +58,8 @@ public class MenuButtons : MonoBehaviour {
 			DontDestroyOnLoad(clicksound);
 		}
 
-
 		if (GUI.Button (new Rect (0, Screen.height / 4 + 2 * Screen.height / 11 + 2 * Screen.height / 20, Screen.width - Screen.width/5, Screen.height / 11), btnHelp,HelpStyle)) {
+
 	
 			clicksound.audio.Play();
 			DontDestroyOnLoad(clicksound);
@@ -86,9 +87,7 @@ public class MenuButtons : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.Escape))
 			Application.Quit();
 	}
-
-
-
+	
 	// Use this for initialization
 	void Start () {
 		pos1 = Screen.width + 50;
@@ -104,6 +103,5 @@ public class MenuButtons : MonoBehaviour {
 		pos2 = Mathf.Lerp (pos2, endPos, Time.fixedDeltaTime / 0.2f);
 		pos3 = Mathf.Lerp (pos3, endPos, Time.fixedDeltaTime / 0.2f);
 		pos4 = Mathf.Lerp (pos4, endPos, Time.fixedDeltaTime / 0.2f);
-	}
-	
+	}	
 }
