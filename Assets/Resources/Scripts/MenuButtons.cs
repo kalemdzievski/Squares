@@ -50,7 +50,6 @@ public class MenuButtons : MonoBehaviour {
 			DontDestroyOnLoad(clicksound);
 		}
 
-
 		if (GUI.Button (new Rect (0, Screen.height / 3 + 2 * Screen.height / 11 + 2 * Screen.height / 20, Screen.width - Screen.width/5, Screen.height / 11), btnHelp,HelpStyle)) {
 	
 			clicksound.audio.Play();
@@ -66,9 +65,7 @@ public class MenuButtons : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.Escape))
 			Application.Quit();
 	}
-
-
-
+	
 	// Use this for initialization
 	void Start () {
 		pos1 = Screen.width + 50;
@@ -84,6 +81,5 @@ public class MenuButtons : MonoBehaviour {
 		pos2 = Mathf.Lerp (pos2, endPos, Time.fixedDeltaTime / 0.2f);
 		pos3 = Mathf.Lerp (pos3, endPos, Time.fixedDeltaTime / 0.2f);
 		pos4 = Mathf.Lerp (pos4, endPos, Time.fixedDeltaTime / 0.2f);
-	}
-	
+	}	
 }
