@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using AssemblyCSharp;
 using GooglePlayGames;
 using UnityEngine.SocialPlatforms;
+using GoogleMobileAds.Api;
 
 public class SquareMatrix : MonoBehaviour
 {
@@ -73,10 +74,15 @@ public class SquareMatrix : MonoBehaviour
 	
 	void Awake()
 	{
+		BannerView bannerView = new BannerView("ca-app-pub-3920316640870633/9142031704", AdSize.Banner, AdPosition.Bottom);
+		AdRequest request = new AdRequest.Builder().Build();
+		bannerView.LoadAd(request);
+
 		Debug.Log ("SQUARE MATRIX");
 		initVariables ();
 		initMatrix (rows, columns);
 		paintRandomSquares (randomSquaresPainted);
+
 	}
 	
 	// Update is called once per frame
