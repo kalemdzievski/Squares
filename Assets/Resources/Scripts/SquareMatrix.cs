@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using AssemblyCSharp;
 using GooglePlayGames;
-using UnityEngine.SocialPlatforms;
 using GoogleMobileAds.Api;
 
 public class SquareMatrix : MonoBehaviour
@@ -32,6 +31,7 @@ public class SquareMatrix : MonoBehaviour
 	public SquareColors colors;
 	public bool matrixFull = false;
 	public string FinalScore = string.Empty;
+	public BannerView bannerView;
 
 	void initMatrix(int rows, int columns)
 	{
@@ -74,14 +74,14 @@ public class SquareMatrix : MonoBehaviour
 	
 	void Awake()
 	{
-		BannerView bannerView = new BannerView("ca-app-pub-3920316640870633/9142031704", AdSize.Banner, AdPosition.Bottom);
-		AdRequest request = new AdRequest.Builder().Build();
-		bannerView.LoadAd(request);
-
 		Debug.Log ("SQUARE MATRIX");
 		initVariables ();
 		initMatrix (rows, columns);
 		paintRandomSquares (randomSquaresPainted);
+
+		bannerView = new BannerView("ca-app-pub-1341463694255983/5836385559", AdSize.Banner, AdPosition.Bottom);
+		AdRequest request = new AdRequest.Builder().Build();
+		bannerView.LoadAd(request);
 
 	}
 	
@@ -102,6 +102,11 @@ public class SquareMatrix : MonoBehaviour
 			selectedSquareDest.transform.GetChild(0).renderer.material.color = Color.Lerp(selectedSquareDestColor, selectedSquareColor, Time.time);
 		}
 		*/
+	}
+
+	void OnDestroy () {
+		bannerView.Hide();
+		bannerView.Destroy();
 	}
 
 	public void move()

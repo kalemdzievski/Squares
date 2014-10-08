@@ -70,8 +70,6 @@ public class MenuButtons : MonoBehaviour {
 			Application.Quit();
 	}
 
-
-
 	// Use this for initialization
 	void Start () {
 		pos1 = Screen.width + 50;
