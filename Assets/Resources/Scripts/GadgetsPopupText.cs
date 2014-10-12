@@ -3,14 +3,12 @@ using System.Collections;
 
 public class GadgetsPopupText : MonoBehaviour {
 
-	public bool textSet;
 	public float duration;
 	public float seconds;
 	public Vector3 to;
 
 	// Use this for initialization
 	void Start () {
-		textSet  = false;
 		duration = 2.0f;
 		seconds  = 0.0f;
 		to 		 = new Vector3 (transform.position.x, transform.position.y + 0.05f, transform.position.z);
@@ -38,6 +36,5 @@ public class GadgetsPopupText : MonoBehaviour {
 
 	public void setText(string text) {
 		guiText.text = text;
-		textSet = true;
 	}
 }
