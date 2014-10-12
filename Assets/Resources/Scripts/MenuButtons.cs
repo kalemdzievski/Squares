@@ -40,6 +40,7 @@ public class MenuButtons : MonoBehaviour {
 		HelpceStyle.fontSize 	 = (int)Screen.width/12;
 		HTPStyle.fontSize 		 = (int)Screen.width/10;
 		gpContent.image = gpTex;
+		BackStyle.fontSize = (int)Screen.width/10;
 
 		//Sharenite kocki desno pokraj kopcinjata
 		GUI.Box(new Rect(pos1, Screen.height/4, Screen.height/11, Screen.height/11),"",startTex);
@@ -98,7 +99,7 @@ public class MenuButtons : MonoBehaviour {
 		if(helpEnabled == true){
 			//Make a background box
 			GUI.Box(new Rect(0, 0, Screen.width ,Screen.height), "", HelpBox);
-			GUI.Label(new Rect(0,Screen.height/100.0f, Screen.width, 30),"How to play",HTPStyle);
+			GUI.Label(new Rect(0,Screen.height/30, Screen.width, 30),"How to play",HTPStyle);
 			HTPStyle.fontSize = (int)Screen.width/13; // golemina na font na naslov vo Pause Menu
 			HelpBox.normal.background = MakeTex( 2, 2, helpBoxColor );
 			
