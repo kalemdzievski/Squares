@@ -89,6 +89,12 @@ public class GameOver : MonoBehaviour {
 		mmStyle.normal.background = (Texture2D)Resources.Load("Textures/moveTex");
 		mmStyle.fontSize = (int)Screen.width / 12;
 
+		if (highScore == true) {
+						NewRecord = "NEW HIGH SCORE";
+				} else {
+			NewRecord = "SCORE";
+				}
+
 		//Retry button
 		if(GUI.Button(new Rect(widthLeft, Screen.height/3 + Screen.height/10, Screen.width , Screen.height/11), "Retry",retryStyle)){
 			Application.LoadLevel(1);
