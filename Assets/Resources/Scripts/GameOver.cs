@@ -8,6 +8,8 @@ public class GameOver : MonoBehaviour {
 	public GUIStyle Title;
 	public GUIStyle ScoreStyle;
 	public GUIStyle ScoreValStyle;
+	public GUIStyle NewRecordStyle;
+	public string NewRecord = "SCORE";
 	public Font pauseMenuFont;
 	public Color pauseBoxColor;
 	public GUIText ScoreText;
@@ -65,7 +67,7 @@ public class GameOver : MonoBehaviour {
 		GUI.skin = skin;
 		GUI.Box(new Rect(0, 0, Screen.width ,Screen.height), "", BackgroundFade);
 		GUI.Label (new Rect (0, Screen.height / 3, Screen.width, 30), "GAME OVER", Title);
-		GUI.Label (new Rect (0, Screen.height / 10, Screen.width, 30), "SCORE", ScoreStyle);
+		GUI.Label (new Rect (0, Screen.height / 10, Screen.width, 30), NewRecord, ScoreStyle);
 		GUI.Label (new Rect (0, Screen.height / 6, Screen.width, 30), squareMatrixScript.score.ToString(), ScoreValStyle);
 		BackgroundFade.normal.background = MakeTex( 2, 2, pauseBoxColor );
 		Title.fontSize = (int)Screen.width / 12;
