@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using AssemblyCSharp;
+using GoogleMobileAds.Api;
 
 public class SquareMatrix : MonoBehaviour
 {
@@ -27,8 +28,7 @@ public class SquareMatrix : MonoBehaviour
 	private List<string> listUp;
 	private List<string> listLine;
 	public SquareColors colors;
-	public bool matrixFull = false;
-	public string FinalScore = string.Empty;
+	public BannerView bannerView;
 
 	void initMatrix(int rows, int columns)
 	{
@@ -76,6 +76,10 @@ public class SquareMatrix : MonoBehaviour
 		initVariables ();
 		initMatrix (rows, columns);
 		paintRandomSquares (randomSquaresPainted);
+
+		bannerView = new BannerView("ca-app-pub-1341463694255983/5836385559", AdSize.Banner, AdPosition.Bottom);
+		AdRequest request = new AdRequest.Builder().Build();
+		bannerView.LoadAd(request);
 	}
 	
 	// Update is called once per frame
@@ -95,6 +99,11 @@ public class SquareMatrix : MonoBehaviour
 			selectedSquareDest.transform.GetChild(0).renderer.material.color = Color.Lerp(selectedSquareDestColor, selectedSquareColor, Time.time);
 		}
 		*/
+	}
+
+	void OnDestroy () {
+		bannerView.Hide();
+		bannerView.Destroy();
 	}
 
 	public void move()
@@ -175,7 +184,6 @@ public class SquareMatrix : MonoBehaviour
 				Destroy(GameObject.FindGameObjectWithTag("Combo"));
 				Destroy(GameObject.FindGameObjectWithTag("ScoreText"));
 				Destroy(GameObject.FindGameObjectWithTag("Score"));
-				//matrixFull = true;
 				PlayerPrefs.SetInt("HighScore", score);
 				break;
 			}
