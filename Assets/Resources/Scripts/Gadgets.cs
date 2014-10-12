@@ -87,8 +87,10 @@ public class Gadgets : MonoBehaviour {
 				}
 				else
 				{
-					for(int i=0; i<squareScript.noPathSquares.Count; i++)
+					for(int i=0; i<squareScript.noPathSquares.Count; i++){
 						squareScript.noPathSquares[i].transform.GetChild(0).renderer.material = noPathMat;
+						squareScript.isPainted = false;
+					}
 				}
 			}
 		}
