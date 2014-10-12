@@ -17,6 +17,7 @@ public class GameOver : MonoBehaviour {
 	public float widthLeft;
 	public float widthRight;
 	public float speed;
+	public bool highScore;
 
 	private Texture2D MakeTex( int width, int height, Color col )
 	{
@@ -32,6 +33,7 @@ public class GameOver : MonoBehaviour {
 	}
 
 	void Awake() {
+		Debug.Log ("GAME OVER");
 		squareMatrixScript = GameObject.FindGameObjectWithTag ("Block").GetComponent<SquareMatrix> ();
 	}
 
@@ -42,6 +44,14 @@ public class GameOver : MonoBehaviour {
 		pauseBoxColor = new Color (0.0f, 0.0f, 0.0f, 0.0f);
 		Time.timeScale = 0;
 		Destroy (GameObject.FindGameObjectWithTag("Pause"));
+
+		highScore = false;
+		int currentHighScore = PlayerPrefs.GetInt("HighScore");
+		int newHighScore = squareMatrixScript.score;
+		if(newHighScore >= currentHighScore) {
+			highScore = true;
+			PlayerPrefs.SetInt("HighScore", newHighScore);
+		}
 	}
 	
 	// Update is called once per frame

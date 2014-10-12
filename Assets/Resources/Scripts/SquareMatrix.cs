@@ -72,6 +72,7 @@ public class SquareMatrix : MonoBehaviour
 	void Awake()
 	{
 		Debug.Log ("SQUARE MATRIX");
+		Debug.Log (" SCORE: " + PlayerPrefs.GetInt("HighScore"));
 		initVariables ();
 		initMatrix (rows, columns);
 		paintRandomSquares (randomSquaresPainted);
@@ -175,7 +176,7 @@ public class SquareMatrix : MonoBehaviour
 				Destroy(GameObject.FindGameObjectWithTag("ScoreText"));
 				Destroy(GameObject.FindGameObjectWithTag("Score"));
 				//matrixFull = true;
-				Debug.Log("GAME OVER");
+				PlayerPrefs.SetInt("HighScore", score);
 				break;
 			}
 			if(paintedSquares <= 0)
