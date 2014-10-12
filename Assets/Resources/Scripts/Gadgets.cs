@@ -80,8 +80,10 @@ public class Gadgets : MonoBehaviour {
 				squareScript = squareMatrixScript.selectedSquare.GetComponent<Square>();
 				if(freeMove)
 				{
-					for(int i=0; i<squareScript.noPathSquares.Count; i++)
+					for(int i=0; i<squareScript.noPathSquares.Count; i++) {
 						squareScript.noPathSquares[i].transform.GetChild(0).renderer.material = solidColorMat;
+						squareScript.isPainted = false;
+					}
 				}
 				else
 				{
