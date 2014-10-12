@@ -49,7 +49,10 @@ public class GameOver : MonoBehaviour {
 
 		highScore = false;
 		int currentHighScore = PlayerPrefs.GetInt("HighScore");
+		Debug.Log ("current " + currentHighScore);
 		int newHighScore = squareMatrixScript.score;
+		Debug.Log ("newHighScore " + currentHighScore);
+
 		if(newHighScore >= currentHighScore) {
 			highScore = true;
 			PlayerPrefs.SetInt("HighScore", newHighScore);
