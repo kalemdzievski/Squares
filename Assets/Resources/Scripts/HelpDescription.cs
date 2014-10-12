@@ -31,6 +31,7 @@ public class HelpDescription : MonoBehaviour {
 		HelpButton.padding.left = Screen.width / 20;
 		GUI.BeginScrollView (new Rect (0, 0, Screen.width, Screen.height), scrollPosition, new Rect (0, 0, 20, 20));
 		GUI.Box(new Rect(Screen.width/20,Screen.height/40,Screen.width - 2*Screen.width/20,Screen.height - 8*Screen.width/22),"",BackgroundFade);
+		GUI.Box(new Rect(Screen.width/20,Screen.height/40,Screen.width - 2*Screen.width/20,Screen.height - 8*Screen.width/22),"");
 		BackgroundFade.normal.background = MakeTex( 2, 2, HelpBoxColor );
 		if (GUI.Button (new Rect (0, Screen.height - 2 * Screen.height / 12, Screen.width, Screen.height / 11), "Main Menu", HelpButton)) {
 			Application.LoadLevel(0);		
